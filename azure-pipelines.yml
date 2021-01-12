@@ -4,14 +4,9 @@ trigger:
     include:
       - "*"
 
-pr: none
-
-workspace:
-  clean: all
-
 variables:
-- name: SolutionBaseName
-  value: '__SolutionBaseName__'
+- name: SolutionName
+  value: '__SolutionName__'
 - name: BuildPlatform
   value : 'any cpu'
 - name: BuildConfiguration
@@ -22,12 +17,11 @@ pool:
 
 resources:
   repositories:
-  - repository: self
-  - repository: das-platform-building-blocks
-    type: github
-    name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/heads/master
-    endpoint: 'GitHub (SFA)'
+    - repository: das-platform-building-blocks
+      type: github
+      name: SkillsFundingAgency/das-platform-building-blocks
+      ref: refs/heads/master
+      endpoint: 'GitHub (SFA)'
 
 steps:
   - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
@@ -39,21 +33,40 @@ steps:
     displayName: gitversion/execute
     inputs:
       useConfigFile: true
-      configFilePath: GitVersion.yml    
+      configFilePath: GitVersion.yml   
 
   - template: azure-pipelines-templates/build/step/app-build.yml@das-platform-building-blocks        
 
   - template: azure-pipelines-templates/dependency-check.yml@das-platform-building-blocks
 
   - task: DotNetCoreCLI@2
-    displayName: "Publish - dotnet publish $(SolutionBaseName)"
+    displayName: Restore
+    inputs:
+      command: restore
+      projects: 'src/**/*.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      projects: 'src/**/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
+
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: '**/*.UnitTests.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: "Publish - dotnet publish $(__SolutionName__)"
     inputs:
       command: publish
       publishWebProjects: false #set to false as this setting (which defaults to true) will parse the entire repo for web projects
-      projects: "src/$(SolutionBaseName)/$(SolutionBaseName).csproj"
+      projects: "src/$(__SolutionName__)/$(__SolutionName__).csproj"
       arguments: "-o $(build.artifactstagingdirectory)/publish -c $(BuildConfiguration) --no-build"
       zipAfterPublish: false
       modifyOutputPath: true
+
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)/publish'
