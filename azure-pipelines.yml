@@ -62,7 +62,7 @@ steps:
     inputs:
       command: publish
       publishWebProjects: false #set to false as this setting (which defaults to true) will parse the entire repo for web projects
-      projects: "src/$(__SolutionName__)/$(__SolutionName__).csproj"
+      projects: src/**/*.csproj
       arguments: "-o $(build.artifactstagingdirectory)/publish -c $(BuildConfiguration) --no-build"
       zipAfterPublish: false
       modifyOutputPath: true
