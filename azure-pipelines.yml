@@ -58,13 +58,13 @@ steps:
       projects: '**/*.UnitTests.csproj'
 
   - task: DotNetCoreCLI@2
-    displayName: "Publish - dotnet publish $(__SolutionName__)"
+    displayName: "Publish Apprentice Portal Web"
     inputs:
       command: publish
       publishWebProjects: false #set to false as this setting (which defaults to true) will parse the entire repo for web projects
       projects: src/**/*.csproj
       arguments: "-o $(build.artifactstagingdirectory)/publish -c $(BuildConfiguration) --no-build"
-      zipAfterPublish: false
+      zipAfterPublish: true
       modifyOutputPath: true
 
 
