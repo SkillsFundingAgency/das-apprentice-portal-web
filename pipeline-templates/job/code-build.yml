@@ -33,13 +33,13 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)/publish'
       inputs:
-      Contents: |
-        azure/**
-      TargetFolder: '$(build.artifactstagingdirectory)/publish'
-      OverWrite: true
+        Contents: |
+          azure/**
+        TargetFolder: '$(build.artifactstagingdirectory)/publish'
+        OverWrite: true
 
     - task: PublishPipelineArtifact@1
-      isplayName: 'Publish Artifact: drop'
+      DisplayName: 'Publish Artifact: drop'
       inputs:
-      targetPath: $(build.artifactstagingdirectory)/publish
-      artifactName: drop
+        targetPath: $(build.artifactstagingdirectory)/publish
+        artifactName: drop
