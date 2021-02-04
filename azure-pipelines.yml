@@ -25,7 +25,7 @@ resources:
 
 stages:
 - stage: Build
-  job:
+  jobs:
   - template: pipeline-templates\job\code-build.yml
 
 
