@@ -5,8 +5,6 @@ trigger:
       - "*"
 
 variables:
-- name: SolutionName
-  value: '__SolutionName__'
 - name: BuildPlatform
   value : 'any cpu'
 - name: BuildConfiguration

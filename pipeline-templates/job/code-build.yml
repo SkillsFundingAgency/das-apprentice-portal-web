@@ -4,6 +4,8 @@ jobs:
     name: DAS - Continuous Integration
   variables:
   - group: BUILD Management Resources
+  - name: SolutionBaseName
+    value: '__SolutionBaseName__'
   steps:
     - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
       displayName: gitversion/setup

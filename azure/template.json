@@ -15,10 +15,6 @@
             "type": "string",
             "defaultValue": ""
         },
-        "configNames": {
-            "type": "string",
-            "defaultValue": "__SolutionName__"
-        },
         "version": {
             "type": "string",
             "defaultValue": "1.0"
@@ -176,10 +172,6 @@
                                 {
                                     "name": "EnvironmentName",
                                     "value": "[toUpper(parameters('environmentName'))]"
-                                },
-                                {
-                                    "name": "ConfigNames",
-                                    "value": "[parameters('configNames')]"
                                 },
                                 {
                                     "name": "Version",
