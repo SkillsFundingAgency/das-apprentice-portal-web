@@ -118,7 +118,10 @@
                         "value": "[variables('appServiceName')]"
                     }
                 }
-            }
+            },
+            "dependsOn": [
+                "[variables('resourceGroupName')]"
+            ]
         },
         {
             "apiVersion": "2020-06-01",
@@ -190,7 +193,8 @@
             },
             "dependsOn": [
                 "app-service-certificate",
-                "app-insights"
+                "app-insights",
+                "[variables('resourceGroupName')]"
             ]
         }
     ],
