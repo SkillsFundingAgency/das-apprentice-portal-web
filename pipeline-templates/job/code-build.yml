@@ -5,7 +5,7 @@ jobs:
   variables:
   - group: BUILD Management Resources
   - name: SolutionBaseName
-    value: '__SolutionBaseName__'
+    value: 'SFA.DAS.ApprenticeService.Web'
   steps:
     - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
       displayName: gitversion/setup
@@ -27,7 +27,7 @@ jobs:
       inputs:
         command: publish
         publishWebProjects: false #set to false as this setting (which defaults to true) will parse the entire repo for web projects
-        projects: src/**/*.csproj
+        projects: src/$(SolutionBaseName).csproj
         arguments: "-o $(build.artifactstagingdirectory)/publish -c $(BuildConfiguration) --no-build"
         modifyOutputPath: true
 
