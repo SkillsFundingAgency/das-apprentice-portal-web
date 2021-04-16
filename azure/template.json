@@ -46,10 +46,8 @@
         "sharedFrontEndSubnetResourceId": {
             "type": "string"
         },
-        "appServiceAllowedIPs": {
-            "type": "array",
-            "defaultValue": [
-            ]
+        "frontEndAccessRestrictions": {
+            "type": "array"
         },
         "loggingRedisKey": {
             "type": "string"
@@ -150,9 +148,6 @@
                     "deployStagingSlot": {
                         "value": true
                     },
-                    "ipSecurityRestrictions": {
-                        "value": "[parameters('appServiceAllowedIPs')]"
-                    },
                     "appServiceAppSettings": {
                         "value": {
                             "array": [
@@ -188,6 +183,9 @@
                     },
                     "certificateThumbprint": {
                         "value": "[if(greater(length(parameters('keyvaultCertificateName')), 0), reference('app-service-certificate').outputs.certificateThumbprint.value, '')]"
+                    },
+                    "ipSecurityRestrictions": {
+                        "value": "[parameters('frontEndAccessRestrictions')]"
                     }
                 }
             },
