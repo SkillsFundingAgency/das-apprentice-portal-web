@@ -4,7 +4,7 @@ jobs:
     name: DAS - Continuous Integration
   variables:
   - group: BUILD Management Resources
-  - group: 'ESFA - SonarCloud'
+  - group: ESFA - SonarCloud
   - name: SonarCloudProjectKey
     value: SkillsFundingAgency_das-apprentice-portal-web
   - name: SolutionBaseName
