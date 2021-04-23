@@ -8,8 +8,6 @@ jobs:
     value: educationandskillsfundingagency
   - name: SonarCloudProjectKey
     value: SkillsFundingAgency_das-apprentice-portal-web
-  - name: SonarCloudServiceConnection
-    value: ESFA - SonarCloud
   - name: SolutionBaseName
     value: SFA.DAS.ApprenticeService.Web
   steps:
@@ -28,7 +26,7 @@ jobs:
       displayName: Prepare SonarCloud analysis configuration
       condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),eq(variables['Build.Reason'], 'PullRequest')))
       inputs:
-        SonarCloud: "$(SonarCloudServiceConnection)"
+        SonarCloud: ESFA - SonarCloud
         organization: "$(SonarCloudOrganisationKey)"
         scannerMode: MSBuild
         projectName: "$(Build.DefinitionName)"
