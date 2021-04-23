@@ -4,8 +4,6 @@ jobs:
     name: DAS - Continuous Integration
   variables:
   - group: BUILD Management Resources
-  - name: SonarCloudOrganisationKey
-    value: educationandskillsfundingagency
   - name: SonarCloudProjectKey
     value: SkillsFundingAgency_das-apprentice-portal-web
   - name: SolutionBaseName
@@ -27,7 +25,7 @@ jobs:
       condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),eq(variables['Build.Reason'], 'PullRequest')))
       inputs:
         SonarCloud: ESFA - SonarCloud
-        organization: "$(SonarCloudOrganisationKey)"
+        organization: educationandskillsfundingagency
         scannerMode: MSBuild
         projectName: "$(Build.DefinitionName)"
         projectKey: "$(SonarCloudProjectKey)"
