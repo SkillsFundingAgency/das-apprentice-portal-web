@@ -20,7 +20,7 @@ jobs:
         
     - task: SonarCloudPrepare@1
       displayName: Prepare SonarCloud analysis configuration
-      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),eq(variables['Build.Reason'], 'PullRequest')))
+      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),eq(variables['Build.Reason'], 'PullRequest')))
       inputs:
         SonarCloud: ESFA - SonarCloud
         organization: "$(SonarCloudOrganisationKey)"
@@ -32,11 +32,11 @@ jobs:
     
     - task: SonarCloudAnalyze@1
       displayName: Run SonarCloud analysis
-      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),eq(variables['Build.Reason'], 'PullRequest')))
+      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),eq(variables['Build.Reason'], 'PullRequest')))
 
     - task: SonarCloudPublish@1
       displayName: Publish SonarCloud analysis results on build summary
-      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),eq(variables['Build.Reason'], 'PullRequest')))
+      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),eq(variables['Build.Reason'], 'PullRequest')))
       inputs:
         pollingTimeoutSec: '300'
 
