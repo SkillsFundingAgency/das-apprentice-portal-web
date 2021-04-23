@@ -25,7 +25,7 @@ jobs:
       displayName: Prepare SonarCloud analysis configuration
       condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),eq(variables['Build.Reason'], 'PullRequest')))
       inputs:
-        SonarCloud: "$(SonarCloudConnectionId)"
+        SonarCloud: "$(SonarCloudConnectionName)"
         organization: "$(SonarCloudOrganisationKey)"
         scannerMode: MSBuild
         projectName: "$(Build.DefinitionName)"
