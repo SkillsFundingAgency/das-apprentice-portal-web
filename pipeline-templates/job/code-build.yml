@@ -4,8 +4,6 @@ jobs:
     name: DAS - Continuous Integration
   variables:
   - group: BUILD Management Resources
-  - name: SonarCloudProjectKey
-    value: SkillsFundingAgency_das-apprentice-portal-web
   - name: SolutionBaseName
     value: SFA.DAS.ApprenticeService.Web
   steps:
@@ -28,7 +26,7 @@ jobs:
         organization: educationandskillsfundingagency
         scannerMode: MSBuild
         projectName: "$(Build.DefinitionName)"
-        projectKey: "$(SonarCloudProjectKey)"
+        projectKey: SkillsFundingAgency_das-apprentice-portal-web
 
     - template: azure-pipelines-templates/build/step/app-build.yml@das-platform-building-blocks
     
