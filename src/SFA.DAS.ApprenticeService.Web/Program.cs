@@ -20,7 +20,7 @@ namespace SFA.DAS.ApprenticeService.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<ApplicationStartup>();
                 });
     }
 }

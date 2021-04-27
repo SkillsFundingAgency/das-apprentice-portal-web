@@ -1,48 +1,66 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="govuk-template ">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SFA.DAS.ApprenticeService.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
+    <meta property="og:image" content="/assets/images">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/assets/images/govuk-mask-icon.svg" color="#0b0c0c" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/govuk-apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/assets/images/govuk-apple-touch-icon-167x167.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/govuk-apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" href="/assets/images/govuk-apple-touch-icon.png" />
+
+    <!--[if !IE 8]><!-->
+    <link href="/css/main.css" rel="stylesheet" />
+    <!--<![endif]-->
+    <!--[if IE 8]>
+        <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="/html5-shiv/html5shiv.js"></script>
+    <![endif]-->
+
+    <link href="~/css/site.css" media="screen" rel="stylesheet" no-cdn />
+
+    <title>@ViewData["Title"] - Commitment Statement</title>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SFA.DAS.ApprenticeService.Web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+<body class="govuk-template__body">
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
+
+    <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+    <partial name="_Header" />
+
+    @RenderSection("AfterHeader", required: false)
+
+    <div class="govuk-width-container">
+
+        @RenderSection("BreadCrumbs", required: false)
+
+        <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - SFA.DAS.ApprenticeService.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="/libs/govuk-frontend/all.js"></script>
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <script src="/js/das-all.js"></script>
+    <script src="/js/app.min.js"></script>
+    <script>
+        window.GOVUKFrontend.initAll();
+        window.DASFrontend.initAll();
+    </script>
+    <script src="~/js/site.js" asp-append-version="true" no-cdn></script>
     @RenderSection("Scripts", required: false)
+
+
+    <partial name="_Footer" />
+
 </body>
 </html>
