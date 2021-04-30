@@ -1,25 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFA.DAS.ApprenticeService.Web.Models;
-using System;
-using System.Collections.Generic;
+using SFA.DAS.ApprenticeService.Web.Configuration;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticeService.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //private readonly ApprenticeCommitementsUrlConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger
+            //,ApprenticeCommitementsUrlConfiguration configuration)
+            )
         {
             _logger = logger;
+            //_configuration = configuration;
         }
 
         public IActionResult Index()
         {
+            //return View(new HomeModel
+            //    {
+            //        ApprenticeCommitmentsUrl = $"{_configuration.ApprenticeCommitmentsBaseUrl}"
+            //    });
+
             return View();
         }
 
