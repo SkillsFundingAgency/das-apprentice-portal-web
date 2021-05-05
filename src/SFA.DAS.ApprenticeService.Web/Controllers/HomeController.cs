@@ -3,32 +3,46 @@ using Microsoft.Extensions.Logging;
 using SFA.DAS.ApprenticeService.Web.Models;
 using SFA.DAS.ApprenticeService.Web.Configuration;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System;
+using SFA.DAS.ApprenticeService.Web.Startup;
 
 namespace SFA.DAS.ApprenticeService.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private readonly ApprenticeCommitementsUrlConfiguration _configuration;
+        private readonly ApplicationConfiguration _configuration;
 
         public HomeController(
             ILogger<HomeController> logger
-            //,ApprenticeCommitementsUrlConfiguration configuration)
-            )
+            , ApplicationConfiguration configuration)
         {
             _logger = logger;
-            //_configuration = configuration;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
         {
-            //return View(new HomeModel
-            //    {
-            //        ApprenticeCommitmentsUrl = $"{_configuration.ApprenticeCommitmentsBaseUrl}"
-            //    });
 
-            return View();
+            return View(new HomeModel
+            {
+                ApprenticeCommitmentsBaseUrl = _configuration.ApprenticeCommitmentsBaseUrl
+
+            });
         }
+
+        //[HttpGet]
+        //public async Task<ActionResult> Index(HomeModel home)
+        //{
+
+        //    return View(new HomeModel
+        //    {
+        //        ApprenticeCommitmentsUrl = home.ApprenticeCommitmentsUrl
+        //        //ApprenticeCommitmentsUrl = $"{_configuration.ApprenticeCommitmentsBaseUrl}"
+        //    }); 
+        //}
+
 
         public IActionResult Privacy()
         {
