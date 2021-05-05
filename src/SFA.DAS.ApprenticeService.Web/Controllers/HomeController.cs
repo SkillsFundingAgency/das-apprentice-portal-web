@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFA.DAS.ApprenticeService.Web.Models;
-using SFA.DAS.ApprenticeService.Web.Configuration;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System;
 using SFA.DAS.ApprenticeService.Web.Startup;
 
 namespace SFA.DAS.ApprenticeService.Web.Controllers
@@ -24,25 +21,11 @@ namespace SFA.DAS.ApprenticeService.Web.Controllers
 
         public IActionResult Index()
         {
-
             return View(new HomeModel
             {
                 ApprenticeCommitmentsBaseUrl = _configuration.ApprenticeCommitmentsBaseUrl
-
             });
         }
-
-        //[HttpGet]
-        //public async Task<ActionResult> Index(HomeModel home)
-        //{
-
-        //    return View(new HomeModel
-        //    {
-        //        ApprenticeCommitmentsUrl = home.ApprenticeCommitmentsUrl
-        //        //ApprenticeCommitmentsUrl = $"{_configuration.ApprenticeCommitmentsBaseUrl}"
-        //    }); 
-        //}
-
 
         public IActionResult Privacy()
         {
