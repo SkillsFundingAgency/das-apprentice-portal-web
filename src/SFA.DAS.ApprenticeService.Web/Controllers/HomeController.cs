@@ -1,21 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SFA.DAS.ApprenticeService.Web.Models;
-using System.Diagnostics;
 using SFA.DAS.ApprenticeService.Web.Startup;
+using System.Diagnostics;
 
 namespace SFA.DAS.ApprenticeService.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationConfiguration _configuration;
 
-        public HomeController(
-            ILogger<HomeController> logger
-            , ApplicationConfiguration configuration)
+        public HomeController(ApplicationConfiguration configuration)
         {
-            _logger = logger;
             _configuration = configuration;
         }
 
