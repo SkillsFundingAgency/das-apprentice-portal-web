@@ -160,6 +160,10 @@
                                     "value": "[parameters('configurationStorageConnectionString')]"
                                 },
                                 {
+                                    "name": "ConfigNames",
+                                    "value": "[parameters('configNames')]"
+                                },
+                                {
                                     "name": "LoggingRedisConnectionString",
                                     "value": "[parameters('loggingRedisConnectionString')]"
                                 },
