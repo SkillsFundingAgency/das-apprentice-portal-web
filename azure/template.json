@@ -30,7 +30,7 @@
         },
         "configNames": {
             "type": "string",
-            "defaultValue": "SFA.DAS.ApprenticeService.Web"
+            "defaultValue": "SFA.DAS.ApprenticePortal.Web"
         },
         "loggingRedisConnectionString": {
             "type": "securestring"
