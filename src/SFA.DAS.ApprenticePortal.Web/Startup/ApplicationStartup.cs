@@ -1,19 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SFA.DAS.ApprenticePortal.Web.Startup;
 
-namespace SFA.DAS.ApprenticeService.Web
+namespace SFA.DAS.ApprenticePortal.Web
 {
-    public class Startup
+    public class ApplicationStartup
     {
-        public Startup(IConfiguration configuration)
+        public ApplicationStartup(
+            IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -23,7 +20,11 @@ namespace SFA.DAS.ApprenticeService.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            var appConfig = Configuration.Get<ApplicationConfiguration>();
+
+            services
+                .AddSingleton(appConfig)
+                .AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

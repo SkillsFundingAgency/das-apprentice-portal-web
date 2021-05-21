@@ -5,7 +5,7 @@ jobs:
   variables:
   - group: BUILD Management Resources
   - name: SolutionBaseName
-    value: SFA.DAS.ApprenticeService.Web
+    value: SFA.DAS.ApprenticePortal.Web
   steps:
     - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
       displayName: gitversion/setup

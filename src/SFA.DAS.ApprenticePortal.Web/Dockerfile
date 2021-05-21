@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["SFA.DAS.ApprenticeService.Web/SFA.DAS.ApprenticeService.Web.csproj", "SFA.DAS.ApprenticeService.Web/"]
-RUN dotnet restore "SFA.DAS.ApprenticeService.Web/SFA.DAS.ApprenticeService.Web.csproj"
+COPY ["SFA.DAS.ApprenticePortal.Web/SFA.DAS.ApprenticePortal.Web.csproj", "SFA.DAS.ApprenticePortal.Web/"]
+RUN dotnet restore "SFA.DAS.ApprenticePortal.Web/SFA.DAS.ApprenticePortal.Web.csproj"
 COPY . .
-WORKDIR "/src/SFA.DAS.ApprenticeService.Web"
-RUN dotnet build "SFA.DAS.ApprenticeService.Web.csproj" -c Release -o /app/build
+WORKDIR "/src/SFA.DAS.ApprenticePortal.Web"
+RUN dotnet build "SFA.DAS.ApprenticePortal.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SFA.DAS.ApprenticeService.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "SFA.DAS.ApprenticePortal.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "SFA.DAS.ApprenticeService.Web.dll"]
+ENTRYPOINT ["dotnet", "SFA.DAS.ApprenticePortal.Web.dll"]
