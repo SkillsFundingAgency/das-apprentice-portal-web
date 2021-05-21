@@ -1,5 +1,5 @@
 ﻿
-namespace SFA.DAS.ApprenticeService.Web.Startup
+namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
     public class ApplicationConfiguration
     {

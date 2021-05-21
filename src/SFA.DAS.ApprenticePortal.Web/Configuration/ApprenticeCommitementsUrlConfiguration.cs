@@ -1,5 +1,5 @@
 ﻿
-namespace SFA.DAS.ApprenticeService.Web.Configuration
+namespace SFA.DAS.ApprenticePortal.Web.Configuration
 {
     public class ApprenticeCommitementsUrlConfiguration
     {

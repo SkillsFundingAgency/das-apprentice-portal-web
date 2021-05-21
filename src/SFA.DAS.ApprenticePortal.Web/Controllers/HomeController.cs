@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SFA.DAS.ApprenticeService.Web.Models;
-using SFA.DAS.ApprenticeService.Web.Startup;
+using SFA.DAS.ApprenticePortal.Web.Models;
+using SFA.DAS.ApprenticePortal.Web.Startup;
 using System.Diagnostics;
 
-namespace SFA.DAS.ApprenticeService.Web.Controllers
+namespace SFA.DAS.ApprenticePortal.Web.Controllers
 {
     public class HomeController : Controller
     {

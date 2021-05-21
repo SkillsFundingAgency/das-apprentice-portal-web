@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SFA.DAS.ApprenticeService.Web.Startup;
+using SFA.DAS.ApprenticePortal.Web.Startup;
 
-namespace SFA.DAS.ApprenticeService.Web
+namespace SFA.DAS.ApprenticePortal.Web
 {
     public class ApplicationStartup
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using NLog.Web;
 using SFA.DAS.ApprenticeCommitments.Web.Startup;
 
-namespace SFA.DAS.ApprenticeService.Web
+namespace SFA.DAS.ApprenticePortal.Web
 {
     public static class Program
     {
