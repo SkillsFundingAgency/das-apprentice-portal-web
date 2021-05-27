@@ -22,6 +22,7 @@ namespace SFA.DAS.ApprenticePortal.Web
         {
             var appConfig = Configuration.Get<ApplicationConfiguration>();
 
+            services.AddHealthChecks();
             services
                 .AddSingleton(appConfig)
                 .AddControllersWithViews();
@@ -42,6 +43,7 @@ namespace SFA.DAS.ApprenticePortal.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseHealthChecks("/ping");
 
             app.UseRouting();
 
