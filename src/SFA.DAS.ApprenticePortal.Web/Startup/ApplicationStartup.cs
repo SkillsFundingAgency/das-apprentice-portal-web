@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticePortal.Web
@@ -22,6 +23,7 @@ namespace SFA.DAS.ApprenticePortal.Web
         {
             var appConfig = Configuration.Get<ApplicationConfiguration>();
 
+            services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
             services
                 .AddSingleton(appConfig)
