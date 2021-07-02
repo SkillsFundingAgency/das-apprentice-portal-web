@@ -22,12 +22,11 @@ namespace SFA.DAS.ApprenticePortal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var appConfig = Configuration.Get<ApplicationConfiguration>();
+            services.AddSingleton(appConfig);
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
-            services
-                .AddSingleton(appConfig)
-                .AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,13 +38,13 @@ namespace SFA.DAS.ApprenticePortal.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseHealthChecks("/ping");
 
             app.UseRouting();
 
@@ -53,10 +52,10 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
+
         }
     }
 }
