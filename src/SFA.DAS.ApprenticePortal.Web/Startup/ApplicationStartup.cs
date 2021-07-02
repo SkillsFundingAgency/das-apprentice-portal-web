@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SFA.DAS.Apprentice.SharedUi;
 using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.Web.Startup;
+using System;
 
 namespace SFA.DAS.ApprenticePortal.Web
 {
@@ -23,6 +25,8 @@ namespace SFA.DAS.ApprenticePortal.Web
         {
             var appConfig = Configuration.Get<ApplicationConfiguration>();
             services.AddSingleton(appConfig);
+
+            services.AddTransient(_ => new ExternalUrlHelper(new Uri(appConfig.ApprenticeCommitmentsBaseUrl)));
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
@@ -55,7 +59,6 @@ namespace SFA.DAS.ApprenticePortal.Web
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
-
         }
     }
 }
