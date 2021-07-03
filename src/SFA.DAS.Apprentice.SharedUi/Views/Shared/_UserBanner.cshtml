@@ -1,10 +1,16 @@
-﻿<div class="app-user-header">
+﻿@using SFA.DAS.Apprentice.SharedUi.Menu
+@using SFA.DAS.Apprentice.SharedUi.Identity
+
+@{ 
+    var welcomeText = ViewData.WelcomeText() ?? User.FullName();
+}
+
+<div class="app-user-header">
     <div class="govuk-width-container">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-half">
                 <p class="govuk-body-l app-user-header__name">
-                    <span asp-show="Model is ConfirmApprenticeshipModel">Welcome, </span>
-                    @*<span asp-show="!(Model is ConfirmYourIdentityModel)">@User.FullName()</span>*@&nbsp;
+                    <span>@welcomeText</span>
                 </p>
             </div>
             <div class="govuk-grid-column-one-half">

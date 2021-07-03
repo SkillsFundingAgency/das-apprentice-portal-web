@@ -2,6 +2,7 @@
 {
     public static class ViewDataKeys
     {
+        public const string MenuWelcomeText = "SharedUI.MenuWelcomeText";
         public const string SelectedNavigationSection = "SharedUI.SelectedNavigationSection";
         public const string HideNavigationLinks = "SharedUI.HiddenNavigationLinks";
         public const string HideAccountHeader = "SharedUI.HiddenAccountHeader";
