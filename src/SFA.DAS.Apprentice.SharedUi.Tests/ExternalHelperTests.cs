@@ -7,36 +7,28 @@ namespace SFA.DAS.Apprentice.SharedUi.Tests
     [Parallelizable]
     public class ExternalHelperTests
     {
-        [Test, AutoData]
-        public void Build_from_base_with_trailing_slash_and_controller(string controller)
+        [TestCase("https://test.com", "abcd", "https://test.com/abcd")]
+        [TestCase("https://test.com/", "abcd", "https://test.com/abcd")]
+        [TestCase("https://test.com/path", "abcd", "https://test.com/path/abcd")]
+        [TestCase("https://test.com/path/", "abcd", "https://test.com/path/abcd")]
+        public void Build_from_base_and_controller(string uri, string controller, string expected)
         {
-            var sut = new ExternalUrlHelper(new Uri("https://test.com/"));
+            var sut = new ExternalUrlHelper(new Uri(uri));
             var result = sut.Generate(controller: controller);
-            Assert.That(result, Is.EqualTo($"https://test.com/{controller}"));
+            Assert.That(result, Is.EqualTo(expected));
         }
 
-        [Test, AutoData]
-        public void Build_from_base_without_trailing_slash_and_controller(string controller)
+        [TestCase("https://test.com", "abcd", "subsite", "https://subsite.test.com/abcd")]
+        //[TestCase("https://test.com/", "abcd", "subsite", "https://subsite.test.com/abcd")]
+        //[TestCase("https://test.com/path", "abcd", "subsite", "https://subsite.test.com/path/abcd")]
+        //[TestCase("https://test.com/path/", "abcd", "subsite", "https://subsite.test.com/path/abcd")]
+        public void Build_from_base_and_controller_with_subdomain(string uri, string controller, string subdomain, string expected)
         {
-            var sut = new ExternalUrlHelper(new Uri("https://test.com"));
-            var result = sut.Generate(controller: controller);
-            Assert.That(result, Is.EqualTo($"https://test.com/{controller}"));
+            var sut = new ExternalUrlHelper(new Uri(uri));
+            var result = sut.Generate(controller: controller, subdomain: subdomain);
+            Assert.That(result, Is.EqualTo(expected));
         }
 
-        [Test, AutoData]
-        public void Build_from_base_path_without_trailing_slash_and_controller(string controller)
-        {
-            var sut = new ExternalUrlHelper(new Uri("https://test.com/page"));
-            var result = sut.Generate(controller: controller);
-            Assert.That(result, Is.EqualTo($"https://test.com/page/{controller}"));
-        }
 
-        [Test, AutoData]
-        public void Build_from_base_path_with_trailing_slash_and_controller(string controller)
-        {
-            var sut = new ExternalUrlHelper(new Uri("https://test.com/page/"));
-            var result = sut.Generate(controller: controller);
-            Assert.That(result, Is.EqualTo($"https://test.com/page/{controller}"));
-        }
     }
 }
