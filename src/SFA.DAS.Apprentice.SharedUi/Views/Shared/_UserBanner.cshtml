@@ -3,6 +3,11 @@
 
 @{ 
     var welcomeText = ViewData.WelcomeText() ?? User.FullName();
+    var selected = ViewData.SelectedNavigationSection();
+
+    string navigationClass(string section) =>
+        section == selected ? "das-navigation__link das-navigation__link--current" : "das-navigation__link";
+
 }
 
 <div class="app-user-header">
@@ -25,13 +30,13 @@
         <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
             <ul class="das-user-navigation__list" role="menu">
                 <li class="das-navigation__list-item">
-                    <a asp-external-page="Home" class="das-navigation__link">Home</a>
+                    <a asp-external-page="Home" class="@navigationClass("Home")">Home</a>
                 </li>
                 <li class="das-navigation__list-item">
-                    <a asp-external-page="Apprenticeships" asp-external-subdomain="confirm" class="das-navigation__link">Confirm my apprenticeship</a>
+                    <a asp-external-page="Apprenticeships" asp-external-subdomain="confirm" class="@navigationClass("ConfirmMyApprenticeship")">Confirm my apprenticeship</a>
                 </li>
                 <li class="das-navigation__list-item">
-                    <a asp-external-page="HelpAndSupport" class="das-navigation__link">Help and support</a>
+                    <a asp-external-page="HelpAndSupport" class="@navigationClass("HelpAndSupport")">Help and support</a>
                 </li>
                 <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
                     <a href="/" class="das-user-navigation__link">Settings</a>

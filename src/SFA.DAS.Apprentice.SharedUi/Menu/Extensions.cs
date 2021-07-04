@@ -16,5 +16,9 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
         public static string? WelcomeText(this ViewDataDictionary viewData)
             => viewData.TryGetValue(ViewDataKeys.MenuWelcomeText, out var text)
                ? text?.ToString() : null;
-   }
+
+        public static string? SelectedNavigationSection(this ViewDataDictionary viewData)
+            => (viewData.TryGetValue(ViewDataKeys.SelectedNavigationSection, out var text)
+               ? text?.ToString() : null) ?? "Home";
+    }
 }
