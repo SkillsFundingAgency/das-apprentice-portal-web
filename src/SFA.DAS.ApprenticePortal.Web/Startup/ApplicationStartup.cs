@@ -27,7 +27,7 @@ namespace SFA.DAS.ApprenticePortal.Web
             var appConfig = Configuration.Get<ApplicationConfiguration>();
             services.AddSingleton(appConfig);
 
-            services.AddTransient(_ => new ExternalUrlHelper(new Uri(appConfig.ApprenticeCommitmentsBaseUrl)));
+            services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();

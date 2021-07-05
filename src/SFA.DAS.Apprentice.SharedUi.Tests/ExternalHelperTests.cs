@@ -1,5 +1,5 @@
-﻿using AutoFixture.NUnit3;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SFA.DAS.Apprentice.SharedUi.Menu;
 using System;
 
 namespace SFA.DAS.Apprentice.SharedUi.Tests
@@ -19,9 +19,6 @@ namespace SFA.DAS.Apprentice.SharedUi.Tests
         }
 
         [TestCase("https://test.com", "abcd", "subsite", "https://subsite.test.com/abcd")]
-        //[TestCase("https://test.com/", "abcd", "subsite", "https://subsite.test.com/abcd")]
-        //[TestCase("https://test.com/path", "abcd", "subsite", "https://subsite.test.com/path/abcd")]
-        //[TestCase("https://test.com/path/", "abcd", "subsite", "https://subsite.test.com/path/abcd")]
         public void Build_from_base_and_controller_with_subdomain(string uri, string controller, string subdomain, string expected)
         {
             var sut = new ExternalUrlHelper(new Uri(uri));
@@ -29,6 +26,63 @@ namespace SFA.DAS.Apprentice.SharedUi.Tests
             Assert.That(result, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void Constructs_url_for_only_section()
+        {
+            var sections = new NavigationSectionUrls
+            {
+                ApprenticeHomeUrl = "https://testhome.com",
+            };
 
+            var sut = new NavigationUrlHelper(sections);
+
+            var result = sut.Generate(NavigationSection.Home, "xyz");
+
+            Assert.That(result, Is.EqualTo("https://testhome.com/xyz"));
+        }
+
+        [Test]
+        public void Constructs_url_for_correct_section()
+        {
+            var sections = new NavigationSectionUrls
+            {
+                ApprenticeHomeUrl = "https://home.com",
+                ApprenticeCommitmentsUrl = "https://confirm.com",
+            };
+
+            var sut = new NavigationUrlHelper(sections);
+
+            var result = sut.Generate(NavigationSection.Home);
+
+            Assert.That(result, Is.EqualTo("https://home.com/"));
+        }
+
+        [Test]
+        public void Cannot_construct_url_for_missing_section()
+        {
+            var sections = new NavigationSectionUrls
+            {
+                ApprenticeCommitmentsUrl = "https://confirm.com",
+            };
+
+            var sut = new NavigationUrlHelper(sections);
+
+            var ex = Assert.Throws<Exception>(() => sut.Generate(NavigationSection.HelpAndSupport));
+            Assert.That(ex.Message, Is.EqualTo("URL for navigation section `HelpAndSupport` is not configured"));
+        }
+
+        [Test]
+        public void Cannot_construct_url_for_invalid_section()
+        {
+            var sections = new NavigationSectionUrls
+            {
+                ApprenticeCommitmentsUrl = "https://confirm.com",
+            };
+
+            var sut = new NavigationUrlHelper(sections);
+
+            var ex = Assert.Throws<Exception>(() => sut.Generate((NavigationSection)100));
+            Assert.That(ex.Message, Is.EqualTo("Unknown nagivation section 100"));
+        }
     }
 }

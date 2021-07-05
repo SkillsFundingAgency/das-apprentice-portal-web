@@ -1,15 +1,32 @@
-﻿namespace SFA.DAS.Apprentice.SharedUi.Menu
+﻿using System;
+
+namespace SFA.DAS.Apprentice.SharedUi.Menu
 {
-    public class NavigationSection
+    public enum NavigationSection
     {
-        public static readonly NavigationSection Home = new NavigationSection("Home");
-        public static readonly NavigationSection HelpAndSupport = new NavigationSection("HelpAndSupport");
-        public static readonly NavigationSection ConfirmMyApprenticeship = new NavigationSection("ConfirmMyApprenticeship");
+        Home,
+        HelpAndSupport,
+        ConfirmMyApprenticeship
+    }
 
-        public string Name { get; }
+    public class NavigationSectionUrls
+    {
+        public string ApprenticeHomeUrl { get; set; } = null!;
+        public string ApprenticeCommitmentsUrl { get; set; } = null!;
 
-        public NavigationSection(string name) => Name = name;
+        public Uri ToUri(NavigationSection section)
+            => new Uri(
+                UriForSection(section)
+                ?? throw new Exception(
+                    $"URL for navigation section `{section}` is not configured"));
 
-        public override string ToString() => Name;
+        private string UriForSection(NavigationSection section)
+            => section switch
+            {
+                NavigationSection.Home => ApprenticeHomeUrl,
+                NavigationSection.HelpAndSupport => ApprenticeHomeUrl,
+                NavigationSection.ConfirmMyApprenticeship => ApprenticeCommitmentsUrl,
+                _ => throw new Exception($"Unknown nagivation section {section}")
+            };
     }
 }

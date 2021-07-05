@@ -41,6 +41,6 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
 
         public static NavigationSection? SelectedNavigationSection(this ViewDataDictionary viewData)
             => viewData.TryGetValue(ViewDataKeys.CurrentNavigationSection, out var text)
-               ? text as NavigationSection : null;
+               ? text as NavigationSection? : null;
     }
 }
