@@ -31,7 +31,10 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
                 SetViewData(controller.ViewData);
 
             void SetViewData(ViewDataDictionary viewData)
-                => viewData[key] = data;
+            {
+                if(!viewData.ContainsKey(key))
+                    viewData[key] = data;
+            }
         }
 
         public void OnResultExecuted(ResultExecutedContext context)

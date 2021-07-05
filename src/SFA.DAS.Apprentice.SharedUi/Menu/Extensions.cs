@@ -17,8 +17,30 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
             => viewData.TryGetValue(ViewDataKeys.MenuWelcomeText, out var text)
                ? text?.ToString() : null;
 
-        public static string? SelectedNavigationSection(this ViewDataDictionary viewData)
-            => (viewData.TryGetValue(ViewDataKeys.SelectedNavigationSection, out var text)
-               ? text?.ToString() : null) ?? "Home";
+        public static void HideNavigationMenu(this ViewDataDictionary viewData)
+        {
+            viewData[ViewDataKeys.HideNavigationLinks] = true;
+        }
+
+        public static bool IsNavigationMenuVisible(this ViewDataDictionary viewData) =>
+            viewData.TryGetValue(ViewDataKeys.HideNavigationLinks, out var text)
+                ? (text as bool?) != true
+                : true;
+
+        public static IMvcBuilder SetCurrentNavigationSection(this IMvcBuilder builder, NavigationSection defaultSection)
+        {
+            builder.Services.Configure<MvcOptions>(options =>
+                options.Filters.Add(EnableAttribute.With(ViewDataKeys.CurrentNavigationSection, defaultSection)));
+            return builder;
+        }
+
+        public static void SetCurrentNavigationSection(this ViewDataDictionary viewData, NavigationSection defaultSection)
+        {
+            viewData[ViewDataKeys.CurrentNavigationSection] = defaultSection;
+        }
+
+        public static NavigationSection? SelectedNavigationSection(this ViewDataDictionary viewData)
+            => viewData.TryGetValue(ViewDataKeys.CurrentNavigationSection, out var text)
+               ? text as NavigationSection : null;
     }
 }

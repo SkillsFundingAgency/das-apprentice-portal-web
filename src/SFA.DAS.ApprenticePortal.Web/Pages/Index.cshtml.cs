@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using SFA.DAS.Apprentice.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticeCommitments.Web.Pages
@@ -14,6 +15,7 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
 
         public void OnGet()
         {
+            ViewData.HideNavigationMenu();
         }
     }
 }

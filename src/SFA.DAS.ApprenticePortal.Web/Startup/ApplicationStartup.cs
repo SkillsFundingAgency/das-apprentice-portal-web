@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SFA.DAS.Apprentice.SharedUi;
 using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
+using SFA.DAS.Apprentice.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Startup;
 using System;
 
@@ -30,7 +31,7 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
-            services.AddRazorPages();
+            services.AddRazorPages().SetCurrentNavigationSection(NavigationSection.Home);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
