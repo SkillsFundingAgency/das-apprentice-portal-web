@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SFA.DAS.Apprentice.SharedUi;
 using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
 using SFA.DAS.Apprentice.SharedUi.Menu;
+using SFA.DAS.Apprentice.SharedUi.Startup;
 using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticePortal.Web
@@ -30,7 +30,13 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
-            services.AddRazorPages().SetCurrentNavigationSection(NavigationSection.Home);
+            services.AddRazorPages();
+            services.AddSharedUi(appConfig, options =>
+            {
+                options.EnableZendesk();
+                options.EnableGoogleAnalytics();
+                options.SetCurrentNavigationSection(NavigationSection.Home);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

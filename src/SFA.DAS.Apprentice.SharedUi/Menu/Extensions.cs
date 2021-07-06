@@ -27,11 +27,11 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
                 ? (text as bool?) != true
                 : true;
 
-        public static IMvcBuilder SetCurrentNavigationSection(this IMvcBuilder builder, NavigationSection defaultSection)
+        public static IServiceCollection SetCurrentNavigationSection(this IServiceCollection services, NavigationSection defaultSection)
         {
-            builder.Services.Configure<MvcOptions>(options =>
+            services.Configure<MvcOptions>(options =>
                 options.Filters.Add(EnableAttribute.With(ViewDataKeys.CurrentNavigationSection, defaultSection)));
-            return builder;
+            return services;
         }
 
         public static void SetCurrentNavigationSection(this ViewDataDictionary viewData, NavigationSection defaultSection)
