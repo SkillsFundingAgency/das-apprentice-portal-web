@@ -22,6 +22,11 @@ namespace SFA.DAS.Apprentice.SharedUi.Menu
             viewData[ViewDataKeys.HideNavigationLinks] = true;
         }
 
+        public static void HideAccountHeader(this ViewDataDictionary viewData)
+        {
+            viewData[ViewDataKeys.HideAccountHeader] = true;
+        }
+
         public static bool IsNavigationMenuVisible(this ViewDataDictionary viewData) =>
             viewData.TryGetValue(ViewDataKeys.HideNavigationLinks, out var text)
                 ? (text as bool?) != true

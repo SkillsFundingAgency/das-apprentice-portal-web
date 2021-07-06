@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
 using SFA.DAS.Apprentice.SharedUi.Menu;
 using SFA.DAS.Apprentice.SharedUi.Zendesk;
@@ -16,9 +15,6 @@ namespace SFA.DAS.Apprentice.SharedUi.Startup
 
             services.AddSingleton(configuration.ApplicationUrls);
             services.AddTransient<NavigationUrlHelper>();
-
-            services.Configure<MvcOptions>(options =>
-                options.Filters.Add(new HidenNavigationResultFilter()));
 
             options?.Invoke(new SharedUiOptions(services, configuration));
 

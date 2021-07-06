@@ -4,7 +4,8 @@ using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticeCommitments.Web.Pages
 {
-    public class IndexModel : PageModel, IHideNavigation
+    [HideNavigationBar]
+    public class IndexModel : PageModel
     {
         public string ApprenticeCommitmentsBaseUrl { get; }
 

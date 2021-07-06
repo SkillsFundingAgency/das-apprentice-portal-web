@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace SFA.DAS.Apprentice.SharedUi.Menu
+namespace SFA.DAS.Apprentice.SharedUi
 {
     public static class EnableAttribute
     {
