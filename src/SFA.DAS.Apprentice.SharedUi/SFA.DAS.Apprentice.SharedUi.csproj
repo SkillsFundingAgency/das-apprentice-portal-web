@@ -11,7 +11,7 @@
     <PackageLicense>https://github.com/SkillsFundingAgency/das-apprentice-portal-web/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/SkillsFundingAgency/das-apprentice-portal-web</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageOutputPath>..\NugetPackages</PackageOutputPath>
+    <PackageOutputPath>$(SolutionDir)..\..\NugetPackages</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
