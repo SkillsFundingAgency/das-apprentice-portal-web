@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.Web", "SFA.DAS.ApprenticePortal.Web\SFA.DAS.ApprenticePortal.Web.csproj", "{D609881B-F3DC-4E9A-A9D8-87194AD50757}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Apprentice.SharedUi", "SFA.DAS.Apprentice.SharedUi\SFA.DAS.Apprentice.SharedUi.csproj", "{E4124C21-3FED-4F69-9DB6-2093F22D855B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.SharedUi", "SFA.DAS.ApprenticePortal.SharedUi\SFA.DAS.ApprenticePortal.SharedUi.csproj", "{E4124C21-3FED-4F69-9DB6-2093F22D855B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Apprentice.SharedUi.Tests", "SFA.DAS.Apprentice.SharedUi.Tests\SFA.DAS.Apprentice.SharedUi.Tests.csproj", "{56DF4D2C-7112-4980-A435-D9943B002ACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.SharedUi.Tests", "SFA.DAS.ApprenticePortal.SharedUi.Tests\SFA.DAS.ApprenticePortal.SharedUi.Tests.csproj", "{56DF4D2C-7112-4980-A435-D9943B002ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

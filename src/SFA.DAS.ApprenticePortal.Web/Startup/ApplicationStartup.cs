@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
-using SFA.DAS.Apprentice.SharedUi.Menu;
-using SFA.DAS.Apprentice.SharedUi.Startup;
+using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
+using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.SharedUi.Startup;
 using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticePortal.Web

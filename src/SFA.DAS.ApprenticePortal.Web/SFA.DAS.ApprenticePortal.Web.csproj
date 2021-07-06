@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.Apprentice.SharedUi\SFA.DAS.Apprentice.SharedUi.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ApprenticePortal.SharedUi\SFA.DAS.ApprenticePortal.SharedUi.csproj" />
   </ItemGroup>
 
   <Target Name="ToolRestore" BeforeTargets="PreBuildEvent">

@@ -1,7 +1,7 @@
-﻿using SFA.DAS.Apprentice.SharedUi;
-using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
-using SFA.DAS.Apprentice.SharedUi.Menu;
-using SFA.DAS.Apprentice.SharedUi.Zendesk;
+﻿using SFA.DAS.ApprenticePortal.SharedUi;
+using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
+using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.SharedUi.Zendesk;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
