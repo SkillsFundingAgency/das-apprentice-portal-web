@@ -7,7 +7,6 @@ using SFA.DAS.Apprentice.SharedUi;
 using SFA.DAS.Apprentice.SharedUi.GoogleAnalytics;
 using SFA.DAS.Apprentice.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Startup;
-using System;
 
 namespace SFA.DAS.ApprenticePortal.Web
 {

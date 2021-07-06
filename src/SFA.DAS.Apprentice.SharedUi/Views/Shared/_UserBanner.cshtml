@@ -1,7 +1,7 @@
 ﻿@using SFA.DAS.Apprentice.SharedUi.Menu
 @using SFA.DAS.Apprentice.SharedUi.Identity
 
-@{ 
+@{
     var welcomeText = ViewData.WelcomeText() ?? User.FullName();
     var selected = ViewData.SelectedNavigationSection();
 
@@ -25,32 +25,35 @@
     </div>
 </div>
 
-<div class="das-account-header das-account-header--apprentice">
-    <div class="govuk-width-container">
-        <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
-            <ul class="das-user-navigation__list" role="menu">
-                <li class="das-navigation__list-item">
-                    <a asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
-                </li>
-                <li class="das-navigation__list-item">
-                    <a asp-external-page="Apprenticeships" asp-external-subdomain="confirm" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship</a>
-                </li>
-                <li class="das-navigation__list-item">
-                    <a asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
-                </li>
-                <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
-                    <a href="/" class="das-user-navigation__link">Settings</a>
-                    <ul role="menu" class="das-user-navigation__sub-menu js-hidden">
-                        <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
-                            <a href="" class="das-user-navigation__sub-menu-link">Change your password</a>
-                        </li>
-                        <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
-                            <a href="" class="das-user-navigation__sub-menu-link">Change your email address</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="das-user-navigation__list-item"><a href="" class="das-user-navigation__link">Sign Out</a></li>
-            </ul>
-        </nav>
+@if (ViewData.IsNavigationMenuVisible())
+{
+    <div class="das-account-header das-account-header--apprentice">
+        <div class="govuk-width-container">
+            <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
+                <ul class="das-user-navigation__list" role="menu">
+                    <li class="das-navigation__list-item">
+                        <a asp-external-section="@NavigationSection.Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
+                    </li>
+                    <li class="das-navigation__list-item">
+                        <a asp-external-section="@NavigationSection.ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship</a>
+                    </li>
+                    <li class="das-navigation__list-item">
+                        <a asp-external-section="@NavigationSection.Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
+                    </li>
+                    <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
+                        <a href="/" class="das-user-navigation__link">Settings</a>
+                        <ul role="menu" class="das-user-navigation__sub-menu js-hidden">
+                            <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
+                                <a href="" class="das-user-navigation__sub-menu-link">Change your password</a>
+                            </li>
+                            <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
+                                <a href="" class="das-user-navigation__sub-menu-link">Change your email address</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="das-user-navigation__list-item"><a href="" class="das-user-navigation__link">Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
+}
