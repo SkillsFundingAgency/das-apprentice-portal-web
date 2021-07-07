@@ -11,10 +11,6 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         private bool HideAccountHeader { get; }
         private bool HideNavigationLinks { get; }
 
-        public HideNavigationBarAttribute() : this(true, true)
-        {
-        }
-
         public HideNavigationBarAttribute(bool hideAccountHeader = true, bool hideNavigationLinks = true)
         {
             HideAccountHeader = hideAccountHeader;

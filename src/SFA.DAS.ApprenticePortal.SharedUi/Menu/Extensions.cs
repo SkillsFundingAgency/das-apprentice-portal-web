@@ -28,9 +28,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         }
 
         public static bool IsNavigationMenuVisible(this ViewDataDictionary viewData) =>
-            viewData.TryGetValue(ViewDataKeys.HideNavigationLinks, out var text)
-                ? (text as bool?) != true
-                : true;
+            (viewData[ViewDataKeys.HideNavigationLinks] as bool?) != true;
 
         public static IServiceCollection SetCurrentNavigationSection(this IServiceCollection services, NavigationSection defaultSection)
         {

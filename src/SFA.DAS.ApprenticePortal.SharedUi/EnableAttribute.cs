@@ -39,6 +39,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi
 
         public void OnResultExecuted(ResultExecutedContext context)
         {
+            // Nothing to do
         }
     }
 }
