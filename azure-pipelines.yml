@@ -25,7 +25,10 @@ stages:
 - stage: Build
   jobs:
   - template: pipeline-templates/job/code-build.yml
-  
+
+- stage: Publish
+  jobs:
+  - template: azure-pipelines-templates/deploy/stage/nuget-publish.yml@das-platform-building-blocks
 
 
 

@@ -65,3 +65,5 @@ jobs:
       inputs:
         targetPath: $(build.artifactstagingdirectory)/publish
         artifactName: drop
+    
+    - template: azure-pipelines-templates/build/step/nuget-pack.yml@das-platform-building-blocks
