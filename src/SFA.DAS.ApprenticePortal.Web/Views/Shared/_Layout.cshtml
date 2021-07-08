@@ -46,13 +46,10 @@
     @RenderSection("AfterHeader", required: false)
 
     <div class="govuk-width-container">
-
         @RenderSection("BreadCrumbs", required: false)
-
-        <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
-            @RenderBody()
-        </main>
     </div>
+
+    @RenderBody()
 
     <script src="/libs/govuk-frontend/all.js"></script>
     <script src="/libs/jquery/jquery.min.js"></script>

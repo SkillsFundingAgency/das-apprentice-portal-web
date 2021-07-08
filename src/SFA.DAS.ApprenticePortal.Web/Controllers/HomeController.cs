@@ -22,6 +22,11 @@ namespace SFA.DAS.ApprenticePortal.Web.Controllers
             });
         }
 
+        public IActionResult Homepage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
