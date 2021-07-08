@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
-using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticeCommitments.Web.Pages
 {
@@ -9,9 +8,9 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
     {
         public string ApprenticeCommitmentsBaseUrl { get; }
 
-        public IndexModel(ApplicationConfiguration configuration)
+        public IndexModel(NavigationUrlHelper urlHelper)
         {
-            ApprenticeCommitmentsBaseUrl = configuration.ApprenticeCommitmentsBaseUrl;
+            ApprenticeCommitmentsBaseUrl = urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships");
         }
     }
 }
