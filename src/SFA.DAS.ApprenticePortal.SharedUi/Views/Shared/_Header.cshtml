@@ -23,4 +23,7 @@
     </div>
 </header>
 
+if(@User.Identity.IsAuthenticated)
+{
     <partial name="_UserBanner" />
+}
