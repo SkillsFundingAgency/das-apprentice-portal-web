@@ -350,3 +350,8 @@ MigrationBackup/
 .ionide/
 
 appsettings.Development.json
+
+*.min.*
+**/wwwroot/css/site.css
+**/wwwroot/lib/govuk-frontend/
+.DS_Store
