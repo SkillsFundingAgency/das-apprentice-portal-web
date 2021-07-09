@@ -1,4 +1,5 @@
-﻿@{ ViewData["Title"] = "Welcome"; }
+﻿@model SFA.DAS.ApprenticePortal.Web.Views.HomepageModel
+@{ ViewData["Title"] = "Welcome"; }
 
 <div class="dashboard-page">
     <div class="govuk-width-container">
@@ -20,7 +21,7 @@
 
                 <ul class="dashboard-nav dashboard-li">
                     <li>
-                        <a href="./3-my-apprenticeships" class="dashboard-one">
+                        <a href="@Model.ApprenticeCommitmentsBaseUrl" class="dashboard-one">
                             <strong class="govuk-tag govuk-tag--green">Complete</strong>
                             <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
                             <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
@@ -32,13 +33,13 @@
                             <p>As an apprentice you are not alone, we're here to help you.</p>
                         </a>
                     </li>
-                    <li>
+                    @*<li>
                         <a href="./5-my-apprenticeships" class="dashboard-two">
                             <strong class="govuk-tag govuk-tag--green">Complete</strong>
                             <h2 class="govuk-heading-m">Previous Apprenticeship Details</h2>
                             <p>View your previous apprenticeship details and understand what to expect during your apprenticeship.</p>
                         </a>
-                    </li>
+                    </li>*@
                     <li>
                         <a href="#" class="dashboard-six">
                             <h2 class="govuk-heading-m">My account</h2>

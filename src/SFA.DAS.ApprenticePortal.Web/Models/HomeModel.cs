@@ -1,5 +1,4 @@
-﻿
-namespace SFA.DAS.ApprenticePortal.Web.Models
+﻿namespace SFA.DAS.ApprenticePortal.Web.Models
 {
     public class HomeModel
     {

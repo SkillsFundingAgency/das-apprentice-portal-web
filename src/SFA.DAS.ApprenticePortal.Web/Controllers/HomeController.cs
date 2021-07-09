@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Startup;
+using SFA.DAS.ApprenticePortal.Web.Views;
 using System.Diagnostics;
 
 namespace SFA.DAS.ApprenticePortal.Web.Controllers
@@ -24,7 +25,11 @@ namespace SFA.DAS.ApprenticePortal.Web.Controllers
 
         public IActionResult Homepage()
         {
-            return View();
+            return View(new HomepageModel
+            {
+                ApprenticeCommitmentsBaseUrl = _configuration.ApprenticeCommitmentsBaseUrl
+            });
+            //return View();
         }
 
         public IActionResult Privacy()
