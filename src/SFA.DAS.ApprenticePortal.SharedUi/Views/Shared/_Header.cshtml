@@ -1,4 +1,4 @@
-﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 
 <header class="govuk-header" data-module="header">
     <div class="govuk-header__container govuk-width-container app-user-header__border-override">
@@ -23,7 +23,7 @@
     </div>
 </header>
 
-if(@User.Identity.IsAuthenticated)
+@if(@User.Identity.IsAuthenticated)
 {
     <partial name="_UserBanner" />
 }
