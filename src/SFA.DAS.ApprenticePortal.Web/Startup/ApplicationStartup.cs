@@ -30,6 +30,8 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
+            //services.AddOuterApi(appConfig.ApprenticeCommitmentsApi);
+            //services.RegisterServices();
             services.AddRazorPages();
             services.AddSharedUi(appConfig, options =>
             {

@@ -1,28 +1,37 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SFA.DAS.ApprenticePortal.SharedUi.Identity;
+using SFA.DAS.ApprenticePortal.Web.Services;
+using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
+using System.Threading.Tasks;
 
-namespace SFA.DAS.ApprenticePortal.Web.Views
+namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
+    //[RequiresIdentityConfirmed]
     public class HomeModel : PageModel
     {
-        //[BindProperty]
-        //public string CourseName { get; set; } = null!;
-        public string CourseName = "My Apprenticeship";
+        //private readonly IOuterApiClient _client;
+        //private readonly AuthenticatedUser _authenticatedUser;
+
+        //[BindProperty(SupportsGet = true)]
+        //public HashedId ApprenticeshipId { get; set; }
+
         public string ApprenticeCommitmentsBaseUrl { get; set; }
 
-        public HomeModel()
-        {
-            //_client = client;
-            //_authenticatedUser = authenticatedUser;
-            
-        }
+        //public string CourseName { get; set; } = null!;
 
-        public void OnGet(/*IOuterApiClient client, AuthenticatedUser authenticatedUser*/)
-        {
-            //var apprenticeship = await _client
-            //    .GetApprenticeship(_authenticatedUser.ApprenticeId, ApprenticeshipId.Id);
+        //public HomeModel(IOuterApiClient client, AuthenticatedUser authenticatedUser)
+        //{
+        //    _client = client;
+        //    _authenticatedUser = authenticatedUser;
+        //}
 
-            //CourseName = apprenticeship.CourseName;
-        }
+        //public async Task OnGet()
+        //{
+        //    var apprenticeship = await _client
+        //        .GetApprenticeship(_authenticatedUser.ApprenticeId, ApprenticeshipId.Id);
+
+        //    CourseName = apprenticeship.CourseName;
+        //}
     }
 }
