@@ -1,5 +1,6 @@
 ﻿@page
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
+@using SFA.DAS.ApprenticePortal.SharedUi.Identity
 @{ ViewData["Title"] = "Welcome"; }
 
 <div class="dashboard-page">
@@ -7,8 +8,7 @@
         <div class="govuk-grid-row dashboard-title">
             <div class="govuk-grid-column-full">
                 <h1 class="govuk-heading-xl">
-                    @ViewData["Title"]
-                    <span class="govuk-caption-m"></span>
+                    Welcome, @User.FullName()
                 </h1>
             </div>
         </div>
