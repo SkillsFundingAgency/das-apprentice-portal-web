@@ -1,4 +1,5 @@
-﻿@page
+@page
+@using Microsoft.AspNetCore.Http
 @model SFA.DAS.ApprenticePortal.Web.Pages.HelpAndSupportModel
 @{
     ViewData["Title"] = "Help and support";
@@ -138,7 +139,7 @@
                     </li>
                 </ol>
             </div>
-            <a href="/apprenticeships" class="govuk-button" data-module="govuk-button">
+            <a href="@Request.Headers["Referer"]" class="govuk-button" data-module="govuk-button">
                 Go back to the dashboard
             </a>
         </div>
@@ -147,5 +148,5 @@
 
 @section DasScripts
 {
-<script src="/js/step-by-step-nav.js" no-cdn></script>
+    <script src="/js/step-by-step-nav.js" no-cdn></script>
 }
