@@ -58,6 +58,7 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseHealthChecks("/ping");
 
             app.UseRouting();
 
