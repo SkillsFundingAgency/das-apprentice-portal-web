@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Nullable>enable</Nullable>
+  
+    <Description>Apprentice portal shared UI components</Description>
+    <Authors>ESFA</Authors>
+    <Company>ESFA</Company>
+    <PackageLicense>https://github.com/SkillsFundingAgency/das-apprentice-portal-web/master/LICENSE</PackageLicense>
+    <PackageProjectUrl>https://github.com/SkillsFundingAgency/das-apprentice-portal-web</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(SolutionDir)..\..\NugetPackages</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="WebEssentials.AspNetCore.CdnTagHelpers" Version="1.0.21" />
+  </ItemGroup>
+
+</Project>
