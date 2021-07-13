@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
 {
@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         Home,
         HelpAndSupport,
         ConfirmMyApprenticeship,
-        Login
+        Login,
     }
 
     public class NavigationSectionUrls
