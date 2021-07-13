@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
+using SFA.DAS.ApprenticePortal.Web.Services;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
@@ -66,7 +67,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 .AuthorizeFolder("/")
                 .AllowAnonymousToPage("/ping")
                 .AllowAnonymousToPage("/confirmyouridentitynew"));
-            //services.AddScoped<AuthenticatedUser>();
+            services.AddScoped<AuthenticatedUser>();
             services.AddScoped(s => s
                 .GetRequiredService<IHttpContextAccessor>().HttpContext.User);
 

@@ -17,19 +17,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             ApprenticeId = apprenticeId;
         }
 
-        public static AuthenticatedUser FakeUser => new AuthenticatedUser(FakeUserClaim);
-
-        public static ClaimsPrincipal FakeUserClaim =>
-            new ClaimsPrincipal(new[]
-            {
-            new ClaimsIdentity(new []
-            {
-                new Claim(IdentityClaims.ApprenticeId, Guid.NewGuid().ToString()),
-                new Claim(IdentityClaims.LogonId, Guid.NewGuid().ToString()),
-                new Claim(IdentityClaims.VerifiedUser, "True"),
-            })
-            });
-
         public Guid ApprenticeId { get; }
     }
 }

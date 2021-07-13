@@ -1,6 +1,7 @@
 ﻿@page
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.SharedUi.Identity
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @{ ViewData["Title"] = "Welcome"; }
 
 <div class="dashboard-page">
@@ -10,6 +11,7 @@
                 <h1 class="govuk-heading-xl">
                     Welcome, @User.FullName()
                 </h1>
+                <span class="govuk-caption-m">@Model.CourseName</span>
             </div>
         </div>
     </div>
@@ -19,10 +21,9 @@
     <div class="govuk-width-container" id="dashboard-section">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-
                 <ul class="dashboard-nav dashboard-li">
                     <li>
-                        <a href="@Model.ApprenticeCommitmentsBaseUrl">
+                        <a asp-external-section="@NavigationSection.ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
                             <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
                             <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         </a>
@@ -40,7 +41,6 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>

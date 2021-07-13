@@ -12,7 +12,8 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Identity
         public const string FamilyName = "family_name";
 
         public static Claim? ApprenticeIdClaim(this ClaimsPrincipal user)
-            => user.Claims.FirstOrDefault(c => c.Type == ApprenticeId);
+            => user.Claims.FirstOrDefault(c => c.Type == ApprenticeId)
+            ?? user.Claims.FirstOrDefault(c => c.Type == "registration_id");
 
         public static string FullName(this ClaimsPrincipal user)
         {
