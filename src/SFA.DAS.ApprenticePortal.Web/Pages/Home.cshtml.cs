@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.SharedUi.Identity;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
-    //[RequiresIdentityConfirmed]
+    [Authorize]
     public class HomeModel : PageModel
     {
         //private readonly IOuterApiClient _client;
