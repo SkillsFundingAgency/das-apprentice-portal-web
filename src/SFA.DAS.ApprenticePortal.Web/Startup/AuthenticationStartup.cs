@@ -62,11 +62,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             this IServiceCollection services)
         {
             services.AddAuthorization();
-
-            services.AddRazorPages(o => o.Conventions
-                .AuthorizeFolder("/")
-                .AllowAnonymousToPage("/ping")
-                .AllowAnonymousToPage("/confirmyouridentitynew"));
             services.AddScoped<AuthenticatedUser>();
             services.AddScoped(s => s
                 .GetRequiredService<IHttpContextAccessor>().HttpContext.User);

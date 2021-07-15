@@ -16,11 +16,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient<Http.MessageHandlers.LoggingMessageHandler>();
             services.AddTransient<Http.MessageHandlers.ApimHeadersHandler>();
 
-            services
-                .AddRestEaseClient<IOuterApiClient>(configuration.ApiBaseUrl)
-                .AddHttpMessageHandler<Http.MessageHandlers.DefaultHeadersHandler>()
-                .AddHttpMessageHandler<Http.MessageHandlers.ApimHeadersHandler>()
-                .AddHttpMessageHandler<Http.MessageHandlers.LoggingMessageHandler>();
+            NLog.LogManager.GetLogger("ServicesStartup").Info("ApiBaseUrl: {url}", configuration?.ApiBaseUrl);
+
+            //services
+            //    .AddRestEaseClient<IOuterApiClient>(configuration.ApiBaseUrl)
+            //    .AddHttpMessageHandler<Http.MessageHandlers.DefaultHeadersHandler>()
+            //    .AddHttpMessageHandler<Http.MessageHandlers.ApimHeadersHandler>()
+            //    .AddHttpMessageHandler<Http.MessageHandlers.LoggingMessageHandler>();
 
             services.AddTransient<IApimClientConfiguration>((_) => configuration);
 
