@@ -53,10 +53,10 @@
 		"frontEndAccessRestrictions": {
 			"type": "array"
 		},
-		"sharedApimName": {
+		"sharedApimResourceGroup": {
 			"type": "string"
 		},
-		"sharedApimResourceGroup": {
+		"sharedApimName": {
 			"type": "string"
 		},
 		"loggingRedisKey": {
