@@ -47,10 +47,10 @@
 		"sharedFrontendAppServicePlanName": {
 			"type": "string"
 		},
-		"sharedApimResourceGroup": {
+		"sharedApimName": {
 			"type": "string"
 		},
-		"sharedApimName": {
+		"sharedApimResourceGroup": {
 			"type": "string"
 		},
 		"sharedFrontEndSubnetResourceId": {
