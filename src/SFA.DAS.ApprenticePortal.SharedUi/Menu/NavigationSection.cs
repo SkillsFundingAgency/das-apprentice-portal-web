@@ -6,13 +6,15 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
     {
         Home,
         HelpAndSupport,
-        ConfirmMyApprenticeship
+        ConfirmMyApprenticeship,
+        Login,
     }
 
     public class NavigationSectionUrls
     {
         public string ApprenticeHomeUrl { get; set; } = null!;
         public string ApprenticeCommitmentsUrl { get; set; } = null!;
+        public string ApprenticeLoginUrl { get; set; } = null!;
 
         public Uri ToUri(NavigationSection section)
             => new Uri(
@@ -26,6 +28,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 NavigationSection.Home => ApprenticeHomeUrl,
                 NavigationSection.HelpAndSupport => ApprenticeHomeUrl,
                 NavigationSection.ConfirmMyApprenticeship => ApprenticeCommitmentsUrl,
+                NavigationSection.Login => ApprenticeLoginUrl,
                 _ => throw new Exception($"Unknown nagivation section {section}")
             };
     }

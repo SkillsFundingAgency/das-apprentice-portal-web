@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
+using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Services;
 using System.IdentityModel.Tokens.Jwt;
 
@@ -13,7 +14,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
     {
         public static IServiceCollection AddAuthentication(
             this IServiceCollection services,
-            AuthenticationServiceConfiguration config,
+            NavigationSectionUrls config,
             IWebHostEnvironment environment)
         {
             services
@@ -27,7 +28,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
         private static IServiceCollection AddApplicationAuthentication(
             this IServiceCollection services,
-            AuthenticationServiceConfiguration config)
+            NavigationSectionUrls config)
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -43,7 +44,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
                     options.SignInScheme = "Cookies";
-                    options.Authority = config.MetadataAddress;
+                    options.Authority = config.ApprenticeLoginUrl;
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "apprentice";
 
@@ -68,11 +69,5 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
             return services;
         }
-    }
-
-    public class AuthenticationServiceConfiguration
-    {
-        public string MetadataAddress { get; set; } = null!;
-        public string ChangeEmailPath { get; set; } = "/changeemail";
     }
 }
