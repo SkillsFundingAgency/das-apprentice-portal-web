@@ -53,18 +53,18 @@
         "frontEndAccessRestrictions": {
             "type": "array"
         },
-        "loggingRedisKey": {
-            "type": "string"
-        },
-        "customHostName": {
-            "type": "string"
-        },
 		"sharedApimResourceGroup": {
 			"type": "string"
 		},
 		"sharedApimName": {
 			"type": "string"
-		}
+		},
+        "loggingRedisKey": {
+            "type": "string"
+        },
+        "customHostName": {
+            "type": "string"
+        }
     },
     "variables": {
         "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
