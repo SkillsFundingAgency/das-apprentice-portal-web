@@ -5,7 +5,10 @@
     ViewData["Title"] = "Help and support";
 }
 
+@section BreadCrumbs
+{
 <a href="@Request.Headers["Referer"]" class="govuk-back-link">Back</a>
+}
 
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
@@ -139,8 +142,8 @@
                     </li>
                 </ol>
             </div>
-            <a href="@Request.Headers["Referer"]" class="govuk-button" data-module="govuk-button">
-                Go back to the dashboard
+            <a asp-external-section="ConfirmMyApprenticeship" class="govuk-button" data-module="govuk-button">
+                Return to homepage
             </a>
         </div>
     </div>

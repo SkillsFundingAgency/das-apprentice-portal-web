@@ -1,47 +1,55 @@
 ﻿@page
 @model SFA.DAS.ApprenticeCommitments.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Confirm your apprenticeship";
+    ViewData["Title"] = "Confirm my apprenticeship details";
 }
 
-<div class="govuk-width-container">
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds govuk-body">
+<main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds govuk-body">
 
-            <h1 class="govuk-heading-l">@ViewData["Title"]</h1>
+                <h1 class="govuk-heading-l">@ViewData["Title"]</h1>
 
             <div class="govuk-body">
-                <p>Use this service to:</p>
-                <ul class="govuk-list govuk-list--bullet">
-                    <li>
-                        Confirm the details of your apprenticeship
-                    </li>
-                </ul>
-
-                <p>Confirming takes around 15 minutes.</p>
-                <p>If you're looking for an apprenticeship, use <a href="https://www.gov.uk/apply-apprenticeship">Find an apprenticeship</a>.</p>
+                <p>
+                    Your employer and your training provider have entered your apprenticeship details into our service.
+                    You should review and confirm your apprenticeship details are correct when starting your apprenticeship.
+                </p>
+                <p>
+                    You should use this service to:
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>check and confirm your apprenticeship details</li>
+                        <li>understand what’s expected of you during your apprenticeship</li>
+                        <li>understand what’s expected of your employer and your training provider during your apprenticeship</li>
+                        <li>find support and information for your apprenticeship</li>
+                    </ul>
+                </p>
 
                 <a href="@Model.StartUrl"
-                   role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-                    Start now
+                       role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+                        Start now
                     <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg"
-                         width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                    </svg>
-                </a>
+                             width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                        </svg>
+                    </a>
             </div>
 
-            <h2 class="govuk-heading-m">Before you start</h2>
+            <h2>Before you start</h2>
 
             <div class="govuk-body">
-                <p>You will need to know the details of your apprenticeship, like</p>
+                <p>To use this service you should have received an email invitation.</p>
+                <p>Before you use this service, you need to know the:</p>
                 <ul class="govuk-list govuk-list--bullet">
-                    <li>the names of your employer and training provider</li>
-                    <li>the duration of your apprenticeship</li>
-                    <li>your planned start and end dates</li>
+                    <li>name of your employer</li>
+                    <li>name of your  training provider</li>
+                    <li>planned start date of your apprenticeship</li>
+                    <li>name and level of your apprenticeship</li>
                 </ul>
-            </div>
 
+                <p>It’s important to check your apprenticeship details because you’ll be assessed on what you’ve learned at the end of your apprenticeship.</p>
+            </div>
         </div>
     </div>
-</div>
+</main>
