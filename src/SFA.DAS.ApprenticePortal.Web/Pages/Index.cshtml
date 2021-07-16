@@ -4,11 +4,12 @@
     ViewData["Title"] = "Confirm my apprenticeship details";
 }
 
-<div class="govuk-width-container">
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds govuk-body">
+<main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds govuk-body">
 
-            <h1 class="govuk-heading-l">@ViewData["Title"]</h1>
+                <h1 class="govuk-heading-l">@ViewData["Title"]</h1>
 
             <div class="govuk-body">
                 <p>
@@ -26,16 +27,16 @@
                 </p>
 
                 <a href="@Model.ApprenticeCommitmentsBaseUrl"
-                   role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-                    Start now
+                       role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+                        Start now
                     <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg"
-                         width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-                    </svg>
-                </a>
+                             width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                        </svg>
+                    </a>
             </div>
 
-            <h2 class="govuk-heading-m">Before you start</h2>
+            <h2>Before you start</h2>
 
             <div class="govuk-body">
                 <p>To use this service you should have received an email invitation.</p>
@@ -49,7 +50,6 @@
 
                 <p>It’s important to check your apprenticeship details because you’ll be assessed on what you’ve learned at the end of your apprenticeship.</p>
             </div>
-
         </div>
     </div>
-</div>
+</main>

@@ -19,7 +19,7 @@
                 </p>
             </div>
             <div class="govuk-grid-column-one-half">
-                <a asp-page="/SignOut" class="govuk-link app-user-header__link">Sign out</a>
+                <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="SignOut" class="govuk-link app-user-header__link">Sign out</a>
             </div>
         </div>
     </div>
@@ -32,13 +32,13 @@
             <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
                 <ul class="das-user-navigation__list" role="menu">
                     <li class="das-navigation__list-item">
-                        <a asp-external-section="@NavigationSection.Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
+                        <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
                     </li>
                     <li class="das-navigation__list-item">
-                        <a asp-external-section="@NavigationSection.ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship</a>
+                        <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship</a>
                     </li>
                     <li class="das-navigation__list-item">
-                        <a asp-external-section="@NavigationSection.Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
+                        <a asp-external-section="Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
                     </li>
                     <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
                         <a href="/" class="das-user-navigation__link">Settings</a>
