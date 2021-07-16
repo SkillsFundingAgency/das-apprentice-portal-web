@@ -29,6 +29,9 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
 
+            services.AddApplicationInsightsTelemetry();
+            services.AddDataProtection(appConfig.ConnectionStrings, Environment);
+
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
             services.AddAuthentication(appConfig.ApplicationUrls, Environment);
