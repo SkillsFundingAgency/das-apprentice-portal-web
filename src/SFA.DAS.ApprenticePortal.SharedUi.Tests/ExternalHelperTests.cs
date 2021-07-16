@@ -31,7 +31,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         {
             var sections = new NavigationSectionUrls
             {
-                ApprenticeHomeUrl = "https://testhome.com",
+                ApprenticeHomeUrl = new Uri("https://testhome.com"),
             };
 
             var sut = new NavigationUrlHelper(sections);
@@ -41,20 +41,23 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
             Assert.That(result, Is.EqualTo("https://testhome.com/xyz"));
         }
 
-        [Test]
-        public void Constructs_url_for_correct_section()
+        [TestCase(NavigationSection.Home, "https://home.com/")]
+        [TestCase(NavigationSection.ConfirmMyApprenticeship, "https://confirm.com/")]
+        [TestCase(NavigationSection.Login, "https://login.com/")]
+        public void Constructs_url_for_correct_section(NavigationSection section, string url)
         {
             var sections = new NavigationSectionUrls
             {
-                ApprenticeHomeUrl = "https://home.com",
-                ApprenticeCommitmentsUrl = "https://confirm.com",
+                ApprenticeHomeUrl = new Uri("https://home.com"),
+                ApprenticeCommitmentsUrl = new Uri("https://confirm.com"),
+                ApprenticeLoginUrl = new Uri("https://login.com"),
             };
 
             var sut = new NavigationUrlHelper(sections);
 
-            var result = sut.Generate(NavigationSection.Home);
+            var result = sut.Generate(section);
 
-            Assert.That(result, Is.EqualTo("https://home.com/"));
+            Assert.That(result, Is.EqualTo(url));
         }
 
         [Test]
@@ -62,7 +65,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         {
             var sections = new NavigationSectionUrls
             {
-                ApprenticeCommitmentsUrl = "https://confirm.com",
+                ApprenticeCommitmentsUrl = new Uri("https://confirm.com"),
             };
 
             var sut = new NavigationUrlHelper(sections);
@@ -76,7 +79,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         {
             var sections = new NavigationSectionUrls
             {
-                ApprenticeCommitmentsUrl = "https://confirm.com",
+                ApprenticeCommitmentsUrl = new Uri("https://confirm.com"),
             };
 
             var sut = new NavigationUrlHelper(sections);

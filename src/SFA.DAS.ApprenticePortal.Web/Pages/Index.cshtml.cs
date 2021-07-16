@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 
 namespace SFA.DAS.ApprenticeCommitments.Web.Pages
@@ -6,11 +7,24 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
     [HideNavigationBar]
     public class IndexModel : PageModel
     {
-        public string ApprenticeCommitmentsBaseUrl { get; }
+        private readonly NavigationUrlHelper urlHelper;
+
+        [BindProperty(SupportsGet = true)]
+        public string Invitation { get; set; }
+
+        public string StartUrl
+        {
+            get
+            {
+                return Invitation == null
+                    ? urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships")
+                    : urlHelper.Generate(NavigationSection.Login, $"Invitations/CreatePassword/{Invitation}");
+            }
+        }
 
         public IndexModel(NavigationUrlHelper urlHelper)
         {
-            ApprenticeCommitmentsBaseUrl = urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships");
+            this.urlHelper = urlHelper;
         }
     }
 }

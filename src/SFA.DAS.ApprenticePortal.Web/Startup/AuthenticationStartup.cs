@@ -44,7 +44,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
                     options.SignInScheme = "Cookies";
-                    options.Authority = config.ApprenticeLoginUrl;
+                    options.Authority = config.ApprenticeLoginUrl.ToString();
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "apprentice";
 
