@@ -16,11 +16,14 @@
             </a>
         </div>
         <div class="govuk-header__content">
-            @*<a asp-page="index" class="govuk-header__link govuk-header__link--service-name">
-                    Commitment Statement
-                </a>*@
+            <a asp-external-section="Home" asp-external-page="index" class="govuk-header__link govuk-header__link--service-name">
+                My apprenticeship
+            </a>
         </div>
     </div>
 </header>
 
-    <partial name="_UserBanner" />
+@if(@User.Identity.IsAuthenticated)
+{
+<partial name="_UserBanner" />
+}

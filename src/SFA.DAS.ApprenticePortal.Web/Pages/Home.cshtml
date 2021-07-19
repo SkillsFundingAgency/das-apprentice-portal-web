@@ -1,3 +1,47 @@
 ﻿@page
+@model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
+@using SFA.DAS.ApprenticePortal.SharedUi.Identity
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+@{ ViewData["Title"] = "Welcome"; }
 
-<h1>Home</h1>
+<div class="dashboard-page">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row dashboard-title">
+            <div class="govuk-grid-column-full">
+                <h1 class="govuk-heading-xl">
+                    Welcome, @User.FullName()
+                </h1>
+                <span class="govuk-caption-m">@Model.CourseName</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="govuk-main-wrapper--autosspacing" id="main-content" role="main">
+    <div class="govuk-width-container" id="dashboard-section">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <ul class="dashboard-nav dashboard-li">
+                    <li>
+                        <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
+                            <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
+                            <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="HelpAndSupport" model="Model">
+                            <h2 class="govuk-heading-m">Help and support</h2>
+                            <p>As an apprentice you are not alone, we're here to help you.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h2 class="govuk-heading-m">My account</h2>
+                            <p>View and edit your apprenticeship account details.</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,10 +1,14 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
 @model SFA.DAS.ApprenticePortal.Web.Pages.HelpAndSupportModel
 @{
     ViewData["Title"] = "Help and support";
 }
 
-<a href="@Request.Headers["Referer"]">Back</a>
+@section BreadCrumbs
+{
+<a href="@Request.Headers["Referer"]" class="govuk-back-link">Back</a>
+}
 
 <div class="govuk-width-container">
     <div class="govuk-grid-row">
@@ -181,5 +185,5 @@
 
 @section DasScripts
 {
-<script src="/js/step-by-step-nav.js" no-cdn></script>
+    <script src="/js/step-by-step-nav.js" no-cdn></script>
 }

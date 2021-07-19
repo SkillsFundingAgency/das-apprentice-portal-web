@@ -12,13 +12,14 @@ namespace SFA.DAS.ApprenticePortal.Web
 {
     public class ApplicationStartup
     {
-        public ApplicationStartup(
-            IConfiguration configuration)
+        public ApplicationStartup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -28,8 +29,13 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
 
+            services.AddApplicationInsightsTelemetry();
+            services.AddDataProtection(appConfig.ConnectionStrings, Environment);
+
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
+            services.AddAuthentication(appConfig.ApplicationUrls, Environment);
+            services.AddOuterApi(appConfig.ApprenticeCommitmentsApi);
             services.AddRazorPages();
             services.AddSharedUi(appConfig, options =>
             {
@@ -55,9 +61,11 @@ namespace SFA.DAS.ApprenticePortal.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseHealthChecks("/ping");
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
