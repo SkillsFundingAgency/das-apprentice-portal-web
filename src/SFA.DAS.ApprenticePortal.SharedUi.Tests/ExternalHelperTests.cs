@@ -48,9 +48,9 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         {
             var sections = new NavigationSectionUrls
             {
-                ApprenticeHomeUrl = "https://home.com",
-                ApprenticeCommitmentsUrl = "https://confirm.com",
-                ApprenticeLoginUrl = "https://login.com",
+                ApprenticeHomeUrl = new Uri("https://home.com"),
+                ApprenticeCommitmentsUrl = new Uri("https://confirm.com"),
+                ApprenticeLoginUrl = new Uri("https://login.com"),
             };
 
             var sut = new NavigationUrlHelper(sections);
