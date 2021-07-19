@@ -12,17 +12,16 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
 
     public class NavigationSectionUrls
     {
-        public string ApprenticeHomeUrl { get; set; } = null!;
-        public string ApprenticeCommitmentsUrl { get; set; } = null!;
-        public string ApprenticeLoginUrl { get; set; } = null!;
+        public Uri ApprenticeHomeUrl { get; set; } = null!;
+        public Uri ApprenticeCommitmentsUrl { get; set; } = null!;
+        public Uri ApprenticeLoginUrl { get; set; } = null!;
 
         public Uri ToUri(NavigationSection section)
-            => new Uri(
-                UriForSection(section)
+            => UriForSection(section)
                 ?? throw new Exception(
-                    $"URL for navigation section `{section}` is not configured"));
+                    $"URL for navigation section `{section}` is not configured");
 
-        private string UriForSection(NavigationSection section)
+        private Uri? UriForSection(NavigationSection section)
             => section switch
             {
                 NavigationSection.Home => ApprenticeHomeUrl,
