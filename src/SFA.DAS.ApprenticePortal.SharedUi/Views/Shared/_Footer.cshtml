@@ -1,4 +1,6 @@
-﻿<footer class="govuk-footer ">
+﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+
+<footer class="govuk-footer ">
     <div class="govuk-width-container ">
 
         <div class="govuk-footer__meta">
@@ -6,7 +8,13 @@
                 <h2 class="govuk-visually-hidden">Support links</h2>
                 <ul class="govuk-footer__inline-list">
                     <li class="govuk-footer__inline-list-item">
-                        <a class="govuk-footer__link" href=""></a>
+                        <a class="govuk-footer__link" asp-external-section="@NavigationSection.Home" asp-external-page="Privacy">Privacy</a>
+                    </li>
+                    <li class="govuk-footer__inline-list-item">
+                        <a class="govuk-footer__link" asp-external-section="@NavigationSection.Home" asp-external-page="Cookies">Cookies</a>
+                    </li>
+                    <li class="govuk-footer__inline-list-item">
+                        <a class="govuk-footer__link" asp-external-section="@NavigationSection.Home" asp-external-page="TermsAndConditions">Terms and conditions</a>
                     </li>
                 </ul>
                 <svg aria-hidden="true"
