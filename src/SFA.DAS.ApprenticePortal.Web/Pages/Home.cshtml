@@ -1,8 +1,11 @@
 ﻿@page
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.SharedUi.Identity
-@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @{ ViewData["Title"] = "Welcome"; }
+
+@section Head {
+    <link href="~/css/homepage.css" media="screen" rel="stylesheet" no-cdn />
+}
 
 <div class="dashboard-page">
     <div class="govuk-width-container">
@@ -17,7 +20,7 @@
     </div>
 </div>
 
-<main class="govuk-main-wrapper--autosspacing" id="main-content" role="main">
+<main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">
     <div class="govuk-width-container" id="dashboard-section">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">

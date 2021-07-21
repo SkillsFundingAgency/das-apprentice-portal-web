@@ -28,7 +28,8 @@
     <![endif]-->
 
     <link href="~/css/site.css" media="screen" rel="stylesheet" no-cdn />
-    <link href="~/css/homepage.css" media="screen" rel="stylesheet" no-cdn />
+
+    @RenderSection("head", false)
 
     <title>@ViewData["Title"]</title>
 </head>
