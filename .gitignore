@@ -352,6 +352,7 @@ MigrationBackup/
 appsettings.Development.json
 
 *.min.*
-**/wwwroot/css/site.css
+**/wwwroot/css/*.css
 **/wwwroot/lib/govuk-frontend/
 .DS_Store
+src/SFA.DAS.ApprenticePortal.Web/internal-nlog.txt

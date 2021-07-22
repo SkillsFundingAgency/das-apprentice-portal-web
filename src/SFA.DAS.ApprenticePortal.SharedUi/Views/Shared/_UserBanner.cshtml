@@ -25,16 +25,16 @@
                             <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
                                 <a href="/" class="das-user-navigation__link">Account settings</a>
                                 <ul role="menu" class="das-user-navigation__sub-menu js-hidden">
-                                    <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
+                                    <li class="das-user-navigation__sub-menu-link govuk-!-font-size-16" role="menuitem">
                                         <a asp-external-section="@NavigationSection.Login" asp-external-page="ForgottenPassword/36BCFAAD-1FF7-49CB-8EEF-19877B7AD0C9/">Change your password</a>
                                     </li>
-                                    <li class="das-user-navigation__sub-menu-list-item" role="menuitem">
-                                        <a asp-external-section="@NavigationSection.Login" asp-external-page="profile/36BCFAAD-1FF7-49CB-8EEF-19877B7AD0C9/changeemail">Change your email address</a>                                        
+                                    <li class="das-user-navigation__sub-menu-link govuk-!-font-size-16" role="menuitem">
+                                        <a asp-external-section="@NavigationSection.Login" asp-external-page="profile/36BCFAAD-1FF7-49CB-8EEF-19877B7AD0C9/changeemail">Change your email address</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="das-user-navigation__list-item">
-                                <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="SignOut" class="govuk-link app-user-header__link">Sign out</a>
+                            <li role="menuitem" class="das-user-navigation__list-item">
+                                <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="SignOut" class="das-user-navigation__link">Sign out</a>
                             </li>
                         </ul>
                     </nav>

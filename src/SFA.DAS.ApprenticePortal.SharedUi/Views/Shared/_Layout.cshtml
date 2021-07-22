@@ -28,7 +28,8 @@
     <![endif]-->
 
     <link href="~/css/site.css" media="screen" rel="stylesheet" no-cdn />
-    <link href="~/css/homepage.css" media="screen" rel="stylesheet" no-cdn />
+
+    @RenderSection("head", false)
 
     <title>@ViewData["Title"]</title>
 </head>
@@ -57,8 +58,11 @@
         @RenderSection("BreadCrumbs", required: false)
     </div>
 
-        <main class="govuk-main-wrapper app-main-class" id="main-content">
-    @RenderBody()
+    <div class="govuk-width-container ">
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            @RenderBody()
+        </main>
+    </div>
 
     <script src="/libs/govuk-frontend/all.js"></script>
     <script src="/libs/jquery/jquery.min.js"></script>
