@@ -1,4 +1,7 @@
 ﻿@page
+@{
+    ViewData["Title"] = "Cookies on this service";
+}
 <div class="das-cookie-settings" id="cookie-settings">
     <div class="das-cookie-settings__inner-wrap" id="cookie-settings">
         <div class="das-notification das-notification--success das-cookie-settings__confirmation" data-cookie-confirmation="true" tabindex="0">
@@ -9,15 +12,15 @@
         </div>
         <h1 class="govuk-heading-xl">Cookies on this service</h1>
 
-        <p>Cookies are files saved on your phone, tablet or computer when you visit a website.</p>
+        <p>Cookies are files saved on your phone, tablet or computer when you visit a service.</p>
         <p>We use cookies to store information about how you use this service, such as the pages you visit.</p>
         <p>This service is delivered over a set of subdomains.</p>
         <p>Your cookie preferences on this service automatically apply to the following domains:</p>
 
         <ul class="govuk-list govuk-list--bullet">
-            <li>https://login.my.apprenticeships.education.gov.uk/</li>
-            <li>https://my.apprenticeships.education.gov.uk/</li>
-            <li>https://confirm.my.apprenticeships.education.gov.uk/</li>
+            <li><a href="https://login.my.apprenticeships.education.gov.uk/" class="govuk-link">https://login.my.apprenticeships.education.gov.uk/</a></li>
+            <li><a href="https://my.apprenticeships.education.gov.uk/" class="govuk-link">https://my.apprenticeships.education.gov.uk/</a></li>
+            <li><a href="https://confirm.my.apprenticeships.education.gov.uk/" class="govuk-link">https://confirm.my.apprenticeships.education.gov.uk/</a></li>
         </ul>
 
         <h2 class="govuk-heading-l">Cookie settings</h2>
@@ -31,8 +34,6 @@
         </div>
 
         <div class="das-js-show das-cookie-settings__form-wrapper">
-            <p>This service is delivered over a set of subdomains.</p>
-
             <p>We use 2 types of cookie. You can choose which cookies you're happy for us to use.</p>
             <hr class="govuk-section-break govuk-section-break--l" />
             <form data-module="cookie-settings">
@@ -70,7 +71,7 @@
                     <li>the notifications you've seen so we do not show them to you again</li>
                 </ul>
                 <p>They always need to be on.</p>
-                <p><a href="/Cookies" class="govuk-link">Find out more about cookies on this service</a>.</p>
+                <p>Find out more about <a href="/Cookies" class="govuk-link">cookies on this service</a>.</p>
                 <hr class="govuk-section-break govuk-section-break--l" />
                 <button class="govuk-button" type="submit">Save changes</button>
             </form>
