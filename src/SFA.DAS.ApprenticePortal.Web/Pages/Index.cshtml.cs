@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
         private readonly NavigationUrlHelper urlHelper;
 
         [BindProperty(SupportsGet = true)]
-        public string Invitation { get; set; }
+        public string? Invitation { get; set; }
 
         public string StartUrl
         {
