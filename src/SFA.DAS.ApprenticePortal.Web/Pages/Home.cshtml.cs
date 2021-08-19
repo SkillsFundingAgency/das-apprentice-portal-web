@@ -22,8 +22,16 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
 
         public async Task OnGet()
         {
-            var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
-            CourseName = apprenticeships[0].CourseName;
+            try
+            {
+                var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
+                CourseName = apprenticeships[0].CourseName;
+            }
+            catch
+            {
+                // We don't want to show the user a nasty error just because we couldn't find
+                // the course name.
+            }
         }
     }
 }
