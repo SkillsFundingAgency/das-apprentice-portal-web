@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         private readonly IApprenticeshipService _apprenticeships;
         private readonly NavigationUrlHelper _helper;
 
-        public NavigationHelper(IApprenticeshipService something, NavigationUrlHelper helper)
+        public NavigationHelper(CachedApprenticeshipService something, NavigationUrlHelper helper)
         {
             _apprenticeships = something;
             _helper = helper;

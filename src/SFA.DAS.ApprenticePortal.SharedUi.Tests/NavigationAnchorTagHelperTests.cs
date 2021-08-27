@@ -18,6 +18,7 @@ using Microsoft.Extensions.WebEncoders.Testing;
 using Moq;
 using NUnit.Framework;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;

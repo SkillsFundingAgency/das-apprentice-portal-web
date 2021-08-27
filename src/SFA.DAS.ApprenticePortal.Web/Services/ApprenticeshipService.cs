@@ -1,4 +1,4 @@
-﻿using SFA.DAS.ApprenticePortal.SharedUi;
+﻿using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services

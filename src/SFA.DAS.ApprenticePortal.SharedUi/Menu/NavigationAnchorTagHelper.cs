@@ -14,9 +14,6 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         [HtmlAttributeName("asp-external-page")]
         public string? ExternalPage { get; set; }
 
-        [HtmlAttributeName("asp-external-subdomain")]
-        public string? ExternalSubDomain { get; set; }
-
         public NavigationAnchorTagHelper(NavigationHelper helper) => _helper = helper;
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
