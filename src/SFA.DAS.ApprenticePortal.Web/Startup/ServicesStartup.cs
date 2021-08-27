@@ -1,5 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using RestEase.HttpClientFactory;
+using SFA.DAS.ApprenticePortal.SharedUi;
+using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.Web.Services;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using SFA.DAS.Http.Configuration;
 
@@ -27,6 +30,14 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient<IApimClientConfiguration>((_) => configuration);
 
             return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            return services
+                .AddTransient<NavigationHelper>()
+                .AddTransient<IApprenticeshipService, ApprenticeshipService>()
+                ;
         }
     }
 
