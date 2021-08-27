@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             try
             {
                 var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
-                CourseName = apprenticeships[0].CourseName;
+                CourseName = apprenticeships.Apprenticeships[0].CourseName;
             }
             catch
             {

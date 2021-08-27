@@ -35,10 +35,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             return services
-                .AddScoped<NavigationHelper>()
-                .AddScoped<CachedApprenticeshipService>()
-                .AddScoped<IApprenticeshipService, ApprenticeshipService>()
-                ;
+                .AddScoped<IApprenticeshipService, ApprenticeshipService>();
         }
     }
 
