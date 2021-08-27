@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using RestEase.HttpClientFactory;
-using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using SFA.DAS.ApprenticePortal.Web.Services;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
@@ -35,7 +34,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             return services
-                .AddScoped<IApprenticeshipService, ApprenticeshipService>();
+                .AddScoped<IMenuVisibility, MenuVisibility>();
         }
     }
 

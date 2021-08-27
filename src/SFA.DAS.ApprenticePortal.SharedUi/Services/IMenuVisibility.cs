@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.ApprenticePortal.SharedUi.Services
 {
-    public interface IApprenticeshipService
+    public interface IMenuVisibility
     {
-        Task<bool> ApprenticeshipExistsForCurrentUser();
+        Task<bool> ShowConfirmMyApprenticeship();
     }
 }

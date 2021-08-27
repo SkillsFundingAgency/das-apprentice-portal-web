@@ -5,19 +5,19 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
 {
     public class NavigationHelper
     {
-        private readonly IApprenticeshipService _apprenticeships;
+        private readonly IMenuVisibility _menu;
         private readonly NavigationUrlHelper _helper;
 
         public NavigationHelper(CachedApprenticeshipService something, NavigationUrlHelper helper)
         {
-            _apprenticeships = something;
+            _menu = something;
             _helper = helper;
         }
 
         public async Task<bool> IsAvailable(NavigationSection externalSection)
             => externalSection switch
             {
-                NavigationSection.ConfirmMyApprenticeship => await _apprenticeships.ApprenticeshipExistsForCurrentUser(),
+                NavigationSection.ConfirmMyApprenticeship => await _menu.ShowConfirmMyApprenticeship(),
                 _ => true,
             };
 

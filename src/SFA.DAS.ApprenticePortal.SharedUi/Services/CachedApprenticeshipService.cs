@@ -2,16 +2,16 @@
 
 namespace SFA.DAS.ApprenticePortal.SharedUi.Services
 {
-    public class CachedApprenticeshipService : IApprenticeshipService
+    public class CachedApprenticeshipService : IMenuVisibility
     {
-        private readonly IApprenticeshipService _service;
+        private readonly IMenuVisibility _service;
         private bool? cached;
 
-        public CachedApprenticeshipService(IApprenticeshipService service) => _service = service;
+        public CachedApprenticeshipService(IMenuVisibility service) => _service = service;
 
-        public async Task<bool> ApprenticeshipExistsForCurrentUser()
+        public async Task<bool> ShowConfirmMyApprenticeship()
         {
-            if (cached == null) cached = await _service.ApprenticeshipExistsForCurrentUser();
+            if (cached == null) cached = await _service.ShowConfirmMyApprenticeship();
             return cached.Value;
         }
     }

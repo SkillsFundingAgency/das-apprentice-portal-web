@@ -32,7 +32,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         private TagHelperOutput tagHelperOutput;
         private NavigationAnchorTagHelper sut;
         private NavigationSectionUrls urls;
-        private Mock<IApprenticeshipService> something;
+        private Mock<IMenuVisibility> something;
 
         [SetUp]
         public void Setup()
@@ -46,14 +46,14 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
             });
             fixture.Customize<NavigationAnchorTagHelper>(c => c.OmitAutoProperties());
 
-            something = new Mock<IApprenticeshipService>();
+            something = new Mock<IMenuVisibility>();
             fixture.Inject(something.Object);
             urls = fixture.Freeze<NavigationSectionUrls>();
             sut = fixture.Create<NavigationAnchorTagHelper>();
             tagHelperContext = fixture.Create<TagHelperContext>();
             tagHelperOutput = fixture.Create<TagHelperOutput>();
 
-            something.Setup(x => x.ApprenticeshipExistsForCurrentUser()).ReturnsAsync(true);
+            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
         }
 
         [TestCase(NavigationSection.ConfirmMyApprenticeship)]
@@ -84,7 +84,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         public async Task Output_is_suppressed_when_appropriate()
         {
             sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
-            something.Setup(x => x.ApprenticeshipExistsForCurrentUser()).ReturnsAsync(false);
+            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
 
             await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
@@ -95,7 +95,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         public async Task Output_is_not_suppressed_when_inappropriate()
         {
             sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
-            something.Setup(x => x.ApprenticeshipExistsForCurrentUser()).ReturnsAsync(true);
+            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
 
             await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
