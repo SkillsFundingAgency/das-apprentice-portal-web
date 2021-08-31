@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         private readonly IMenuVisibility _menu;
         private readonly NavigationUrlHelper _helper;
 
-        public NavigationHelper(CachedApprenticeshipService something, NavigationUrlHelper helper)
+        public NavigationHelper(CachedMenuVisibility something, NavigationUrlHelper helper)
         {
             _menu = something;
             _helper = helper;

@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Startup
             services.AddTransient(s => s.GetRequiredService<Controller>());
             services.AddTransient<NavigationUrlHelper>();
             services.AddTransient<NavigationHelper>();
-            services.AddScoped<CachedApprenticeshipService>();
+            services.AddScoped<CachedMenuVisibility>();
 
             options?.Invoke(new SharedUiOptions(services, configuration));
 

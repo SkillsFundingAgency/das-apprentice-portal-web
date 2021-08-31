@@ -4,7 +4,6 @@ using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
