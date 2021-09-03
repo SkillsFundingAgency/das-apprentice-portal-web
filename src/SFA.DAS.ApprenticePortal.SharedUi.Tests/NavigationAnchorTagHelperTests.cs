@@ -101,6 +101,18 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
 
             tagHelperOutput.Content.GetContent().Should().NotBeEmpty();
         }
+
+        [Test]
+        public async Task Output_is_not_suppressed_when_always_shown()
+        {
+            sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
+            sut.AlwaysShow = true;
+            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
+
+            await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
+
+            tagHelperOutput.Content.GetContent().Should().NotBeEmpty();
+        }
     }
 
     public class TestableHtmlGenerator : DefaultHtmlGenerator

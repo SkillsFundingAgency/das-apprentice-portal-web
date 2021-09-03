@@ -2,7 +2,6 @@
 using SFA.DAS.ApprenticePortal.SharedUi.Identity;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

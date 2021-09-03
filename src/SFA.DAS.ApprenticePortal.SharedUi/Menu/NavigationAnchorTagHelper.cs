@@ -14,11 +14,14 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         [HtmlAttributeName("asp-external-page")]
         public string? ExternalPage { get; set; }
 
+        [HtmlAttributeName("asp-always-show")]
+        public bool AlwaysShow { get; set; }
+
         public NavigationAnchorTagHelper(NavigationHelper helper) => _helper = helper;
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            if (await _helper.IsAvailable(ExternalSection))
+            if (await ShouldShow())
             {
                 var href = _helper.Generate(section: ExternalSection, page: ExternalPage);
                 output.Attributes.SetAttribute("href", href);
@@ -28,5 +31,8 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 output.SuppressOutput();
             }
         }
+
+        private async Task<bool> ShouldShow()
+            => AlwaysShow || await _helper.IsAvailable(ExternalSection);
     }
 }

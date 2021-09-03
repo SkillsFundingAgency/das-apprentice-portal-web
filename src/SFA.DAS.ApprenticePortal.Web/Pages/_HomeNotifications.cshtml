@@ -12,7 +12,7 @@
         </h3>
         <p class="govuk-body">
             Firstly check your
-            <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Account">account information</a> for accuracy.
+            <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Account" asp-always-show=true>account information</a> for accuracy.
             If this does not solve the problem contact your employer or training provider.
         </p>
     </div>
@@ -28,6 +28,6 @@
         <h3 class="govuk-notification-banner__heading">
             You have created an account and we have found your apprenticeship
         </h3>
-        <p class="govuk-body">You now need to confirm your apprenticeship.</p>
+        <p class="govuk-body">You now need to <a asp-external-section="ConfirmMyApprenticeship">confirm your apprenticeship</a></p>
     </div>
 </div>
