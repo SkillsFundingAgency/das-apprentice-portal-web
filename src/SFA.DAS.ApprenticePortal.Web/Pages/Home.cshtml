@@ -28,17 +28,13 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
-                    <li asp-for-external-section="ConfirmMyApprenticeship">
-                        <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
-                            <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
-                            <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
-                        </a>
+                    <li>
+                        <h2 class="govuk-heading-s">Confirm my apprenticeship details</h2>
+                        <p>View your <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">current apprenticeship details</a> and understand what to expect during your apprenticeship.</p>                      
                     </li>
                     <li>
-                        <a asp-page="HelpAndSupport" model="Model">
-                            <h2 class="govuk-heading-m">Help and support</h2>
-                            <p>As an apprentice you are not alone, we're here to help you.</p>
-                        </a>
+                        <h2 class="govuk-heading-s">Help and support</h2>
+                        <p>If you have any questions or need support during your apprenticeship, guidance can be found in the <a asp-page="HelpAndSupport" model="Model">help and support section</a>.</p>                        
                     </li>
                 </ul>
             </div>
