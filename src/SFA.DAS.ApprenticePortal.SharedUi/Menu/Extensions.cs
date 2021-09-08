@@ -13,6 +13,11 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
             return services;
         }
 
+        public static void SetWelcomeText(this ViewDataDictionary viewData, string welcomeText)
+        {
+            viewData[ViewDataKeys.MenuWelcomeText] = welcomeText;
+        }
+
         public static string? WelcomeText(this ViewDataDictionary viewData)
             => viewData.TryGetValue(ViewDataKeys.MenuWelcomeText, out var text)
                ? text?.ToString() : null;
