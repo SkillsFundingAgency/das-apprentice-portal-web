@@ -15,7 +15,7 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-half">
                 <p class="govuk-body-l app-user-header__name">
-                    <span>@welcomeText</span>
+                    <span>@welcomeText</span>&nbsp;
                 </p>
             </div>
             <div class="govuk-grid-column-one-half">
@@ -34,11 +34,11 @@
                                 </ul>
                             </li>
                             <li role="menuitem" class="das-user-navigation__list-item">
-                                <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="SignOut" class="das-user-navigation__link">Sign out</a>
+                                <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="SignOut" asp-always-show=true class="das-user-navigation__link">Sign out</a>
                             </li>
                         </ul>
                     </nav>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -46,21 +46,21 @@
 
 @if (ViewData.IsNavigationMenuVisible())
 {
-    <div class="das-account-header das-account-header--apprentice">
-        <div class="govuk-width-container">
-            <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
-                <ul class="das-user-navigation__list" role="menu">
-                    <li class="das-navigation__list-item">
-                        <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
-                    </li>
-                    <li class="das-navigation__list-item">
-                        <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship details</a>
-                    </li>
-                    <li class="das-navigation__list-item">
-                        <a asp-external-section="Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<div class="das-account-header das-account-header--apprentice">
+    <div class="govuk-width-container">
+        <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
+            <ul class="das-user-navigation__list" role="menu">
+                <li class="das-navigation__list-item">
+                    <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
+                </li>
+                <li class="das-navigation__list-item" asp-for-external-section="ConfirmMyApprenticeship">
+                    <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship details</a>
+                </li>
+                <li class="das-navigation__list-item">
+                    <a asp-external-section="Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
+                </li>
+            </ul>
+        </nav>
     </div>
+</div>
 }
