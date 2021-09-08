@@ -3,6 +3,8 @@ using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.SharedUi.Zendesk;
 
+#nullable disable
+
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
     public class ApplicationConfiguration : ISharedUiConfiguration

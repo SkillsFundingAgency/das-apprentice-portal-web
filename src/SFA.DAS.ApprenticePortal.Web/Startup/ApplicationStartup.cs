@@ -36,6 +36,7 @@ namespace SFA.DAS.ApprenticePortal.Web
             services.AddHealthChecks();
             services.AddAuthentication(appConfig.ApplicationUrls, Environment);
             services.AddOuterApi(appConfig.ApprenticeCommitmentsApi);
+            services.AddServices();
             services.AddRazorPages();
             services.AddSharedUi(appConfig, options =>
             {

@@ -6,10 +6,10 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
 {
     public interface IOuterApiClient
     {
-        [Get("/apprentices/{id}/apprenticeships")]
-        Task<Apprenticeship[]> GetApprenticeships([Path] Guid id);
+        [Get("/apprentices/{id}")]
+        Task<Apprentice> GetApprentice([Path] Guid id);
 
-        [Get("/apprentices/{apprenticeid}/apprenticeships/{apprenticeshipid}")]
-        Task<Apprenticeship> GetApprenticeship([Path] Guid apprenticeid, [Path] long apprenticeshipid);
+        [Get("/apprentices/{id}/apprenticeships")]
+        Task<ApprenticeshipsWrapper> GetApprenticeships([Path] Guid id);
     }
 }

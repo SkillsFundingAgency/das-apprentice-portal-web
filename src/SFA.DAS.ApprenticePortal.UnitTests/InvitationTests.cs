@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests
         public void Accessing_index_without_invitation_forwards_to_confirm([Frozen] NavigationSectionUrls urls, IndexModel sut)
         {
             sut.Invitation = null;
-            Assert.That(sut.StartUrl, Is.EqualTo($"{urls.ApprenticeCommitmentsUrl}apprenticeships"));
+            Assert.That(sut.StartUrl, Is.EqualTo($"{urls.ApprenticeCommitmentsUrl}register/{sut.Register}"));
         }
 
         [Test, PageAutoData]

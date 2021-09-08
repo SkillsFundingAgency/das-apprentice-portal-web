@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using SFA.DAS.ApprenticePortal.SharedUi.Zendesk;
 using System;
 
@@ -14,7 +16,10 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Startup
             _ = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
             services.AddSingleton(configuration.ApplicationUrls);
+            services.AddTransient(s => s.GetRequiredService<Controller>());
             services.AddTransient<NavigationUrlHelper>();
+            services.AddTransient<NavigationHelper>();
+            services.AddScoped<CachedMenuVisibility>();
 
             options?.Invoke(new SharedUiOptions(services, configuration));
 

@@ -10,15 +10,21 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
         private readonly NavigationUrlHelper urlHelper;
 
         [BindProperty(SupportsGet = true)]
-        public string Invitation { get; set; }
+        public string? Invitation { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? Register { get; set; }
 
         public string StartUrl
         {
             get
             {
-                return Invitation == null
-                    ? urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships")
-                    : urlHelper.Generate(NavigationSection.Login, $"Invitations/CreatePassword/{Invitation}");
+                if (Invitation != null)
+                    return urlHelper.Generate(NavigationSection.Login, $"Invitations/CreatePassword/{Invitation}");
+                else if (Register != null)
+                    return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register/{Register}");
+                else
+                    return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships");
             }
         }
 

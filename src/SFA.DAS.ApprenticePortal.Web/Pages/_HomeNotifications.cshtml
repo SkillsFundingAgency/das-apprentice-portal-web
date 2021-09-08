@@ -1,0 +1,33 @@
+﻿@using SFA.DAS.ApprenticePortal.SharedUi.Home
+
+<div asp-notification="HomeNotification.ApprenticeshipDidNotMatch" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+        </h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+            There seems to be a problem, we cannot find your apprenticeship.
+        </h3>
+        <p class="govuk-body">
+            Firstly check your
+            <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Account" asp-always-show=true>account information</a> for accuracy.
+            If this does not solve the problem contact your employer or training provider.
+        </p>
+    </div>
+</div>
+
+<div asp-notification="HomeNotification.ApprenticeshipMatched" class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+        </h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+            You have created an account and we have found your apprenticeship.
+        </h3>
+        <p class="govuk-body">You now need to <a asp-external-section="ConfirmMyApprenticeship">confirm your apprenticeship</a></p>
+    </div>
+</div>

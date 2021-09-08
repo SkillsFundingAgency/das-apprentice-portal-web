@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using RestEase.HttpClientFactory;
+using SFA.DAS.ApprenticePortal.SharedUi.Home;
+using SFA.DAS.ApprenticePortal.SharedUi.Services;
+using SFA.DAS.ApprenticePortal.Web.Services;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using SFA.DAS.Http.Configuration;
 
@@ -16,7 +19,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient<Http.MessageHandlers.LoggingMessageHandler>();
             services.AddTransient<Http.MessageHandlers.ApimHeadersHandler>();
 
-            global::NLog.LogManager.GetLogger("ServicesStartup").Info("ApiBaseUrl: {url}", configuration?.ApiBaseUrl);
+            global::NLog.LogManager.GetLogger("ServicesStartup").Info("ApiBaseUrl: {url}", configuration.ApiBaseUrl);
 
             services
                 .AddRestEaseClient<IOuterApiClient>(configuration.ApiBaseUrl)
@@ -26,6 +29,15 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
             services.AddTransient<IApimClientConfiguration>((_) => configuration);
 
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services
+                .AddScoped<IMenuVisibility, MenuVisibility>()
+                .AddScoped<NotificationAccessor>()
+                .AddScoped<ApprenticeApi>();
             return services;
         }
     }
