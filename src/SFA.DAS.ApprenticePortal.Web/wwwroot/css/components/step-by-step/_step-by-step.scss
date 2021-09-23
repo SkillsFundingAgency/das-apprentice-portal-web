@@ -323,6 +323,7 @@ $top-border: solid 2px govuk-colour("mid-grey", $legacy: "grey-3");
   .js-enabled &.js-hidden {
     display: none;
   }
+  padding-bottom: 1px;
 }
 
 // contents of the steps, such as paragraphs and links
