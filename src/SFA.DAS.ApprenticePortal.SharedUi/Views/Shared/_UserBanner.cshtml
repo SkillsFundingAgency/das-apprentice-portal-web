@@ -1,4 +1,4 @@
-﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @using SFA.DAS.ApprenticePortal.SharedUi.Identity
 
 @{
@@ -6,7 +6,7 @@
     var selected = ViewData.SelectedNavigationSection();
 
     string navigationClass(NavigationSection section) =>
-        section == selected ? "das-navigation__link das-navigation__link--current" : "das-navigation__link";
+        section == selected ? "app-navigation__link app-navigation__link--selected" : "app-navigation__link";
 
 }
 
@@ -49,17 +49,21 @@
 
 @if (ViewData.IsNavigationMenuVisible())
 {
-<div class="das-account-header das-account-header--apprentice">
+<div class="app-navigation app-navigation--employers" data-app-navigation="true">
     <div class="govuk-width-container">
-        <nav class="das-user-navigation das-user-navigation__left" id="das-user-navigation">
-            <ul class="das-user-navigation__list" role="menu">
-                <li class="das-navigation__list-item">
+        <a href="#navigation" class="app-navigation__toggle" data-app-nav-toggle="true">
+            Menu
+        </a>
+        <nav class="app-navigation__nav" data-app-nav-menu="true" id="navigation">
+            <h3 class="govuk-visually-hidden app-navigation__heading" id="app-nav-title">Navigation</h3>
+            <ul class="app-navigation__list" aria-labelledby="app-nav-title">
+                <li class="app-navigation__list-item">
                     <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
                 </li>
-                <li class="das-navigation__list-item" asp-for-external-section="ConfirmMyApprenticeship">
+                <li class="app-navigation__list-item">
                     <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship details</a>
                 </li>
-                <li class="das-navigation__list-item">
+                <li class="app-navigation__list-item">
                     <a asp-external-section="Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
                 </li>
             </ul>
