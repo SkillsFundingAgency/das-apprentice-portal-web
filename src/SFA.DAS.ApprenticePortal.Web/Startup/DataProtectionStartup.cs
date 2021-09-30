@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
+using System.IO;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
@@ -13,10 +14,21 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             DataProtectionConnectionStrings configuration,
             IWebHostEnvironment environment)
         {
-            if (!environment.IsDevelopment() && configuration != null)
+            if (environment.IsDevelopment())
+            {
+                services.AddDistributedMemoryCache();
+                services.AddDataProtection()
+                    .SetApplicationName("apprentice-commitments");
+            }
+            else
             {
                 var redisConnectionString = configuration.RedisConnectionString;
                 var dataProtectionKeysDatabase = configuration.DataProtectionKeysDatabase;
+
+                services.AddDistributedRedisCache(options =>
+                {
+                    options.Configuration = $"{redisConnectionString},{dataProtectionKeysDatabase}";
+                });
 
                 var redis = ConnectionMultiplexer
                     .Connect($"{redisConnectionString},{dataProtectionKeysDatabase}");
