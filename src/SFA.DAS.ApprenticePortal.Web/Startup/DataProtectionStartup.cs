@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
                 services.AddDistributedRedisCache(options =>
                 {
-                    options.Configuration = $"{redisConnectionString},{dataProtectionKeysDatabase}";
+                    options.Configuration = $"{redisConnectionString},{"DefaultDatabase=0"}";
                 });
 
                 var redis = ConnectionMultiplexer
