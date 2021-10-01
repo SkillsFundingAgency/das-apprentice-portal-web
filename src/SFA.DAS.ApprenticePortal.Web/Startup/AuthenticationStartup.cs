@@ -46,6 +46,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                     options.Cookie.Name = ".Apprenticeships.Application";
                     //options.Cookie.HttpOnly = true;
                     options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                     options.SlidingExpiration = true;
                     options.ExpireTimeSpan = System.TimeSpan.FromHours(1);
                 })
