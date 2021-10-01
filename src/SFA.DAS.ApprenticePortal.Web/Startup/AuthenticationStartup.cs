@@ -38,7 +38,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 .AddAuthentication(options =>
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;                    
+                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
                 })
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
