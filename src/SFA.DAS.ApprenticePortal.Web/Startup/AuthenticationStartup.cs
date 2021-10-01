@@ -43,7 +43,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 })
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
-                    options.Cookie.Name = ".Apprenticeships.Application";
+                    options.Cookie.Name = ".Apprenticeships.Application.Portal";
                     //options.Cookie.HttpOnly = true;
                     options.Cookie.SameSite = SameSiteMode.None;
                     options.SlidingExpiration = true;
