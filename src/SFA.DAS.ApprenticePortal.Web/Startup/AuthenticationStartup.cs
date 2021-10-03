@@ -39,18 +39,18 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                    //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    //options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
                 })
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
-                    options.Cookie.Name = ".Apprenticeships.Application";
+                    options.Cookie.Name = ".Apprenticeships.Application.Portal";
                     //options.Cookie.HttpOnly = true;
-                    options.Cookie.SameSite = SameSiteMode.Lax;
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                    //options.SlidingExpiration = true;
+                    //options.Cookie.SameSite = SameSiteMode.Lax;
+                    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.SlidingExpiration = true;
                     options.ExpireTimeSpan = System.TimeSpan.FromHours(1);
-                    options.CookieManager = new ChunkingCookieManager();
+                    //options.CookieManager = new ChunkingCookieManager();
                 })
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
