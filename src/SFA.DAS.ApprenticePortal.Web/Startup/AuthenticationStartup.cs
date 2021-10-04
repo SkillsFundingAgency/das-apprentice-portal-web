@@ -16,9 +16,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             this IServiceCollection services,
             NavigationSectionUrls config,
             IWebHostEnvironment environment)
-        {
+        {           
             services
-                .AddApplicationAuthentication(config)
+                .AddApplicationAuthentication(config, environment)
                 .AddApplicationAuthorisation();
 
             services.AddTransient((_) => config);
@@ -28,7 +28,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
         private static IServiceCollection AddApplicationAuthentication(
             this IServiceCollection services,
-            NavigationSectionUrls config)
+            NavigationSectionUrls config,
+            IWebHostEnvironment environment)
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -44,13 +45,18 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 })
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
-                    options.Cookie.Name = ".Apprenticeships.Application.Portal";
+                    options.Cookie.Name = ".Apprenticeships.Application";
                     //options.Cookie.HttpOnly = true;
                     //options.Cookie.SameSite = SameSiteMode.Lax;
                     //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                     options.SlidingExpiration = true;
                     options.ExpireTimeSpan = System.TimeSpan.FromHours(1);
                     //options.CookieManager = new ChunkingCookieManager();
+
+                    if (environment.EnvironmentName != "Development")
+                    {
+                        options.Cookie.Domain = ".apprenticeships.education.gov.uk";
+                    }
                 })
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
