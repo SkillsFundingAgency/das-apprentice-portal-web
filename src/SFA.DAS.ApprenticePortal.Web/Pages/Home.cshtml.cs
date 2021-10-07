@@ -15,6 +15,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         private readonly NotificationAccessor _notifications;
 
         public string CourseName { get; set; } = null!;
+        public bool ApprenticeshipComplete { get; set; } = false;
+
 
         public HomeModel(IOuterApiClient client, AuthenticatedUser user, NotificationAccessor notifications)
         {
@@ -28,7 +30,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             try
             {
                 if (!_notifications.Notifications.Contains(HomeNotification.ApprenticeshipDidNotMatch))
-                    CourseName = await GetCourseName();
+                    await PopulateProperties();
             }
             catch
             {
@@ -36,10 +38,11 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             }
         }
 
-        private async Task<string> GetCourseName()
+        private async Task PopulateProperties()
         {
             var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
-            return apprenticeships.Apprenticeships[0].CourseName;
+            CourseName = apprenticeships.Apprenticeships[0].CourseName;
+            ApprenticeshipComplete = apprenticeships.Apprenticeships[0].ConfirmedOn.HasValue;
         }
     }
 }
