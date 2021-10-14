@@ -17,7 +17,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         public string CourseName { get; set; } = null!;
         public bool ApprenticeshipComplete { get; set; } = false;
 
-
         public HomeModel(IOuterApiClient client, AuthenticatedUser user, NotificationAccessor notifications)
         {
             _client = client;
