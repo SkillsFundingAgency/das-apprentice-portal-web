@@ -29,6 +29,16 @@
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-for-external-section="ConfirmMyApprenticeship">
+
+                        @if (Model.ApprenticeshipComplete)
+                        {
+                            <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
+                        }
+                        else
+                        { 
+                            <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
+                        }
+
                         <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         <p><a class="govuk-link" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
