@@ -1,6 +1,7 @@
 ﻿@page
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.SharedUi.Identity
+@using SFA.DAS.ApprenticePortal.Web.Models
 @{ ViewData["Title"] = "Welcome"; }
 
 @section Head {
@@ -31,20 +32,17 @@
                     <li asp-for-external-section="ConfirmMyApprenticeship">
 
                         <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
-                        @if (Model.CurrentApprenticeship == null)
+                        @if (Model.Status == ApprenticeshipStatus.Stopped)
                         {
+                        <strong class="govuk-tag govuk-tag--grey">STOPPED</strong>
                         }
-                        else if (Model.CurrentApprenticeship.HasStopped)
+                        else if (Model.Status == ApprenticeshipStatus.Complete)
                         {
-                            <strong class="govuk-tag govuk-tag--grey">STOPPED</strong>
+                        <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
                         }
-                        else if (Model.CurrentApprenticeship.Complete)
+                        else if (Model.Status == ApprenticeshipStatus.Incomplete)
                         {
-                            <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
-                        }
-                        else if(Model.CurrentApprenticeship != null)
-                        {
-                            <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
+                        <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
                         }
 
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>

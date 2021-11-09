@@ -8,4 +8,11 @@
         public bool HasStopped { get; set; } = false;
         public bool DisplayJustStoppedInfoMessage { get; set; } = false;
     }
+
+    public enum ApprenticeshipStatus
+    {
+        Incomplete,
+        Complete,
+        Stopped
+    }
 }

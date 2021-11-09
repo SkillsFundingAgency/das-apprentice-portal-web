@@ -14,7 +14,28 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         private readonly AuthenticatedUser _user;
         private readonly NotificationAccessor _notifications;
 
-        public ApprenticeshipModel? CurrentApprenticeship { get; set; }  
+        public ApprenticeshipModel? CurrentApprenticeship { get; set; }
+
+        public ApprenticeshipStatus Status
+        {
+            get
+            {
+                if (CurrentApprenticeship == null)
+                {
+                    return ApprenticeshipStatus.Incomplete;
+                }
+                if (CurrentApprenticeship.HasStopped)
+                {
+                    return ApprenticeshipStatus.Stopped;
+                }
+                if (CurrentApprenticeship.Complete)
+                {
+                    return ApprenticeshipStatus.Complete;
+                }
+                return ApprenticeshipStatus.Incomplete;
+            }
+        }
+
 
         public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user, NotificationAccessor notifications)
         {

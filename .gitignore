@@ -357,3 +357,5 @@ appsettings.Development.json
 **/wwwroot/lib/govuk-frontend/
 .DS_Store
 src/SFA.DAS.ApprenticePortal.Web/internal-nlog.txt
+
+*.feature.cs
