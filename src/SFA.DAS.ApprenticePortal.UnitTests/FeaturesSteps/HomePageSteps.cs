@@ -96,6 +96,18 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
             _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.Status.ToString().ToUpper().Should().Be(status);
         }
 
+        [Then(@"the employer name should be correct")]
+        public void ThenTheEmployerNameShouldBeCorrect()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.EmployerName.Should().Be(_singleApprenticeship.EmployerName);
+        }
+
+        [Then(@"the course name should be correct")]
+        public void ThenTheCourseNameShouldBeCorrect()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.CourseName.Should().Be(_singleApprenticeship.CourseName);
+        }
+
         [Then(@"the just stopped information message should be visible")]
         public void ThenTheStoppedInformationMessageShouldBeVisible()
         {

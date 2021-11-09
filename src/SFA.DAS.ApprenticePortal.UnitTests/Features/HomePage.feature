@@ -31,6 +31,8 @@ Scenario: The apprenticeship exists, but has not been viewed since being stopped
 	When accessing the home page
 	Then the response status should be Ok
 	And the just stopped information message should be visible
+	And the employer name should be correct
+	And the course name should be correct
 
 Scenario: The apprenticeship exists, and has been viewed since being stopped
 	Given the apprentice is authenticated
