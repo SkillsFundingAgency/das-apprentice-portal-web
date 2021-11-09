@@ -2,24 +2,23 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.SharedUi.Home;
 using SFA.DAS.ApprenticePortal.Web.Services;
-using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System.Threading.Tasks;
+using SFA.DAS.ApprenticePortal.Web.Models;
 
 namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
     [Authorize]
     public class HomeModel : PageModel
     {
-        private readonly IOuterApiClient _client;
+        private readonly ApprenticeshipService _apprenticeshipService;
         private readonly AuthenticatedUser _user;
         private readonly NotificationAccessor _notifications;
 
-        public string CourseName { get; set; } = null!;
-        public bool ApprenticeshipComplete { get; set; } = false;
+        public ApprenticeshipModel? CurrentApprenticeship { get; set; }  
 
-        public HomeModel(IOuterApiClient client, AuthenticatedUser user, NotificationAccessor notifications)
+        public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user, NotificationAccessor notifications)
         {
-            _client = client;
+            _apprenticeshipService = apprenticeshipService;
             _user = user;
             _notifications = notifications;
         }
@@ -29,19 +28,12 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             try
             {
                 if (!_notifications.Notifications.Contains(HomeNotification.ApprenticeshipDidNotMatch))
-                    await PopulateProperties();
+                   CurrentApprenticeship = await _apprenticeshipService.GetLatestApprenticeship(_user.ApprenticeId);
             }
             catch
             {
                 _notifications.Notifications.Add(HomeNotification.ApprenticeshipDidNotMatch);
             }
-        }
-
-        private async Task PopulateProperties()
-        {
-            var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
-            CourseName = apprenticeships.Apprenticeships[0].CourseName;
-            ApprenticeshipComplete = apprenticeships.Apprenticeships[0].ConfirmedOn.HasValue;
         }
     }
 }

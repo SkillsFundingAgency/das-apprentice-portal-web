@@ -1,0 +1,11 @@
+﻿namespace SFA.DAS.ApprenticePortal.Web.Models
+{
+    public class ApprenticeshipModel
+    {
+        public string CourseName { get; set; } = "null!";
+        public string EmployerName { get; set; } = "null!";
+        public bool Complete { get; set; } = false;
+        public bool HasStopped { get; set; } = false;
+        public bool DisplayJustStoppedInfoMessage { get; set; } = false;
+    }
+}

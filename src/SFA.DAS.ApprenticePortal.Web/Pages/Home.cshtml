@@ -13,7 +13,7 @@
             <div class="govuk-grid-column-full">
                 <h1 class="govuk-heading-xl">
                     Welcome, @User.FullName()
-                    <span class="govuk-caption-m">@Model.CourseName</span>
+                    <span class="govuk-caption-m">@Model.CurrentApprenticeship?.CourseName</span>
                 </h1>
             </div>
         </div>
@@ -22,7 +22,7 @@
 
 <main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">
 
-    <partial name="_HomeNotifications" />
+    <partial name="_HomeNotifications", model=@Model.CurrentApprenticeship />
 
     <div class="govuk-width-container" id="dashboard-section">
         <div class="govuk-grid-row">
@@ -30,16 +30,23 @@
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-for-external-section="ConfirmMyApprenticeship">
 
-                        @if (Model.ApprenticeshipComplete)
+                        <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
+                        @if (Model.CurrentApprenticeship == null)
+                        {
+                        }
+                        else if (Model.CurrentApprenticeship.HasStopped)
+                        {
+                            <strong class="govuk-tag govuk-tag--grey">STOPPED</strong>
+                        }
+                        else if (Model.CurrentApprenticeship.Complete)
                         {
                             <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
                         }
-                        else
-                        { 
+                        else if(Model.CurrentApprenticeship != null)
+                        {
                             <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
                         }
 
-                        <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         <p><a class="govuk-link" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>

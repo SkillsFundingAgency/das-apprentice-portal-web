@@ -22,5 +22,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
         public DateTime PlannedStartDate { get; set; }
         public DateTime PlannedEndDate { get; set; }
         public bool DisplayChangeNotification { get; set; }
+        public DateTime? LastViewed { get; set; }
+        public DateTime? StoppedReceivedOn { get; set; }
+        public bool IsStopped { get; set; }
     }
 }
