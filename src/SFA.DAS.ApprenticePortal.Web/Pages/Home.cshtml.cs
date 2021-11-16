@@ -29,6 +29,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             }
             catch
             {
+                // Safely ignore population errors
             }
         }
 
