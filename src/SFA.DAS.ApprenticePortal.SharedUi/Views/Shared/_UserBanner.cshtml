@@ -1,4 +1,4 @@
-@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @using SFA.DAS.ApprenticePortal.SharedUi.Identity
 
 @{
@@ -20,7 +20,10 @@
             </div>
             <div class="govuk-grid-column-one-half">
                 <div class="das-account-header">
-                    <nav class="das-user-navigation" id="das-user-navigation">
+                    <nav class="das-user-navigation" id="das-user-navigation" aria-labelledby="app-user-nav-title">
+                        <h2 id="app-user-nav-title" class="govuk-visually-hidden">
+                            Your account navigation
+                        </h2>
                         <ul class="das-user-navigation__list" role="menu">
                             <li role="menuitem" class="das-user-navigation__list-item das-user-navigation__list-item--has-sub-menu">
                                 <a href="/" class="das-user-navigation__link">Account settings</a>
@@ -54,8 +57,10 @@
         <a href="#navigation" class="app-navigation__toggle" data-app-nav-toggle="true">
             Menu
         </a>
-        <nav class="app-navigation__nav" data-app-nav-menu="true" id="navigation">
-            <h3 class="govuk-visually-hidden app-navigation__heading" id="app-nav-title">Navigation</h3>
+        <nav class="app-navigation__nav" data-app-nav-menu="true" id="navigation" aria-labelledby="app-nav-title">
+            <h2 class="govuk-visually-hidden app-navigation__heading" id="app-nav-title">
+                Main navigation
+            </h2>
             <ul class="app-navigation__list" aria-labelledby="app-nav-title">
                 <li class="app-navigation__list-item">
                     <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
