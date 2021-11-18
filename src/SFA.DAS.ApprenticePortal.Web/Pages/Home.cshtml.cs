@@ -16,27 +16,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
 
         public ApprenticeshipModel? CurrentApprenticeship { get; set; }
 
-        public ApprenticeshipStatus Status
-        {
-            get
-            {
-                if (CurrentApprenticeship == null)
-                {
-                    return ApprenticeshipStatus.Incomplete;
-                }
-                if (CurrentApprenticeship.HasStopped)
-                {
-                    return ApprenticeshipStatus.Stopped;
-                }
-                if (CurrentApprenticeship.Complete)
-                {
-                    return ApprenticeshipStatus.Complete;
-                }
-                return ApprenticeshipStatus.Incomplete;
-            }
-        }
-
-
         public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user, NotificationAccessor notifications)
         {
             _apprenticeshipService = apprenticeshipService;

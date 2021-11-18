@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using AutoFixture;
 using FluentAssertions;
+using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Pages;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using TechTalk.SpecFlow;
@@ -93,7 +94,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         [Then(@"the apprenticeship status should show ""(.*)""")]
         public void ThenTheApprenticeshipStatusShouldShow(string status)
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.Status.ToString().ToUpper().Should().Be(status);
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.Status().ToString().ToUpper().Should().Be(status);
         }
 
         [Then(@"the employer name should be correct")]

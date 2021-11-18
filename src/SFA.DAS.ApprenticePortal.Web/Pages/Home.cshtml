@@ -32,17 +32,17 @@
                     <li asp-for-external-section="ConfirmMyApprenticeship">
 
                         <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
-                        @if (Model.Status == ApprenticeshipStatus.Stopped)
+                        @if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Stopped)
                         {
-                        <strong class="govuk-tag govuk-tag--grey">STOPPED</strong>
+                            <strong class="govuk-tag govuk-tag--grey">STOPPED</strong>
                         }
-                        else if (Model.Status == ApprenticeshipStatus.Complete)
+                        else if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Complete)
                         {
-                        <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
+                            <strong class="govuk-tag govuk-tag--green">COMPLETE</strong>
                         }
-                        else if (Model.Status == ApprenticeshipStatus.Incomplete)
+                        else if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Incomplete)
                         {
-                        <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
+                            <strong class="govuk-tag govuk-tag--yellow">INCOMPLETE</strong>
                         }
 
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
