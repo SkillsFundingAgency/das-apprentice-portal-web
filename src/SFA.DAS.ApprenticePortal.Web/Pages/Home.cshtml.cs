@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SFA.DAS.ApprenticePortal.SharedUi.Home;
 using SFA.DAS.ApprenticePortal.Web.Services;
 using System.Threading.Tasks;
 using SFA.DAS.ApprenticePortal.Web.Models;
@@ -12,27 +11,24 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
     {
         private readonly ApprenticeshipService _apprenticeshipService;
         private readonly AuthenticatedUser _user;
-        private readonly NotificationAccessor _notifications;
 
         public ApprenticeshipModel? CurrentApprenticeship { get; set; }
 
-        public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user, NotificationAccessor notifications)
+        public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user)
         {
             _apprenticeshipService = apprenticeshipService;
             _user = user;
-            _notifications = notifications;
         }
 
         public async Task OnGet()
         {
             try
             {
-                if (!_notifications.Notifications.Contains(HomeNotification.ApprenticeshipDidNotMatch))
-                   CurrentApprenticeship = await _apprenticeshipService.GetLatestApprenticeship(_user.ApprenticeId);
+                CurrentApprenticeship = await _apprenticeshipService.GetLatestApprenticeship(_user.ApprenticeId);
             }
             catch
             {
-                _notifications.Notifications.Add(HomeNotification.ApprenticeshipDidNotMatch);
+                // Safely ignore population errors
             }
         }
     }

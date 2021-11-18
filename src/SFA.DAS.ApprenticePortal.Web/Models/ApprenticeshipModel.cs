@@ -18,8 +18,7 @@
 
     public static class ApprenticeModelExtensions
     {
-
-        public static ApprenticeshipStatus Status(this ApprenticeshipModel model)
+        public static ApprenticeshipStatus Status(this ApprenticeshipModel? model)
         {
             if (model == null)
             {
@@ -39,5 +38,4 @@
             return ApprenticeshipStatus.Incomplete;
         }
     }
-
 }

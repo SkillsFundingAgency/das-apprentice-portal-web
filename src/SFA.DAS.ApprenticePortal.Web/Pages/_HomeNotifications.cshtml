@@ -1,23 +1,5 @@
 ﻿@using SFA.DAS.ApprenticePortal.SharedUi.Home
-@model SFA.DAS.ApprenticePortal.Web.Models.ApprenticeshipModel
-
-<div asp-notification="HomeNotification.ApprenticeshipDidNotMatch" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-    <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Important
-        </h2>
-    </div>
-    <div class="govuk-notification-banner__content">
-        <h3 class="govuk-notification-banner__heading">
-            There seems to be a problem, we cannot find your apprenticeship.
-        </h3>
-        <p class="govuk-body">
-            Check your name and date of birth are correct in your
-            <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Account" asp-always-show=true>account details</a>.
-            If this does not solve the problem, contact your employer or training provider.
-        </p>
-    </div>
-</div>
+@model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 
 <div asp-notification="HomeNotification.ApprenticeshipMatched" class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     <div class="govuk-notification-banner__header">
@@ -33,7 +15,7 @@
     </div>
 </div>
 
-<div asp-show="@Model?.DisplayJustStoppedInfoMessage" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+<div asp-show="@Model.CurrentApprenticeship?.DisplayJustStoppedInfoMessage" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     <div class="govuk-notification-banner__header">
         <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
             Important
@@ -41,8 +23,8 @@
     </div>
     <div class="govuk-notification-banner__content">
         <h3 class="govuk-notification-banner__heading">
-            @Model.EmployerName has stopped your apprenticeship.
+            @Model.CurrentApprenticeship?.EmployerName has stopped your apprenticeship.
         </h3>
-        <p class="govuk-body">Your employer has stopped your @Model.CourseName apprenticeship. <a asp-external-section="ConfirmMyApprenticeship">Check your apprenticeship details</a>.</p>
+        <p class="govuk-body">Your employer has stopped your @Model.CurrentApprenticeship?.CourseName apprenticeship. <a asp-external-section="ConfirmMyApprenticeship">Check your apprenticeship details</a>.</p>
     </div>
 </div>

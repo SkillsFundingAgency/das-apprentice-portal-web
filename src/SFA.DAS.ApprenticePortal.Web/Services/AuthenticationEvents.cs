@@ -24,8 +24,16 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             var apprentice = await GetApprentice(principal);
             if (apprentice == null) return;
 
+            AddAccountCreatedClaim(principal);
+            AddTermsOfUseClaim(principal);
             AddApprenticeNameClaims(apprentice, principal);
         }
+
+        private static void AddAccountCreatedClaim(ClaimsPrincipal principal)
+            => principal.AddIdentity(UserAccountCreatedClaim.CreateAccountCreatedClaim());
+
+        private static void AddTermsOfUseClaim(ClaimsPrincipal principal)
+            => principal.AddIdentity(TermsOfUseAcceptedClaim.CreateTermsOfUseAcceptedClaim());
 
         private async Task<Apprentice?> GetApprentice(ClaimsPrincipal principal)
         {
