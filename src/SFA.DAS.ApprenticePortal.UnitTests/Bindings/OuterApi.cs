@@ -8,18 +8,10 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.Bindings
     {
         public static MockApi Client { get; set; }
 
-        private readonly TestContext _context;
-
-        public OuterApi(TestContext context)
-        {
-            _context = context;
-        }
-
         [BeforeScenario(Order = 1)]
         public void Initialise()
         {
             Client ??= new MockApi();
-            _context.OuterApi = Client;
         }
 
         [AfterScenario()]
