@@ -23,7 +23,11 @@
     </div>
 </header>
 
-@if(@User.Identity.IsAuthenticated)
+@if (@User.Identity.IsAuthenticated)
 {
-<partial name="_UserBanner" />
+    <partial name="_UserBanner" />
+}
+else
+{
+    <partial name="_BetaBanner" />
 }
