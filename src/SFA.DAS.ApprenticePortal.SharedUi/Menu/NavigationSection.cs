@@ -9,11 +9,13 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         ConfirmMyApprenticeship,
         Login,
         PersonalDetails,
+        Registration
     }
 
     public class NavigationSectionUrls
     {
         public Uri ApprenticeHomeUrl { get; set; } = null!;
+        public Uri ApprenticeAccountUrl { get; set; } = null!;
         public Uri ApprenticeCommitmentsUrl { get; set; } = null!;
         public Uri ApprenticeLoginUrl { get; set; } = null!;
 
@@ -29,8 +31,9 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 NavigationSection.HelpAndSupport => ApprenticeHomeUrl,
                 NavigationSection.ConfirmMyApprenticeship => ApprenticeCommitmentsUrl,
                 NavigationSection.Login => ApprenticeLoginUrl,
-                NavigationSection.PersonalDetails => new Uri(ApprenticeCommitmentsUrl, "Account"),
-                _ => throw new Exception($"Unknown nagivation section {section}")
+                NavigationSection.PersonalDetails => new Uri(ApprenticeAccountUrl, "Account"),
+                NavigationSection.Registration => new Uri(ApprenticeCommitmentsUrl, "Register"),
+                _ => throw new Exception($"Unknown navigation section {section}")
             };
     }
 }
