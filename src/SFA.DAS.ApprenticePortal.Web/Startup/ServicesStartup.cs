@@ -37,7 +37,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services
                 .AddScoped<IMenuVisibility, MenuVisibility>()
                 .AddScoped<NotificationAccessor>()
-                .AddScoped<ApprenticeApi>();
+                .AddScoped<ApprenticeService>()
+                .AddScoped<ApprenticeshipService>();
             return services;
         }
     }

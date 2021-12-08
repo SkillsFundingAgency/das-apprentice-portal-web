@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
-    public class ApprenticeApi
+    public class ApprenticeService
     {
         private readonly IOuterApiClient _client;
 
-        public ApprenticeApi(IOuterApiClient client)
+        public ApprenticeService(IOuterApiClient client)
         {
             _client = client;
         }

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using SFA.DAS.ApprenticeCommitments.Web.Pages;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 
-namespace SFA.DAS.ApprenticePortal.UnitTests
+namespace SFA.DAS.ApprenticePortal.UnitTests.Invitation
 {
     public class InvitationTests
     {
