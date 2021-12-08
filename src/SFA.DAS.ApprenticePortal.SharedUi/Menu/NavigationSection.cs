@@ -7,8 +7,10 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         Home,
         HelpAndSupport,
         ConfirmMyApprenticeship,
+        ApprenticeAccounts,
         Login,
         PersonalDetails,
+        TermsOfUse,
         Registration
     }
 
@@ -30,8 +32,10 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 NavigationSection.Home => ApprenticeHomeUrl,
                 NavigationSection.HelpAndSupport => ApprenticeHomeUrl,
                 NavigationSection.ConfirmMyApprenticeship => ApprenticeCommitmentsUrl,
+                NavigationSection.ApprenticeAccounts => ApprenticeAccountsUrl,
                 NavigationSection.Login => ApprenticeLoginUrl,
                 NavigationSection.PersonalDetails => new Uri(ApprenticeAccountsUrl, "Account"),
+                NavigationSection.TermsOfUse => new Uri(ApprenticeAccountsUrl, "TermsOfUse"),
                 NavigationSection.Registration => new Uri(ApprenticeCommitmentsUrl, "Register"),
                 _ => throw new Exception($"Unknown navigation section {section}")
             };
