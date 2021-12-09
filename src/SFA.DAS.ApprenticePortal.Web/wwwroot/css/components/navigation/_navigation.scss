@@ -119,6 +119,10 @@
     @include govuk-focused-text;
 }
 
+.app-navigation__link:visited {
+    color: $govuk-link-colour;
+}
+
 .app-navigation__link--selected {
     &:link,
     &:active,

@@ -9,9 +9,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 {
     public class AuthenticationEvents : OpenIdConnectEvents
     {
-        private readonly ApprenticeApi _client;
+        private readonly ApprenticeService _client;
 
-        public AuthenticationEvents(ApprenticeApi client) => _client = client;
+        public AuthenticationEvents(ApprenticeService client) => _client = client;
 
         public override async Task TokenValidated(TokenValidatedContext context)
         {
