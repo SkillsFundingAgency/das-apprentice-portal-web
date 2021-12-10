@@ -44,3 +44,4 @@ jobs:
     parameters:
       DotNetStandardPackagesToPack: |
         src/SFA.DAS.ApprenticePortal.SharedUi/SFA.DAS.ApprenticePortal.SharedUi.csproj
+        src/SFA.DAS.ApprenticePortal.Authentication/SFA.DAS.ApprenticePortal.Authentication.csproj
