@@ -43,5 +43,5 @@ jobs:
   - template: azure-pipelines-templates/build/step/nuget-pack.yml@das-platform-building-blocks
     parameters:
       DotNetStandardPackagesToPack: |
-        src/SFA.DAS.ApprenticePortal.SharedUi/SFA.DAS.ApprenticePortal.SharedUi.csproj,
-        src/SFA.DAS.ApprenticePortal.Authentication/SFA.DAS.ApprenticePortal.Authentication.csproj
+        src/SFA.DAS.ApprenticePortal.SharedUi/SFA.DAS.ApprenticePortal.SharedUi.csproj;
+        src/SFA.DAS.ApprenticePortal.Authentication/SFA.DAS.ApprenticePortal.Authentication.csproj;
