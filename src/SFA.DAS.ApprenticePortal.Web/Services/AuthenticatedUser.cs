@@ -1,6 +1,6 @@
-﻿using SFA.DAS.ApprenticePortal.SharedUi.Identity;
-using System;
+﻿using System;
 using System.Security.Claims;
+using SFA.DAS.ApprenticePortal.Authentication;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {

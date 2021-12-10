@@ -1,9 +1,9 @@
 ﻿using AutoFixture.NUnit3;
 using FluentAssertions;
 using NUnit.Framework;
-using SFA.DAS.ApprenticePortal.SharedUi.Identity;
 using System;
 using System.Security.Claims;
+using SFA.DAS.ApprenticePortal.Authentication;
 
 namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
 {

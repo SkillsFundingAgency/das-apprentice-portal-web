@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using SFA.DAS.ApprenticePortal.SharedUi.Identity;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SFA.DAS.ApprenticePortal.Authentication;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
