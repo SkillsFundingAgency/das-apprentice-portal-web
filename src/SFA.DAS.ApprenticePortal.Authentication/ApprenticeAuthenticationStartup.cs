@@ -16,7 +16,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
         /// <param name="environment"></param>
         /// <returns></returns>
         public static IServiceCollection AddApprenticeAuthentication(this IServiceCollection services,
-            IApprenticeAuthenticationConfiguration config,
+            string metadataAddress,
             IWebHostEnvironment environment)
         {
             services
@@ -37,7 +37,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
                 .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
                 {
                     options.SignInScheme = "Cookies";
-                    options.Authority = config.MetadataAddress;
+                    options.Authority = metadataAddress;
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "apprentice";
 
