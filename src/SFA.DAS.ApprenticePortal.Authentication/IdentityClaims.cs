@@ -59,6 +59,14 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             var claimIdentity = new ClaimsIdentity(new[] { new Claim(ApprenticeId, id) });
             principal.AddIdentity(claimIdentity);
         }
-    }
 
+        internal static bool HasCreatedAccount(this ClaimsPrincipal principal)
+            => principal.HasClaim(AccountCreated, "True");
+
+        internal static bool HasAcceptedTermsOfUse(this ClaimsPrincipal principal)
+            => principal.HasClaim(TermsOfUseAccepted, "True");
+
+        internal static bool HasBeenVerified(this ClaimsPrincipal principal)
+            => principal.HasClaim(VerifiedUser, "True");
+    }
 }

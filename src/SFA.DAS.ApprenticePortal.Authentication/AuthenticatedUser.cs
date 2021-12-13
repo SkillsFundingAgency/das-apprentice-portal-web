@@ -20,10 +20,17 @@ namespace SFA.DAS.ApprenticePortal.Authentication
                              ?? throw new InvalidOperationException($"There is no `{IdentityClaims.Name}` claim for the email.");
 
             Email = new MailAddress(emailClaim.Value ?? "");
+
+            HasCreatedAccount = user.HasCreatedAccount();
+            HasAcceptedTermsOfUse = user.HasAcceptedTermsOfUse();
         }
 
         public Guid ApprenticeId { get; }
 
         public MailAddress Email { get; }
+
+        public bool HasCreatedAccount { get; }
+        public bool HasAcceptedTermsOfUse { get; }
+
     }
 }
