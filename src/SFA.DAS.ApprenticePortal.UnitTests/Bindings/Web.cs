@@ -5,6 +5,7 @@ using System.Net.Http;
 using AutoFixture;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing.Handlers;
+using SFA.DAS.ApprenticePortal.Authentication.TestHelpers.TestHelpers;
 using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
 using SFA.DAS.ApprenticePortal.Web;
 using TechTalk.SpecFlow;
