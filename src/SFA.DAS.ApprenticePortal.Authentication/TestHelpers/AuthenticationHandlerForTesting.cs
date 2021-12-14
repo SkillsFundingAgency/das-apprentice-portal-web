@@ -39,7 +39,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
             _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(apprenticeId));
         }
 
-        internal static void AddUserWithoutAccount(Guid apprenticeId)
+        public static void AddUserWithoutAccount(Guid apprenticeId)
         {
             Console.WriteLine($"Adding unverified logged in user {apprenticeId}");
             _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithNoAccountClaim(apprenticeId));
