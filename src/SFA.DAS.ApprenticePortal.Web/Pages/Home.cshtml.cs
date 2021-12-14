@@ -1,23 +1,22 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.Web.Services;
-using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System.Threading.Tasks;
+using SFA.DAS.ApprenticePortal.Web.Models;
 
 namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
     [Authorize]
     public class HomeModel : PageModel
     {
-        private readonly IOuterApiClient _client;
+        private readonly ApprenticeshipService _apprenticeshipService;
         private readonly AuthenticatedUser _user;
 
-        public string CourseName { get; set; } = null!;
-        public bool ApprenticeshipComplete { get; set; } = false;
+        public ApprenticeshipModel? CurrentApprenticeship { get; set; }
 
-        public HomeModel(IOuterApiClient client, AuthenticatedUser user)
+        public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user)
         {
-            _client = client;
+            _apprenticeshipService = apprenticeshipService;
             _user = user;
         }
 
@@ -25,19 +24,12 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         {
             try
             {
-                await PopulateProperties();
+                CurrentApprenticeship = await _apprenticeshipService.GetLatestApprenticeship(_user.ApprenticeId);
             }
             catch
             {
                 // Safely ignore population errors
             }
-        }
-
-        private async Task PopulateProperties()
-        {
-            var apprenticeships = await _client.GetApprenticeships(_user.ApprenticeId);
-            CourseName = apprenticeships.Apprenticeships[0].CourseName;
-            ApprenticeshipComplete = apprenticeships.Apprenticeships[0].ConfirmedOn.HasValue;
         }
     }
 }

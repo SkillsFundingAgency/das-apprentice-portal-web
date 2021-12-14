@@ -145,6 +145,7 @@ _TeamCity*
 _NCrunch_*
 .*crunch*.local.xml
 nCrunchTemp_*
+*.ncrunchsolution
 
 # MightyMoose
 *.mm.*
@@ -356,3 +357,5 @@ appsettings.Development.json
 **/wwwroot/lib/govuk-frontend/
 .DS_Store
 src/SFA.DAS.ApprenticePortal.Web/internal-nlog.txt
+
+*.feature.cs
