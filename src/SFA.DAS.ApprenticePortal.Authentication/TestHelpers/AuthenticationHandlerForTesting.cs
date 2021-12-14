@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers.TestHelpers
+namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
 {
     public class AuthenticationHandlerForTesting : SignInAuthenticationHandler<AuthenticationSchemeOptions>
     {

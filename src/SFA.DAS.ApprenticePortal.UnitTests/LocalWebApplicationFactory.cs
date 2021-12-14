@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SFA.DAS.ApprenticePortal.Authentication.TestHelpers.TestHelpers;
+using SFA.DAS.ApprenticePortal.Authentication.TestHelpers;
 using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
 
 namespace SFA.DAS.ApprenticePortal.UnitTests
