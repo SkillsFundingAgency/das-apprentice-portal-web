@@ -56,7 +56,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public static void AddVerifiedUserClaim(this ClaimsPrincipal principal, string id)
         {
-            var claimIdentity = new ClaimsIdentity(new[] { new Claim(ApprenticeId, id) });
+            var claimIdentity = new ClaimsIdentity(new[] { new Claim(VerifiedUser, "True") });
             principal.AddIdentity(claimIdentity);
         }
 
