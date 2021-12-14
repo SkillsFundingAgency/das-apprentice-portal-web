@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace SFA.DAS.ApprenticePortal.Authentication
 {
-    public class TestHelpers
+    public static class TestHelpers
     {
         public static AuthenticatedUser FakeLocalUserFullyVerified => new AuthenticatedUser(FakeLocalUserFullyVerifiedClaim);
         public static AuthenticatedUser FakeLocalUserWithNoAccount => new AuthenticatedUser(FakeLocalUserWithNoAccountClaim);
