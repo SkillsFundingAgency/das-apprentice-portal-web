@@ -61,12 +61,11 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
             return AuthenticateResult.Success(new AuthenticationTicket(principal, "Test"));
         }
 
-        protected override Task HandleSignInAsync(ClaimsPrincipal principal, AuthenticationProperties properties)
+        protected override Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties properties)
         {
-            var guid = principal.Claims.First(x => x.Type == "apprentice_id").Value;
-            var userId = Guid.Parse(guid);
+            var guid = user.Claims.First(x => x.Type == "apprentice_id").Value;
 
-            Authentications.Add(principal);
+            Authentications.Add(user);
 
             return Task.CompletedTask;
         }
