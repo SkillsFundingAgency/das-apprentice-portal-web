@@ -103,15 +103,17 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             }));
         }
 
-        private static void RemoveNameClaims(ClaimsIdentity? identity)
+        private static void RemoveNameClaims(ClaimsIdentity identity)
         {
-            var givenNameClaim = identity.FindFirst(IdentityClaims.GivenName);
-            if (givenNameClaim != null)
-                identity.RemoveClaim(givenNameClaim);
+            RemoveClaim(identity, IdentityClaims.GivenName);
+            RemoveClaim(identity, IdentityClaims.FamilyName);
+        }
 
-            var familyNameClaim = identity.FindFirst(IdentityClaims.FamilyName);
-            if (familyNameClaim != null)
-                identity.RemoveClaim(givenNameClaim);
+        private static void RemoveClaim(ClaimsIdentity identity, string ClaimType)
+        {
+            var claim = identity.FindFirst(ClaimType);
+            if (claim != null)
+                identity.RemoveClaim(claim);
         }
 
         private static void AddApprenticeAccountClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
