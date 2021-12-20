@@ -19,15 +19,8 @@
 
     <!--[if !IE 8]><!-->
     <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/apprentice.css" rel="stylesheet" />
     <!--<![endif]-->
-    <!--[if IE 8]>
-        <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
-    <![endif]-->
-    <!--[if lt IE 9]>
-        <script src="/html5-shiv/html5shiv.js"></script>
-    <![endif]-->
-
-    <link href="~/css/site.css" media="screen" rel="stylesheet" no-cdn />
 
     @RenderSection("head", false)
 
@@ -73,7 +66,7 @@
         window.GOVUKFrontend.initAll();
         window.DASFrontend.initAll();
     </script>
-    <script src="~/js/site.js" asp-append-version="true" no-cdn></script>
+    <script src="/js/apprentice.min.js"></script>
     @RenderSection("Scripts", required: false)
 
    
