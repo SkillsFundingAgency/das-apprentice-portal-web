@@ -6,8 +6,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
     {
         public long Id { get; set; }
         public Guid ApprenticeId { get; set; }
-        public string EmployerName { get; set; }
-        public string CourseName { get; set; }
+        public string? EmployerName { get; set; }
+        public string? CourseName { get; set; }
         public DateTime? ConfirmedOn { get; set; }
         public DateTime ApprovedOn { get; set; }
         public DateTime? LastViewed { get; set; }
