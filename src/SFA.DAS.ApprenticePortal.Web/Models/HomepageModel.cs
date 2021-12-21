@@ -25,12 +25,12 @@
                 return ApprenticeshipStatus.Incomplete;
             }
 
-            if (model.HasStopped)
+            if (model.HasStopped == true)
             {
                 return ApprenticeshipStatus.Stopped;
             }
 
-            if (model.Complete)
+            if (model.Complete == true)
             {
                 return ApprenticeshipStatus.Complete;
             }
