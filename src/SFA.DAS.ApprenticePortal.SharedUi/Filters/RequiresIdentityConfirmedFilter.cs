@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.Filters
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             if (!_user.HasCreatedAccount)
-                context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"/register{context.HttpContext.Request.QueryString}"));
+                context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register{context.HttpContext.Request.QueryString}"));
             else if (!_user.HasAcceptedTermsOfUse)
                 context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.TermsOfUse));
         }
