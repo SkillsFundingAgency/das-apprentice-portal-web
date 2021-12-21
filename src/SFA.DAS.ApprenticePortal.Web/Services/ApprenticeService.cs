@@ -24,15 +24,17 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                 if (apprenticeHomepage.Apprentice is null)
                     return null;
 
+                var apprenticeship = apprenticeHomepage.Apprenticeship;
+
                 var model = new HomepageModel
                 {
-                    CourseName = apprenticeHomepage.Apprenticeship.CourseName,
-                    EmployerName = apprenticeHomepage.Apprenticeship.EmployerName,
-                    Complete = apprenticeHomepage.Apprenticeship.ConfirmedOn.HasValue,
-                    HasStopped = apprenticeHomepage.Apprenticeship.IsStopped
+                    CourseName = apprenticeship?.CourseName,
+                    EmployerName = apprenticeship?.EmployerName,
+                    Complete = apprenticeship?.ConfirmedOn.HasValue,
+                    HasStopped = apprenticeship?.IsStopped
                 };
 
-                if (apprenticeHomepage.Apprenticeship.IsStopped && (apprenticeHomepage.Apprenticeship.LastViewed == null || apprenticeHomepage.Apprenticeship.LastViewed <= apprenticeHomepage.Apprenticeship.StoppedReceivedOn))
+                if (apprenticeship != null && apprenticeship.IsStopped && (apprenticeship.LastViewed == null || apprenticeship.LastViewed <= apprenticeship.StoppedReceivedOn))
                 {
                     model.DisplayJustStoppedInfoMessage = true;
                 }
