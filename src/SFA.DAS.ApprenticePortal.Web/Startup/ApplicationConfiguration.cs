@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         public NavigationSectionUrls ApplicationUrls { get; set; }
         public GoogleAnalyticsConfiguration GoogleAnalytics { get; set; }
         public ZenDeskConfiguration Zendesk { get; set; }
-        public OuterApiConfiguration ApprenticeCommitmentsApi { get; set; }
+        public OuterApiConfiguration ApprenticePortalOuterApi { get; set; }
         public DataProtectionConnectionStrings ConnectionStrings { get; set; }
     }
 }

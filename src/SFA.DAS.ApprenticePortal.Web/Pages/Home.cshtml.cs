@@ -10,14 +10,14 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
     [Authorize]
     public class HomeModel : PageModel
     {
-        private readonly ApprenticeshipService _apprenticeshipService;
+        private readonly ApprenticeService _apprenticesService;
         private readonly AuthenticatedUser _user;
 
-        public ApprenticeshipModel? CurrentApprenticeship { get; set; }
+        public HomepageModel? HomePageModel { get; set; }
 
-        public HomeModel(ApprenticeshipService apprenticeshipService, AuthenticatedUser user)
+        public HomeModel(ApprenticeService apprenticesService, AuthenticatedUser user)
         {
-            _apprenticeshipService = apprenticeshipService;
+            _apprenticesService = apprenticesService;
             _user = user;
         }
 
@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         {
             try
             {
-                CurrentApprenticeship = await _apprenticeshipService.GetLatestApprenticeship(_user.ApprenticeId);
+                HomePageModel = await _apprenticesService.GetHomepageModel(_user.ApprenticeId);
             }
             catch
             {
