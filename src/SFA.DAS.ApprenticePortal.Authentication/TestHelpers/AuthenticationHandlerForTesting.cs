@@ -63,10 +63,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
 
         protected override Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties properties)
         {
-            var guid = user.Claims.First(x => x.Type == "apprentice_id").Value;
-
             Authentications.Add(user);
-
             return Task.CompletedTask;
         }
 

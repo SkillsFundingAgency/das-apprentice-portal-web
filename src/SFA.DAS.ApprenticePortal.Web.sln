@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.Authentication.UnitTests", "SFA.DAS.ApprenticePortal.Authentication.UnitTests\SFA.DAS.ApprenticePortal.Authentication.UnitTests.csproj", "{A6D499E3-8D58-46C4-9A09-6EECBDBFC2A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{2DAD55A4-55F1-4B60-BB6A-C1FC4EF71E81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56DF4D2C-7112-4980-A435-D9943B002ACA} = {2DAD55A4-55F1-4B60-BB6A-C1FC4EF71E81}
+		{120C0033-D994-49AE-880F-F9B4047E9FDD} = {2DAD55A4-55F1-4B60-BB6A-C1FC4EF71E81}
+		{A6D499E3-8D58-46C4-9A09-6EECBDBFC2A9} = {2DAD55A4-55F1-4B60-BB6A-C1FC4EF71E81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D203E9-858F-4622-85FB-4B8ABB2B8B20}
