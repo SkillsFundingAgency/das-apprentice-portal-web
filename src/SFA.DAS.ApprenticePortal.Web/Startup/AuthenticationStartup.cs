@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
-using SFA.DAS.ApprenticePortal.Web.Services;
 using System.IdentityModel.Tokens.Jwt;
+using SFA.DAS.ApprenticePortal.Authentication;
+using SFA.DAS.ApprenticePortal.Web.Services;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
@@ -35,40 +34,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
             IdentityModelEventSource.ShowPII = true;
 
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                })
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-                {
-                    options.Cookie.Name = ".Apprenticeships.Application";
-                    options.Cookie.HttpOnly = true;
-                    options.SlidingExpiration = true;
-                    options.ExpireTimeSpan = System.TimeSpan.FromHours(1);
-                    if (environment.EnvironmentName != "Development")
-                        options.Cookie.Domain = ".apprenticeships.education.gov.uk";
-                })
-                .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
-                {
-                    options.SignInScheme = "Cookies";
-                    options.Authority = config.ApprenticeLoginUrl.ToString();
-                    options.RequireHttpsMetadata = false;
-                    options.ClientId = "apprentice";
-
-                    options.Scope.Clear();
-                    options.Scope.Add("openid");
-                    options.Scope.Add("profile");
-
-                    options.SaveTokens = true;
-                    options.DisableTelemetry = false;
-
-                    options.EventsType = typeof(AuthenticationEvents);
-                });
-
-            services.AddScoped<AuthenticationEvents>();
-            
+            services.AddApprenticeAuthentication(config.ApprenticeLoginUrl.ToString(), environment);
+            services.AddTransient<IApprenticeAccountProvider, ApprenticeAccountProvider>();
             return services;
         }
 

@@ -5,6 +5,7 @@ using System.Net.Http;
 using AutoFixture;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing.Handlers;
+using SFA.DAS.ApprenticePortal.Authentication.TestHelpers;
 using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
 using SFA.DAS.ApprenticePortal.Web;
 using TechTalk.SpecFlow;
@@ -40,6 +41,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.Bindings
                     {"ApprenticeCommitmentsApi:ApiBaseUrl", _context.OuterApi?.BaseAddress ?? "https://api/"},
                     {"ApprenticeCommitmentsApi:SubscriptionKey", ""},
                     {"ApplicationUrls:ApprenticeHomeUrl", "https://home/"},
+                    {"ApplicationUrls:ApprenticeAccountsUrl", "https://accounts/"},
                     {"ApplicationUrls:ApprenticeCommitmentsUrl", _context.OuterApi?.BaseAddress ?? "https://confirm/"},
                     {"ApplicationUrls:ApprenticeLoginUrl", _context.OuterApi?.BaseAddress ?? "https://login/"},
                 };

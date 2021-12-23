@@ -43,12 +43,17 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
 
         [TestCase(NavigationSection.Home, "https://home.com/")]
         [TestCase(NavigationSection.ConfirmMyApprenticeship, "https://confirm.com/")]
+        [TestCase(NavigationSection.ApprenticeAccounts, "https://account.com/")]
         [TestCase(NavigationSection.Login, "https://login.com/")]
+        [TestCase(NavigationSection.PersonalDetails, "https://account.com/Account")]
+        [TestCase(NavigationSection.TermsOfUse, "https://account.com/TermsOfUse")]
+        [TestCase(NavigationSection.Registration, "https://confirm.com/Register")]
         public void Constructs_url_for_correct_section(NavigationSection section, string url)
         {
             var sections = new NavigationSectionUrls
             {
                 ApprenticeHomeUrl = new Uri("https://home.com"),
+                ApprenticeAccountsUrl = new Uri("https://account.com"),
                 ApprenticeCommitmentsUrl = new Uri("https://confirm.com"),
                 ApprenticeLoginUrl = new Uri("https://login.com"),
             };
@@ -85,7 +90,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
             var sut = new NavigationUrlHelper(sections);
 
             var ex = Assert.Throws<Exception>(() => sut.Generate((NavigationSection)100));
-            Assert.That(ex.Message, Is.EqualTo("Unknown nagivation section 100"));
+            Assert.That(ex.Message, Is.EqualTo("Unknown navigation section 100"));
         }
     }
 }

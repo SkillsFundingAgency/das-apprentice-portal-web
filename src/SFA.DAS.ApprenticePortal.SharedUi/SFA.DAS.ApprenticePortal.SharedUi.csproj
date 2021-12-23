@@ -12,13 +12,16 @@
     <PackageProjectUrl>https://github.com/SkillsFundingAgency/das-apprentice-portal-web</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageOutputPath>$(SolutionDir)..\..\NugetPackages</PackageOutputPath>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="RestEase" Version="1.5.5" />
+    <PackageReference Include="SFA.DAS.ApprenticePortal.Authentication" Version="1.1.39-prerelease-25" />
     <PackageReference Include="WebEssentials.AspNetCore.CdnTagHelpers" Version="1.0.21" />
   </ItemGroup>
+
+
 
 </Project>
