@@ -61,19 +61,6 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             return null;
         }
 
-        private static void AddApprenticeAccountClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
-        {
-            principal.AddAccountCreatedClaim();
-            principal.AddIdentity(new ClaimsIdentity(new[]
-            {
-                new Claim(IdentityClaims.GivenName, apprentice.FirstName),
-                new Claim(IdentityClaims.FamilyName, apprentice.LastName),
-            }));
-
-            if (apprentice.TermsOfUseAccepted)
-                principal.AddTermsOfUseAcceptedClaim();
-        }
-
         public static async Task UserAccountCreated(HttpContext context, IApprenticeAccount apprentice)
         {
             var authenticated = await context.AuthenticateAsync();
@@ -81,6 +68,17 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             if (authenticated.Succeeded)
             {
                 AddApprenticeAccountClaims(authenticated.Principal, apprentice);
+                await context.SignInAsync(authenticated.Principal, authenticated.Properties);
+            }
+        }
+
+        public static async Task UserAccountUpdated(HttpContext context, IApprenticeAccount apprentice)
+        {
+            var authenticated = await context.AuthenticateAsync();
+
+            if (authenticated.Succeeded)
+            {
+                UpdateApprenticeAccountClaims(authenticated.Principal, apprentice);
                 await context.SignInAsync(authenticated.Principal, authenticated.Properties);
             }
         }
@@ -94,6 +92,48 @@ namespace SFA.DAS.ApprenticePortal.Authentication
                 authenticated.Principal.AddTermsOfUseAcceptedClaim();
                 await context.SignInAsync(authenticated.Principal, authenticated.Properties);
             }
+        }
+
+        private static void AddNameClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
+        {
+            principal.AddIdentity(new ClaimsIdentity(new[]
+            {
+                new Claim(IdentityClaims.GivenName, apprentice.FirstName),
+                new Claim(IdentityClaims.FamilyName, apprentice.LastName),
+            }));
+        }
+
+        private static void RemoveNameClaims(ClaimsIdentity identity)
+        {
+            RemoveClaim(identity, IdentityClaims.GivenName);
+            RemoveClaim(identity, IdentityClaims.FamilyName);
+        }
+
+        private static void RemoveClaim(ClaimsIdentity identity, string ClaimType)
+        {
+            var claim = identity.FindFirst(ClaimType);
+            if (claim != null)
+                identity.RemoveClaim(claim);
+        }
+
+        private static void AddApprenticeAccountClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
+        {
+            principal.AddAccountCreatedClaim();
+
+            AddNameClaims(principal, apprentice);
+
+            if (apprentice.TermsOfUseAccepted)
+                principal.AddTermsOfUseAcceptedClaim();
+        }
+
+        private static void UpdateApprenticeAccountClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
+        {
+            if (principal.Identity is ClaimsIdentity identity)
+            {
+                RemoveNameClaims(identity);
+            }
+
+            AddNameClaims(principal, apprentice);
         }
     }
 }
