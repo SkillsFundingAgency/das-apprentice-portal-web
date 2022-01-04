@@ -65,9 +65,7 @@ namespace SFA.DAS.ApprenticePortal.Web
             app.UseHealthChecks("/ping");
 
             app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseSharedUi();
 
             app.UseEndpoints(endpoints =>
             {

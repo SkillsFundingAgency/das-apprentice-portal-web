@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
@@ -24,6 +25,14 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Startup
             options?.Invoke(new SharedUiOptions(services, configuration));
 
             return services;
+        }
+
+        public static IApplicationBuilder UseSharedUi(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<SecurityHeadersMiddleware>();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            return app;
         }
     }
 
