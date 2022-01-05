@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
 {
-    public static class Natural
+    public static class An
     {
         public static Apprentice Apprentice => new Apprentice(
             Guid.NewGuid(),
@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             apprenticeId: Guid.NewGuid(),
             id: Faker.RandomNumber.Next(),
             employerName: $"Employer {Faker.Company.Name()}",
-            courseName: $"Provider {Faker.Lorem.Sentence()}",
+            courseName: $"Provider {Faker.Lorem.Sentence(1)}",
             approvedOn: new DateTime(2020, 08, 20),
             confirmedOn: null,
             stoppedReceivedOn: null,

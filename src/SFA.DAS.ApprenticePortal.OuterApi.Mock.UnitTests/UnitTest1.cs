@@ -39,7 +39,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
         public async Task Return_a_null_Apprenticeship_for_Apprentice_WithoutApprenticeship(Guid id)
         {
             using var mock = new PortalOuterApiMock()
-                .WithApprentice(Natural.Apprentice
+                .WithApprentice(An.Apprentice
                     .WithId(id)
                     .WithoutApprenticeship());
 
@@ -70,9 +70,40 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
         }
 
         [Test, AutoData]
+        public async Task Return_Apprentice_and_Apprenticeship_as_specified_with(Apprentice apprentice)
+        {
+            var apprenticeship = An.Apprenticeship
+                .WithEmployerName("EmployerCo")
+                .WithCourseName("Basket Weaving 101")
+                .WithApprovedOn(new DateTime(2020, 01, 31))
+                .WithLastViewedOn(new DateTime(2020, 02, 28))
+                .WithStoppedReceivedOn(new DateTime(2020, 03, 31))
+                .WithConfirmedOn(new DateTime(2020, 04, 30));
+
+            using var mock = new PortalOuterApiMock()
+                .WithApprentice(apprentice.WithApprenticeship(apprenticeship));
+
+            using var response = await mock.HttpClient.GetAsync($"/apprentices/{apprentice.ApprenticeId}/homepage");
+
+            response.Should().Be2XXSuccessful().And.BeAs(new
+            {
+                Apprentice = apprentice,
+                Apprenticeship = new
+                {
+                    EmployerName = "EmployerCo",
+                    CourseName = "Basket Weaving 101",
+                    ConfirmedOn = new DateTime(2020, 04, 30),
+                    StoppedReceivedOn = new DateTime(2020, 03, 31),
+                    LastViewed = new DateTime(2020, 02, 28),
+                    ApprovedOn = new DateTime(2020, 01, 31),
+                }
+            });
+        }
+
+        [Test, AutoData]
         public async Task WithConfirmed_creates_a_random_confirmed_datetime(Apprentice apprentice)
         {
-            var apprenticeship = Natural.Apprenticeship.WithConfirmed();
+            var apprenticeship = An.Apprenticeship.WithConfirmedOn();
 
             using var mock = new PortalOuterApiMock()
                 .WithApprentice(apprentice.WithApprenticeship(apprenticeship));
@@ -87,12 +118,12 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
         public async Task Apprenticeship_can_create_dates_in_predictable_sequence(Guid id, DateTime confirmedOn)
         {
             using var mock = new PortalOuterApiMock()
-                .WithApprentice(Natural.Apprentice
+                .WithApprentice(An.Apprentice
                     .WithId(id)
-                    .WithApprenticeship(Natural.Apprenticeship
-                        .WithConfirmed(confirmedOn)
-                        .FollowedByStopped()
-                        .FollowedByViewed()));
+                    .WithApprenticeship(An.Apprenticeship
+                        .WithConfirmedOn(confirmedOn)
+                        .FollowedByStoppedOn()
+                        .FollowedByViewedOn()));
 
             using var response = await mock.HttpClient.GetAsync($"/apprentices/{id}/homepage");
 

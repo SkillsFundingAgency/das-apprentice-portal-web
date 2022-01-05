@@ -61,14 +61,41 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
         public Apprenticeship ForApprentice(Apprentice apprentice)
             => With(apprenticeId: apprentice.ApprenticeId);
 
-        public Apprenticeship WithConfirmed()
+        public Apprenticeship WithEmployerName(string employerName)
+            => With(employerName: employerName);
+
+        public Apprenticeship WithCourseName(string courseName)
+            => With(courseName: courseName);
+
+        public Apprenticeship WithApprovedOn()
+            => With(approvedOn: DateTime.UtcNow);
+
+        public Apprenticeship WithApprovedOn(DateTime? approvedOn)
+            => With(approvedOn: approvedOn, previousActionOn: approvedOn);
+
+        public Apprenticeship WithConfirmedOn()
             => With(confirmedOn: DateTime.UtcNow);
 
-        public Apprenticeship WithConfirmed(DateTime confirmedOn)
+        public Apprenticeship WithConfirmedOn(DateTime? confirmedOn)
             => With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
+
+        public Apprenticeship WithStoppedReceivedOn()
+            => With(stoppedReceivedOn: DateTime.UtcNow);
+
+        public Apprenticeship WithStoppedReceivedOn(DateTime? stoppedOn)
+            => With(stoppedReceivedOn: stoppedOn, previousActionOn: stoppedOn);
+
+        public Apprenticeship WithLastViewedOn()
+            => With(lastViewedOn: DateTime.UtcNow);
+
+        public Apprenticeship WithLastViewedOn(DateTime? lastViewedOn)
+            => With(lastViewedOn: lastViewedOn, previousActionOn: lastViewedOn);
 
         private Apprenticeship With(
             Guid apprenticeId = default,
+            string? employerName = null,
+            string? courseName = null,
+            DateTime? approvedOn = null,
             DateTime? confirmedOn = null,
             DateTime? stoppedReceivedOn = null,
             DateTime? lastViewedOn = null,
@@ -76,26 +103,30 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             => new Apprenticeship(
                 apprenticeId == default ? ApprenticeId : apprenticeId,
                 Id,
-                EmployerName,
-                CourseName,
-                ApprovedOn,
+                employerName ?? EmployerName,
+                courseName ?? CourseName,
+                approvedOn ?? ApprovedOn,
                 confirmedOn ?? ConfirmedOn,
                 lastViewedOn ?? LastViewed,
                 stoppedReceivedOn ?? StoppedReceivedOn,
                 previousActionOn ?? this.previousActionOn);
 
-        public Apprenticeship FollowedByStopped()
+        public Apprenticeship FollowedByConfirmedOn()
+        {
+            var confirmedOn = previousActionOn.AddDays(1);
+            return With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
+        }
+
+        public Apprenticeship FollowedByStoppedOn()
         {
             var stoppedReceivedOn = previousActionOn.AddDays(1);
             return With(stoppedReceivedOn: stoppedReceivedOn, previousActionOn: stoppedReceivedOn);
         }
 
-        public Apprenticeship FollowedByViewed()
+        public Apprenticeship FollowedByViewedOn()
         {
             var lastViewedOn = previousActionOn.AddDays(1);
             return With(lastViewedOn: lastViewedOn, previousActionOn: lastViewedOn);
         }
-
-        //public bool IsStopped { get; }
     }
 }
