@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.Authentication.UnitTests", "SFA.DAS.ApprenticePortal.Authentication.UnitTests\SFA.DAS.ApprenticePortal.Authentication.UnitTests.csproj", "{A6D499E3-8D58-46C4-9A09-6EECBDBFC2A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests", "SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests\SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests.csproj", "{A996F9D5-70B2-4203-A667-353AF0A63B59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticePortal.OuterApi.Mock", "SFA.DAS.ApprenticePortal.OuterApi.Mock\SFA.DAS.ApprenticePortal.OuterApi.Mock.csproj", "{A996F9D5-70B2-4203-A667-353AF0A63B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,8 +18,10 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
             _mock.Given(Request.Create().WithPath("/hello")).RespondWith(Response.Create().WithSuccess());
         }
 
+        public string BaseAddress => $"{_mock.Urls[0]}";
+
         public HttpClient HttpClient =>
-            new HttpClient { BaseAddress = new Uri($"{_mock.Urls[0]}") };
+            new HttpClient { BaseAddress = new Uri(BaseAddress) };
 
         public PortalOuterApiMock WithApprentice(Apprentice apprentice)
         {

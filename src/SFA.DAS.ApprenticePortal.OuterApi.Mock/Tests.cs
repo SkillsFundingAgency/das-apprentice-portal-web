@@ -6,7 +6,7 @@ using SFA.DAS.ApprenticePortal.OuterApi.Mock.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
+namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
 {
     public class Tests
     {
@@ -116,14 +116,35 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
         }
 
         [Test, AutoData]
-        public async Task Apprenticeship_can_create_dates_in_predictable_sequence(Guid id, DateTime confirmedOn)
+        public async Task Apprenticeship_can_create_dates_in_predictable_sequence(Guid id)
+        {
+            using var mock = new PortalOuterApiMock()
+                .WithApprentice(An.Apprentice
+                    .WithId(id)
+                    .WithApprenticeship(An.Apprenticeship
+                        .WithConfirmedOn()
+                        .FollowedByStoppedReceivedOn()
+                        .FollowedByViewedOn()));
+
+            using var response = await mock.HttpClient.GetAsync($"/apprentices/{id}/homepage");
+
+            response.Should().Be2XXSuccessful().And.Satisfy<ApprenticeHomepage>(homepage =>
+            {
+                homepage.Apprenticeship.ConfirmedOn.Should().NotBeNull();
+                homepage.Apprenticeship.StoppedReceivedOn.Should().BeAfter(homepage.Apprenticeship.ConfirmedOn!.Value);
+                homepage.Apprenticeship.LastViewed.Should().BeAfter(homepage.Apprenticeship.StoppedReceivedOn!.Value);
+            });
+        }
+
+        [Test, AutoData]
+        public async Task Apprenticeship_can_create_dates_in_predictable_sequence_with_specified_first_date(Guid id, DateTime confirmedOn)
         {
             using var mock = new PortalOuterApiMock()
                 .WithApprentice(An.Apprentice
                     .WithId(id)
                     .WithApprenticeship(An.Apprenticeship
                         .WithConfirmedOn(confirmedOn)
-                        .FollowedByStoppedOn()
+                        .FollowedByStoppedReceivedOn()
                         .FollowedByViewedOn()));
 
             using var response = await mock.HttpClient.GetAsync($"/apprentices/{id}/homepage");

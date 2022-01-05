@@ -57,7 +57,6 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
         {
             this.previousActionOn = previousActionOn;
         }
-
         public Apprenticeship ForApprentice(Apprentice apprentice)
             => With(apprenticeId: apprentice.ApprenticeId);
 
@@ -74,19 +73,19 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             => With(approvedOn: approvedOn, previousActionOn: approvedOn);
 
         public Apprenticeship WithConfirmedOn()
-            => With(confirmedOn: DateTime.UtcNow);
+            => With(confirmedOn: DateTime.UtcNow, previousActionOn: DateTime.UtcNow);
 
         public Apprenticeship WithConfirmedOn(DateTime? confirmedOn)
             => With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
 
         public Apprenticeship WithStoppedReceivedOn()
-            => With(stoppedReceivedOn: DateTime.UtcNow);
+            => With(stoppedReceivedOn: DateTime.UtcNow, previousActionOn: DateTime.UtcNow);
 
         public Apprenticeship WithStoppedReceivedOn(DateTime? stoppedOn)
             => With(stoppedReceivedOn: stoppedOn, previousActionOn: stoppedOn);
 
         public Apprenticeship WithLastViewedOn()
-            => With(lastViewedOn: DateTime.UtcNow);
+            => With(lastViewedOn: DateTime.UtcNow, previousActionOn: DateTime.UtcNow);
 
         public Apprenticeship WithLastViewedOn(DateTime? lastViewedOn)
             => With(lastViewedOn: lastViewedOn, previousActionOn: lastViewedOn);
@@ -117,7 +116,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             return With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
         }
 
-        public Apprenticeship FollowedByStoppedOn()
+        public Apprenticeship FollowedByStoppedReceivedOn()
         {
             var stoppedReceivedOn = previousActionOn.AddDays(1);
             return With(stoppedReceivedOn: stoppedReceivedOn, previousActionOn: stoppedReceivedOn);
