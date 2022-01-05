@@ -1,6 +1,4 @@
-﻿using AutoFixture;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
 {
@@ -85,7 +83,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
                 lastViewedOn ?? LastViewed,
                 stoppedReceivedOn ?? StoppedReceivedOn,
                 previousActionOn ?? this.previousActionOn);
-        
+
         public Apprenticeship FollowedByStopped()
         {
             var stoppedReceivedOn = previousActionOn.AddDays(1);

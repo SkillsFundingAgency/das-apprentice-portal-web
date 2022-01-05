@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             string firstName,
             string lastName,
             bool termsAccepted,
-            Apprenticeship apprenticeship)
+            Apprenticeship? apprenticeship)
         {
             ApprenticeId = id;
             FirstName = firstName;
@@ -41,19 +41,30 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
 
         public Apprentice WithId(Guid id) => With(id: id);
 
+        public Apprentice WithFirstName(string firstName) => With(firstName: firstName);
+
+        public Apprentice WithLastName(string lastName) => With(lastName: lastName);
+
+        public Apprentice WithTermsOfUseAccepted(bool termsOfUseAccepted)
+            => With(termsAccepted: termsOfUseAccepted);
+
         public Apprentice WithApprenticeship(Apprenticeship apprenticeship)
-            => new Apprentice(ApprenticeId, FirstName, LastName, TermsOfUseAccepted, apprenticeship.ForApprentice(this));
+            => With(apprenticeship: Update.With(apprenticeship.ForApprentice(this)));
 
         public Apprentice WithoutApprenticeship()
-            => new Apprentice(ApprenticeId, FirstName, LastName, TermsOfUseAccepted);
+            => With(apprenticeship: Update.With<Apprenticeship>(null));
 
-        private Apprentice With(Guid? id = null, string? firstName = null, string? lastName = null, bool? termsAccepted = null)
+        private Apprentice With(
+            Guid? id = null,
+            string? firstName = null,
+            string? lastName = null,
+            bool? termsAccepted = null,
+            Update<Apprenticeship>? apprenticeship = null)
             => new Apprentice(
                 id ?? ApprenticeId,
                 firstName ?? FirstName,
                 lastName ?? LastName,
-                termsAccepted ?? TermsOfUseAccepted);
-
-        public Guid WithApprenticeship(object p) => throw new NotImplementedException();
+                termsAccepted ?? TermsOfUseAccepted,
+                apprenticeship == null ? Apprenticeship : apprenticeship.Value);
     }
 }
