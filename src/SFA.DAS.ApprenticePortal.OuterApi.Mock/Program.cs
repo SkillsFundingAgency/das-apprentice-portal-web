@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
         {
             using var mock = new PortalOuterApiMock(5121, ssl: true)
                 .WithApprentice(An.Apprentice
-                    .WithId(Guid.Parse("8c69f92d-952d-4d45-a1a2-b8cacfe0ced8"))
+                    .WithAnyId()
                     .WithApprenticeship(An.Apprenticeship));
 
             Console.WriteLine("Press any key to stop the servers");

@@ -39,6 +39,8 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             Apprenticeship = apprenticeship;
         }
 
+        public Apprentice WithAnyId() => With(id: Guid.Empty);
+
         public Apprentice WithId(Guid id) => With(id: id);
 
         public Apprentice WithFirstName(string firstName) => With(firstName: firstName);
@@ -66,5 +68,11 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
                 lastName ?? LastName,
                 termsAccepted ?? TermsOfUseAccepted,
                 apprenticeship == null ? Apprenticeship : apprenticeship.Value);
+    }
+
+    public static class ApprenticeExtensions
+    {
+        public static string ApprenticeUrlId(this Apprentice apprentice)
+            => apprentice.ApprenticeId == Guid.Empty ? "*" : apprentice.ApprenticeId.ToString();
     }
 }

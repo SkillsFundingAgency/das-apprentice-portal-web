@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
             mock.WithApprentice(apprentice);
 
             using var response = await mock.HttpClient.GetAsync($"/apprentices/{apprentice.ApprenticeId}");
-            response.Should().Be2XXSuccessful();
+            response.Should().Be2XXSuccessful().And.BeAs(apprentice);
         }
 
         [Test, AutoData]
@@ -34,6 +34,19 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
             using var mock = new PortalOuterApiMock();
             using var response = await mock.HttpClient.GetAsync($"/apprentices/{apprenticeId}");
             response.Should().Be404NotFound();
+        }
+
+        [Test]
+        public async Task Return_an_Apprentice_for_any_apprenticeId()
+        {
+            var apprentice = An.Apprentice.WithAnyId();
+            using var mock = new PortalOuterApiMock().WithApprentice(apprentice);
+
+            using var response = await mock.HttpClient.GetAsync($"/apprentices/{Guid.NewGuid()}");
+
+            response.Should().Be2XXSuccessful()
+                .And.Satisfy<Apprentice>(a => a.Should()
+                    .BeEquivalentTo(apprentice, config => config.Excluding(p => p.Apprenticeship)));
         }
 
         [Test, AutoData]

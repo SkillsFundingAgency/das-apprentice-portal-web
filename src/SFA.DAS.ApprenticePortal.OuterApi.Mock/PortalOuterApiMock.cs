@@ -37,13 +37,13 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
 
             _mock
                 .Given(Request.Create()
-                    .WithPath($"/apprentices/{apprentice.ApprenticeId}").UsingGet())
+                    .WithPath($"/apprentices/{apprentice.ApprenticeUrlId()}").UsingGet())
                 .RespondWith(Response.Create()
                     .WithBodyAsJson(apprentice));
 
             _mock
                .Given(Request.Create()
-                   .WithPath($"/apprentices/{apprentice.ApprenticeId}/homepage").UsingGet())
+                   .WithPath($"/apprentices/{apprentice.ApprenticeUrlId()}/homepage").UsingGet())
                .RespondWith(Response.Create()
                    .WithBodyAsJson(homepage));
 
