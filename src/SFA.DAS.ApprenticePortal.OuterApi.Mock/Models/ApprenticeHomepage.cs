@@ -2,7 +2,7 @@
 {
     public class ApprenticeHomepage
     {
-        public Apprentice Apprentice { get; set; }
-        public Apprenticeship Apprenticeship { get; set; }
+        public Apprentice Apprentice { get; set; } = null!;
+        public Apprenticeship Apprenticeship { get; set; } = null!;
     }
 }

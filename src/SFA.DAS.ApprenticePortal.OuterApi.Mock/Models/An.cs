@@ -15,7 +15,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             apprenticeId: Guid.NewGuid(),
             id: Faker.RandomNumber.Next(),
             employerName: $"Employer {Faker.Company.Name()}",
-            courseName: $"Provider {Faker.Lorem.Sentence(1)}",
+            courseName: $"Course {Faker.Lorem.Sentence(1)}",
             approvedOn: new DateTime(2020, 08, 20),
             confirmedOn: null,
             stoppedReceivedOn: null,

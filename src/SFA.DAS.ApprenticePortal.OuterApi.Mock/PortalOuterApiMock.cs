@@ -12,9 +12,11 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
     {
         private readonly WireMockServer _mock;
 
-        public PortalOuterApiMock()
+        public PortalOuterApiMock() : this(0, false) { }
+
+        public PortalOuterApiMock(int? port = 0, bool ssl = false)
         {
-            _mock = WireMockServer.Start();
+            _mock = WireMockServer.Start(port, ssl);
             _mock.Given(Request.Create().WithPath("/hello")).RespondWith(Response.Create().WithSuccess());
         }
 

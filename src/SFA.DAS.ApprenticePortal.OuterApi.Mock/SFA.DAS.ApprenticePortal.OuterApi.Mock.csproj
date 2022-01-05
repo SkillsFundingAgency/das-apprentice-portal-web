@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
+	<OutputType>Exe</OutputType>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-
     <Nullable>enable</Nullable>
+    <StartupObject>SFA.DAS.ApprenticePortal.OuterApi.Mock.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
