@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using SFA.DAS.ApprenticePortal.OuterApi.Mock.Models;
+﻿using SFA.DAS.ApprenticePortal.OuterApi.Mock.Models;
 using System;
+using System.Linq;
 using System.Net.Http;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
     public class PortalOuterApiMock : IDisposable
     {
         private readonly WireMockServer _mock;
-        private readonly Fixture _fixture = new Fixture();
 
         public PortalOuterApiMock()
         {
@@ -46,6 +45,9 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
 
             return this;
         }
+
+        internal PortalOuterApiMock WithApprentices(params Apprentice[] apprentices)
+            => apprentices.Aggregate(this, (mock, apprentice) => mock.WithApprentice(apprentice));
 
         public void Dispose()
         {

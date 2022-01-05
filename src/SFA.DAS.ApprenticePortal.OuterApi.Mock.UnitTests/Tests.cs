@@ -1,5 +1,6 @@
 using AutoFixture.NUnit3;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using NUnit.Framework;
 using SFA.DAS.ApprenticePortal.OuterApi.Mock.Models;
 using System;
@@ -141,6 +142,21 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.UnitTests
                     LastViewed = confirmedOn.AddDays(2),
                 }
             });
+        }
+
+        [Test, AutoData]
+        public async Task Return_multiple_apprentices(Apprentice[] apprentices)
+        {
+            using var mock = new PortalOuterApiMock()
+                .WithApprentices(apprentices);
+
+            using var _ = new AssertionScope();
+
+            foreach (var apprentice in apprentices)
+            {
+                using var response = await mock.HttpClient.GetAsync($"/apprentices/{apprentice.ApprenticeId}");
+                response.Should().Be2XXSuccessful().And.BeAs(apprentice);
+            }
         }
     }
 }
