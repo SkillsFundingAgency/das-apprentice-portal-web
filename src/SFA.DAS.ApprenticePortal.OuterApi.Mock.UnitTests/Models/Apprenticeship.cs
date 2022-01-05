@@ -37,8 +37,25 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             StoppedReceivedOn = stoppedReceivedOn;
         }
 
-        public Apprenticeship(Guid apprenticeId, long id, string employerName, string courseName, DateTime approvedOn, DateTime? confirmedOn, DateTime? lastViewed, DateTime? stoppedReceivedOn, DateTime previousActionOn)
-            : this(apprenticeId, id, employerName, courseName, approvedOn, confirmedOn, lastViewed, stoppedReceivedOn)
+        private Apprenticeship(
+            Guid apprenticeId,
+            long id,
+            string employerName,
+            string courseName,
+            DateTime approvedOn,
+            DateTime? confirmedOn,
+            DateTime? lastViewed,
+            DateTime? stoppedReceivedOn,
+            DateTime previousActionOn)
+            : this(
+                  apprenticeId,
+                  id,
+                  employerName,
+                  courseName,
+                  approvedOn,
+                  confirmedOn,
+                  lastViewed,
+                  stoppedReceivedOn)
         {
             this.previousActionOn = previousActionOn;
         }
@@ -46,12 +63,11 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
         public Apprenticeship ForApprentice(Apprentice apprentice)
             => With(apprenticeId: apprentice.ApprenticeId);
 
-        public Apprenticeship WithConfirmed() => With(confirmedOn: DateTime.UtcNow);
+        public Apprenticeship WithConfirmed()
+            => With(confirmedOn: DateTime.UtcNow);
 
         public Apprenticeship WithConfirmed(DateTime confirmedOn)
-        {
-            return With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
-        }
+            => With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
 
         private Apprenticeship With(
             Guid apprenticeId = default,

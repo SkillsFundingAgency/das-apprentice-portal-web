@@ -3,32 +3,26 @@ using System;
 
 namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
 {
-    public static class Natural
-    {
-        public static Apprentice Apprentice => new Apprentice(Guid.NewGuid(), "Bob", "Bobbertson", true);
-        public static Apprenticeship Apprenticeship => new Apprenticeship(Guid.NewGuid(), 12, "WorkCo", "LearnCo", new DateTime(2020, 08, 20), null, null, null);
-    }
-
     public sealed class Apprentice
     {
-        public Guid ApprenticeId { get;}
+        public Guid ApprenticeId { get; }
         public string FirstName { get; }
         public string LastName { get; }
-        public bool TermsOfUseAccepted { get;}
+        public bool TermsOfUseAccepted { get; }
 
         [JsonIgnore]
         public Apprenticeship? Apprenticeship { get; }
 
         public Apprentice(
-            Guid id,
+            Guid apprenticeId,
             string firstName,
             string lastName,
-            bool termsAccepted)
+            bool termsOfUseAccepted)
         {
-            ApprenticeId = id;
+            ApprenticeId = apprenticeId;
             FirstName = firstName;
             LastName = lastName;
-            TermsOfUseAccepted = termsAccepted;
+            TermsOfUseAccepted = termsOfUseAccepted;
         }
 
         private Apprentice(
@@ -59,7 +53,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
                 firstName ?? FirstName,
                 lastName ?? LastName,
                 termsAccepted ?? TermsOfUseAccepted);
-        
+
         public Guid WithApprenticeship(object p) => throw new NotImplementedException();
     }
 }
