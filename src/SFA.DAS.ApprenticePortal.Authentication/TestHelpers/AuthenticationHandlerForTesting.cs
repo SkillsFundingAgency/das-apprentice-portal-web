@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -63,10 +62,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
 
         protected override Task HandleSignInAsync(ClaimsPrincipal user, AuthenticationProperties properties)
         {
-            var guid = user.Claims.First(x => x.Type == "apprentice_id").Value;
-
             Authentications.Add(user);
-
             return Task.CompletedTask;
         }
 
