@@ -75,18 +75,14 @@ Create a local appsettings.development.json file as follows:
         "ApiVersion": "1"
       },
       "ApplicationUrls": {
-        //"ApprenticeHomeUrl": "https://portal.at-aas.apprenticeships.education.gov.uk/",
-        //"ApprenticeCommitmentsUrl": "https://commitments.at-aas.apprenticeships.education.gov.uk/",
-        //"ApprenticeLoginUrl": "https://login.at-aas.apprenticeships.education.gov.uk/",
-        //"ApprenticeLoginUrl": "https://accounts.at-aas.apprenticeships.education.gov.uk/",
         "ApprenticeHomeUrl": "https://localhost:44398",
         "ApprenticeCommitmentsUrl": "https://localhost:7070",
         "ApprenticeLoginUrl": "https://localhost:5001",
         "ApprenticeAccountsUrl": "https://localhost:7080"
       },
       "ZenDesk": {
-        "ZenDeskSnippetKey": "e0730bdd-a32c-4c39-8032-7d7a908eacb4",
-        "ZenDeskSectionId": "360003002699",
-        "ZenDeskCobrowsingSnippetKey": "Qec2OgXsUy8lsUO1iOuleFAMjl7AcIEGdOojlQjLesShBHx0wrM4xXlR7X1h9bEo"
+        "ZenDeskSnippetKey": "00000000-0000-0000-0000-000000000000",
+        "ZenDeskSectionId": "123456789012",
+        "ZenDeskCobrowsingSnippetKey": "Tempkey"
       }
     }
