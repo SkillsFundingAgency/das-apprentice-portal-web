@@ -34,7 +34,7 @@ The das-apprentice-portal-web is one of several microsites which make up Apprent
 | das-employer-config-updater | https://github.com/SkillsFundingAgency/das-employer-config-updater |
 
 
-das-apprentice-portal-web solution includes the Apprentice Commitments homepage, SharedUI nuget components which are consumed by other microservicews, as well as an authentication component.
+das-apprentice-portal-web solution includes the Apprentice Commitments homepage, SharedUI nuget components which are consumed by other microservices, as well as an authentication component.
 
 ## Developer Setup
 
