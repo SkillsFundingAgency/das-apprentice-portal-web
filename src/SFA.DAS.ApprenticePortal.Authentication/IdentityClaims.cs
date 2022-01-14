@@ -38,12 +38,18 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public static void AddAccountCreatedClaim(this ClaimsPrincipal principal)
         {
+            if (principal.HasClaim(AccountCreated, "True"))
+                return;
+
             var claimIdentity = new ClaimsIdentity(new[] {new Claim(AccountCreated, "True")});
             principal.AddIdentity(claimIdentity);
         }
 
         public static void AddTermsOfUseAcceptedClaim(this ClaimsPrincipal principal)
         {
+            if (principal.HasClaim(TermsOfUseAccepted, "True"))
+                return;
+
             var claimIdentity = new ClaimsIdentity(new[] { new Claim(TermsOfUseAccepted, "True") });
             principal.AddIdentity(claimIdentity);
         }
@@ -56,6 +62,9 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public static void AddVerifiedUserClaim(this ClaimsPrincipal principal, string id)
         {
+            if (principal.HasClaim(VerifiedUser, "True"))
+                return;
+
             var claimIdentity = new ClaimsIdentity(new[] { new Claim(VerifiedUser, "True") });
             principal.AddIdentity(claimIdentity);
         }

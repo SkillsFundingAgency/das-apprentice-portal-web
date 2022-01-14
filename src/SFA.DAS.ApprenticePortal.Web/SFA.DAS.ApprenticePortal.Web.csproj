@@ -33,8 +33,4 @@
     <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
   </Target>
 
-  <Target Name="PreBuild" AfterTargets="ToolRestore">
-    <Exec Command="dotnet tool run webcompiler -r wwwroot/css wwwroot/js" StandardOutputImportance="high" />
-  </Target>
-
 </Project>
