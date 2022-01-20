@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<div asp-show="@Model.CurrentApprenticeship?.DisplayJustStoppedInfoMessage" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+<div asp-show="@Model.HomePageModel?.DisplayJustStoppedInfoMessage" class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     <div class="govuk-notification-banner__header">
         <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
             Important
@@ -23,8 +23,8 @@
     </div>
     <div class="govuk-notification-banner__content">
         <h3 class="govuk-notification-banner__heading">
-            @Model.CurrentApprenticeship?.EmployerName has stopped your apprenticeship.
+            @Model.HomePageModel?.EmployerName has stopped your apprenticeship.
         </h3>
-        <p class="govuk-body">Your employer has stopped your @Model.CurrentApprenticeship?.CourseName apprenticeship. <a asp-external-section="ConfirmMyApprenticeship">Check your apprenticeship details</a>.</p>
+        <p class="govuk-body">Your employer has stopped your @Model.HomePageModel?.CourseName apprenticeship. <a asp-external-section="ConfirmMyApprenticeship">Check your apprenticeship details</a>.</p>
     </div>
 </div>

@@ -12,7 +12,7 @@
             <div class="govuk-grid-column-full">
                 <h1 class="govuk-heading-xl">
                     Welcome, @User.FullName()
-                    <span class="govuk-caption-m">@Model.CurrentApprenticeship?.CourseName</span>
+                    <span class="govuk-caption-m">@Model.HomePageModel?.CourseName</span>
                 </h1>
             </div>
         </div>
@@ -30,15 +30,15 @@
                     <li asp-for-external-section="ConfirmMyApprenticeship">
 
                         <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
-                        @if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Stopped)
+                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
                         {
                             <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
                         }
-                        else if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Complete)
+                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Complete)
                         {
                             <strong class="dashboard__status-tag govuk-tag govuk-tag--green">Complete</strong>
                         }
-                        else if (Model.CurrentApprenticeship.Status() == ApprenticeshipStatus.Incomplete)
+                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete)
                         {
                             <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
                         }

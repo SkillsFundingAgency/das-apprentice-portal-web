@@ -2,6 +2,7 @@
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Threading.Tasks;
+using SFA.DAS.ApprenticePortal.Web.Models;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
@@ -14,11 +15,31 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             _client = client;
         }
 
-        public async Task<Apprentice?> TryGetApprentice(Guid apprenticeId)
+        public async Task<HomepageModel?> GetHomepageModel(Guid apprenticeId)
         {
             try
             {
-                return await _client.GetApprentice(apprenticeId);
+                var apprenticeHomepage = await _client.GetApprenticeHomepage(apprenticeId);
+
+                if (apprenticeHomepage.Apprentice is null)
+                    return null;
+
+                var apprenticeship = apprenticeHomepage.Apprenticeship;
+
+                var model = new HomepageModel
+                {
+                    CourseName = apprenticeship?.CourseName,
+                    EmployerName = apprenticeship?.EmployerName,
+                    Complete = apprenticeship?.ConfirmedOn.HasValue,
+                    HasStopped = apprenticeship?.IsStopped
+                };
+
+                if (apprenticeship != null && apprenticeship.IsStopped && (apprenticeship.LastViewed == null || apprenticeship.LastViewed <= apprenticeship.StoppedReceivedOn))
+                {
+                    model.DisplayJustStoppedInfoMessage = true;
+                }
+
+                return model;
             }
             catch (ApiException e) when (e.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
