@@ -19,6 +19,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         private TestContext _context;
         private Guid _apprenticeId;
         private Apprenticeship _singleApprenticeship;
+        private ApprenticeHomepage _apprenticeHomepage;
         private Fixture _fixture;
 
         public HomePageSteps(TestContext context) : base(context)
@@ -26,6 +27,9 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
             _fixture = new Fixture();
             _context = context;
             _apprenticeId = Guid.NewGuid();
+
+            _apprenticeHomepage = new ApprenticeHomepage();
+            _apprenticeHomepage.Apprentice = new Apprentice() { ApprenticeId = _apprenticeId };
         }
 
         [Given(@"the apprentice is authenticated")]
@@ -94,45 +98,44 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         [Then(@"the apprenticeship status should show ""(.*)""")]
         public void ThenTheApprenticeshipStatusShouldShow(string status)
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.Status().ToString().ToUpper().Should().Be(status);
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.HomePageModel.Status().ToString().ToUpper().Should().Be(status);
         }
 
         [Then(@"the employer name should be correct")]
         public void ThenTheEmployerNameShouldBeCorrect()
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.EmployerName.Should().Be(_singleApprenticeship.EmployerName);
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.HomePageModel.EmployerName.Should().Be(_singleApprenticeship.EmployerName);
         }
 
         [Then(@"the course name should be correct")]
         public void ThenTheCourseNameShouldBeCorrect()
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.CourseName.Should().Be(_singleApprenticeship.CourseName);
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.HomePageModel.CourseName.Should().Be(_singleApprenticeship.CourseName);
         }
 
         [Then(@"the just stopped information message should be visible")]
         public void ThenTheStoppedInformationMessageShouldBeVisible()
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.DisplayJustStoppedInfoMessage.Should().BeTrue();
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.HomePageModel.DisplayJustStoppedInfoMessage.Should().BeTrue();
         }
 
         [Then(@"the just stopped information message should not be visible")]
         public void ThenTheJustStoppedInformationMessageShouldNotBeVisible()
         {
-            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.CurrentApprenticeship.DisplayJustStoppedInfoMessage.Should().BeFalse();
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>().Which.HomePageModel.DisplayJustStoppedInfoMessage.Should().BeFalse();
         }
 
         private void OuterApiToReturnTheseApprenticeships(Apprenticeship[] apprenticeships)
         {
+            _apprenticeHomepage.Apprenticeship = _singleApprenticeship;
+
             _context.OuterApi.MockServer.Given(
                     Request.Create()
                         .UsingGet()
-                        .WithPath($"/apprentices/{_apprenticeId}/apprenticeships"))
+                        .WithPath($"/apprentices/{_apprenticeId}/homepage"))
                 .RespondWith(Response.Create()
                     .WithStatusCode(200)
-                    .WithBodyAsJson(new
-                    {
-                        Apprenticeships = apprenticeships
-                    }));
+                    .WithBodyAsJson(_apprenticeHomepage));
         }
     }
 }

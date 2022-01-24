@@ -38,8 +38,8 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.Bindings
                 {
                     {"EnvironmentName", "ACCEPTANCE_TESTS"},
                     {"Authentication:MetadataAddress", _context.IdentityServiceUrl},
-                    {"ApprenticeCommitmentsApi:ApiBaseUrl", _context.OuterApi?.BaseAddress ?? "https://api/"},
-                    {"ApprenticeCommitmentsApi:SubscriptionKey", ""},
+                    {"ApprenticePortalOuterApi:ApiBaseUrl", _context.OuterApi?.BaseAddress ?? "https://api/"},
+                    {"ApprenticePortalOuterApi:SubscriptionKey", ""},
                     {"ApplicationUrls:ApprenticeHomeUrl", "https://home/"},
                     {"ApplicationUrls:ApprenticeAccountsUrl", "https://accounts/"},
                     {"ApplicationUrls:ApprenticeCommitmentsUrl", _context.OuterApi?.BaseAddress ?? "https://confirm/"},
