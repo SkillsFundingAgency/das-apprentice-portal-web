@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.Filters
             if (!_user.HasCreatedAccount)
                 context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register{context.HttpContext.Request.QueryString}"));
             else if (!_user.HasAcceptedTermsOfUse)
-                context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.TermsOfUse));
+                context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ApprenticeAccounts, "AcceptTermsOfUse"));
         }
     }
 }
