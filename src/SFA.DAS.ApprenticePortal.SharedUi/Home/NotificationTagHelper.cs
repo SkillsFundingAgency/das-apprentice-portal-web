@@ -20,6 +20,6 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Home
 
         public bool PageHasThisNotification()
             => AspNotification != null
-            && _notifications.Notifications.Contains(AspNotification.Value);
+            && _notifications.SignificantNotification == AspNotification.Value;
     }
 }

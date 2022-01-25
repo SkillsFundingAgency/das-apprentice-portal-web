@@ -1,18 +1,21 @@
 ﻿using RestEase;
+using SFA.DAS.ApprenticePortal.SharedUi.Home;
+using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Threading.Tasks;
-using SFA.DAS.ApprenticePortal.Web.Models;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
     public class ApprenticeService
     {
         private readonly IOuterApiClient _client;
+        private readonly NotificationAccessor _notifications;
 
-        public ApprenticeService(IOuterApiClient client)
+        public ApprenticeService(IOuterApiClient client, NotificationAccessor notifications)
         {
             _client = client;
+            _notifications = notifications;
         }
 
         public async Task<HomepageModel?> GetHomepageModel(Guid apprenticeId)
@@ -26,18 +29,21 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
                 var apprenticeship = apprenticeHomepage.Apprenticeship;
 
+                if (apprenticeship?.IsStopped == true &&
+                    (apprenticeship.LastViewed == null ||
+                     apprenticeship.LastViewed <= apprenticeship.StoppedReceivedOn))
+                {
+                    _notifications.Notify(HomeNotification.ApprenticeshipStopped);
+                }
+
                 var model = new HomepageModel
                 {
                     CourseName = apprenticeship?.CourseName,
                     EmployerName = apprenticeship?.EmployerName,
                     Complete = apprenticeship?.ConfirmedOn.HasValue,
-                    HasStopped = apprenticeship?.IsStopped
+                    HasStopped = apprenticeship?.IsStopped,
+                    Notification = _notifications.SignificantNotification,
                 };
-
-                if (apprenticeship != null && apprenticeship.IsStopped && (apprenticeship.LastViewed == null || apprenticeship.LastViewed <= apprenticeship.StoppedReceivedOn))
-                {
-                    model.DisplayJustStoppedInfoMessage = true;
-                }
 
                 return model;
             }

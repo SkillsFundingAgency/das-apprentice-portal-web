@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticePortal.Web.Models
+﻿using SFA.DAS.ApprenticePortal.SharedUi.Home;
+
+namespace SFA.DAS.ApprenticePortal.Web.Models
 {
     public class HomepageModel
     {
@@ -6,7 +8,7 @@
         public string? EmployerName { get; set; } = null!;
         public bool? Complete { get; set; } = false;
         public bool? HasStopped { get; set; } = false;
-        public bool DisplayJustStoppedInfoMessage { get; set; } = false;
+        public HomeNotification? Notification { get; set; }
     }
 
     public enum ApprenticeshipStatus
