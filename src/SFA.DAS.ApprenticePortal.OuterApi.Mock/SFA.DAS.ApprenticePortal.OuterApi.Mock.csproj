@@ -1,34 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	<OutputType>Exe</OutputType>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+    <StartupObject>SFA.DAS.ApprenticePortal.OuterApi.Mock.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
-    <PackageReference Include="AutoFixture.AutoMoq" Version="4.17.0" />
     <PackageReference Include="AutoFixture.NUnit3" Version="4.17.0" />
+    <PackageReference Include="Faker.Net" Version="2.0.154" />
     <PackageReference Include="FluentAssertions" Version="6.3.0" />
     <PackageReference Include="FluentAssertions.Analyzers" Version="0.13.0" />
     <PackageReference Include="FluentAssertions.Web" Version="1.1.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.11" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.0" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.40" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
     <PackageReference Include="WireMock.Net" Version="1.4.30" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.ApprenticePortal.OuterApi.Mock\SFA.DAS.ApprenticePortal.OuterApi.Mock.csproj" />
-    <ProjectReference Include="..\SFA.DAS.ApprenticePortal.Web\SFA.DAS.ApprenticePortal.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Hooks\" />
   </ItemGroup>
 
 </Project>

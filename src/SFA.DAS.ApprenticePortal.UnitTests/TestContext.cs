@@ -1,9 +1,10 @@
-﻿using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
+﻿using SFA.DAS.ApprenticePortal.OuterApi.Mock;
+using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticePortal.UnitTests
 {
-    public class TestContext 
+    public class TestContext
     {
         private readonly FeatureContext _feature;
 
@@ -13,7 +14,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests
         }
 
         public ApprenticePortalWeb Web { get; set; }
-        public MockApi OuterApi => _feature.GetOrAdd<MockApi>();
+        public PortalOuterApiMock OuterApi => _feature.GetOrAdd<PortalOuterApiMock>();
         public TestActionResult ActionResult { get; set; }
         public string IdentityServiceUrl => "https://identity";
     }

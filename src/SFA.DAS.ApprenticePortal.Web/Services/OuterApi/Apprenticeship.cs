@@ -12,6 +12,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
         public DateTime ApprovedOn { get; set; }
         public DateTime? LastViewed { get; set; }
         public DateTime? StoppedReceivedOn { get; set; }
-        public bool IsStopped { get; set; }
+        public bool IsStopped => StoppedReceivedOn != null;
     }
 }
