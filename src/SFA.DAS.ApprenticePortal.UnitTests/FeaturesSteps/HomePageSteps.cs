@@ -74,6 +74,12 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
             _context.OuterApi.WithApprentice(_apprentice);
         }
 
+        [Given(@"there is an unmatched account")]
+        public void GivenThereIsAnUnmatchedAccount()
+        {
+            _context.OuterApi.WithApprentice(_apprentice);
+        }
+
         [When(@"accessing the home page")]
         public async Task WhenAccessingTheHomePage()
         {

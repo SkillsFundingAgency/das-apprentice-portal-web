@@ -6,6 +6,7 @@ Feature: HomePage
 
 Scenario: The registration was just matched
 	Given the apprentice is authenticated
+	And there is an unmatched account
 	When accessing the home page with the notification "ApprenticeshipDidNotMatch"
 	Then the response status should be Ok
 	And the notification should be "ApprenticeshipDidNotMatch"
