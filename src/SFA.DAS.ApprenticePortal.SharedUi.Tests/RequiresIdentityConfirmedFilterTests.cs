@@ -61,7 +61,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
             var sut = new RequiresIdentityConfirmedFilter(_navigationUrlHelper, AuthenticatedUsersForTesting.FakeLocalUserWithAccountButTermsOfUseNotAccepted);
             sut.OnAuthorization(_authorizationFilterContext);
 
-            _authorizationFilterContext.Result.Should().BeOfType<RedirectResult>().Which.Url.Should().Be("http://accounts/TermsOfUse");
+            _authorizationFilterContext.Result.Should().BeOfType<RedirectResult>().Which.Url.Should().Be("http://accounts/AcceptTermsOfUse");
         }
     }
 }

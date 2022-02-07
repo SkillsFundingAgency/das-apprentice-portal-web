@@ -11,8 +11,6 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Home
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly Lazy<List<HomeNotification>> _notifications;
 
-        public List<HomeNotification> Notifications => _notifications.Value;
-
         public NotificationAccessor(IHttpContextAccessor contextAccessor)
         {
             _contextAccessor = contextAccessor;
@@ -30,6 +28,17 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Home
             foreach (var value in notifications)
                 if (Enum.TryParse<HomeNotification>(value, ignoreCase: true, out var notification))
                     yield return notification;
+        }
+
+        public HomeNotification? SignificantNotification
+            => _notifications.Value
+                .OrderBy(x => x)
+                .Cast<HomeNotification?>()
+                .FirstOrDefault();
+
+        public void Notify(HomeNotification apprenticeshipStopped)
+        {
+            _notifications.Value.Add(apprenticeshipStopped);
         }
     }
 }

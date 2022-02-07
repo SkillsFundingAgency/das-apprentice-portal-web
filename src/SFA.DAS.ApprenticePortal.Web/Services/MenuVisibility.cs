@@ -22,7 +22,14 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             if (!Guid.TryParse(claim?.Value, out var apprenticeId))
                 return false;
 
-            return (await _client.GetApprenticeHomepage(apprenticeId)).Apprenticeship != null;
+            try
+            {
+                return (await _client.GetApprenticeHomepage(apprenticeId)).Apprenticeship != null;
+            }
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

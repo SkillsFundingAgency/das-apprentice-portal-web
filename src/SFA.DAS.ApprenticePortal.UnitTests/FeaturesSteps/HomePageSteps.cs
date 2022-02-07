@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
 using SFA.DAS.ApprenticePortal.OuterApi.Mock.Models;
+using SFA.DAS.ApprenticePortal.SharedUi.Home;
 using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Pages;
+using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -56,6 +58,14 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
             _context.OuterApi.WithApprentice(_apprentice);
         }
 
+        [Given(@"there is a single stopped apprenticeship which hasn't ever been viewed")]
+        public void GivenThereIsASingleStoppedApprenticeshipWhichHasntEverBeenViewed()
+        {
+            _apprentice = _apprentice.WithApprenticeship(
+                An.Apprenticeship.WithStoppedReceivedOn(DateTime.Now));
+            _context.OuterApi.WithApprentice(_apprentice);
+        }
+
         [Given(@"there is a single stopped apprenticeship and it has been viewed since being stopped")]
         public void GivenThereIsASingleStoppedApprenticeshipAndItHasBeenViewedSinceBeingStopped()
         {
@@ -64,10 +74,22 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
             _context.OuterApi.WithApprentice(_apprentice);
         }
 
+        [Given(@"there is an unmatched account")]
+        public void GivenThereIsAnUnmatchedAccount()
+        {
+            _context.OuterApi.WithApprentice(_apprentice);
+        }
+
         [When(@"accessing the home page")]
         public async Task WhenAccessingTheHomePage()
         {
             await _context.Web.Get("home");
+        }
+
+        [When(@"accessing the home page with the notification ""(.*)""")]
+        public async Task WhenAccessingTheHomePageWithTheNotification(string notification)
+        {
+            await _context.Web.Get($"home?notification={notification}");
         }
 
         [Then(@"the response status should be Ok")]
@@ -101,14 +123,30 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         public void ThenTheStoppedInformationMessageShouldBeVisible()
         {
             _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
-                .Which.HomePageModel.DisplayJustStoppedInfoMessage.Should().BeTrue();
+                .Which.HomePageModel.Notification.Should().Be(HomeNotification.ApprenticeshipStopped);
+        }
+
+        [Then(@"the notification should be ""(.*)""")]
+        public void ThenTheNotificationShouldBe(string notification)
+        {
+            Enum.TryParse<HomeNotification>(notification, out var notificationEnum);
+
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.Notification.Should().Be(notificationEnum);
         }
 
         [Then(@"the just stopped information message should not be visible")]
         public void ThenTheJustStoppedInformationMessageShouldNotBeVisible()
         {
             _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
-                .Which.HomePageModel.DisplayJustStoppedInfoMessage.Should().BeFalse();
+                .Which.HomePageModel.Notification.Should().NotBe(HomeNotification.ApprenticeshipStopped);
+        }
+
+        [Then(@"the apprenticeship matched information messages should not be visible")]
+        public void ThenTheApprenticeshipMatchedInformationMessagesShouldNotBeVisible()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.Notification.Should().NotBe(HomeNotification.ApprenticeshipMatched);
         }
     }
 }
