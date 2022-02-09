@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SFA.DAS.ApprenticePortal.Web.Services;
 using System.Threading.Tasks;
 using SFA.DAS.ApprenticePortal.Authentication;
+using SFA.DAS.ApprenticePortal.SharedUi.Filters;
 using SFA.DAS.ApprenticePortal.Web.Models;
 
 namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
     [Authorize]
+    [RequiresIdentityConfirmed]
     public class HomeModel : PageModel
     {
         private readonly ApprenticeService _apprenticesService;
