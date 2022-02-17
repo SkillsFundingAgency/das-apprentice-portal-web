@@ -32,12 +32,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
             try
             {
                 if (Request.Cookies.TryGetValue("RegistrationCode", out var registrationCode))
-                {
                     return Redirect(_urlHelper.Generate(NavigationSection.Registration));
-                }
                 else
                 {
-                    HomePageModel = await _apprenticesService.GetHomepageModel(_user.ApprenticeId);                    
+                    HomePageModel = await _apprenticesService.GetHomepageModel(_user.ApprenticeId);
+
+                    if (HomePageModel?.CourseName == null && HomePageModel?.EmployerName == null)
+                        return Redirect(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship));
                 }
             }
             catch
