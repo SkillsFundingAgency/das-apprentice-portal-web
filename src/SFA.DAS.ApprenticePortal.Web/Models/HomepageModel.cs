@@ -9,6 +9,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Models
         public bool? Complete { get; set; } = false;
         public bool? HasStopped { get; set; } = false;
         public HomeNotification? Notification { get; set; }
+        public bool IsPrivateBetaUser { get; set; }
     }
 
     public enum ApprenticeshipStatus

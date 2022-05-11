@@ -46,6 +46,13 @@
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>
+                    @if (Model.HomePageModel.IsPrivateBetaUser)
+                    {
+                        <li asp-for-external-section="ApprenticeFeedback">
+                            <h2 class="govuk-heading-m"><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ApprenticeFeedback">Feedback on your training provider</a></h2>
+                            <p>Give feedback on your apprenticeship training provider.</p>
+                        </li>
+                    }
                     <li>
                         <h2 class="govuk-heading-m">Help and support</h2>
                         <p>If you have any questions or need support during your apprenticeship, guidance can be found in the <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">help and support section</a>.</p>                        
