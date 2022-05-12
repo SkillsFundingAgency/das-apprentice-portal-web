@@ -31,5 +31,28 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                 return false;
             }
         }
+
+        public async Task<bool> ShowApprenticeFeedback()
+        {
+            var claim = _user.ApprenticeIdClaim();
+
+            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
+                return false;
+
+            try
+            {
+                var response = await _client.GetApprenticeHomepage(apprenticeId);
+
+                var isStopped = response.Apprenticeship?.IsStopped == true;
+                var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
+                var isPrivateBeta = response.Apprentice?.IsPrivateBetaUser == true;
+
+                return isPrivateBeta && isConfirmed && !isStopped;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
