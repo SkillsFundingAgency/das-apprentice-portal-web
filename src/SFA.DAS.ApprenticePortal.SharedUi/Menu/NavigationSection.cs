@@ -12,7 +12,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         PersonalDetails,
         TermsOfUse,
         Registration,
-        ApprenticeFeedback
+        ApprenticeFeedback,
     }
 
     public class NavigationSectionUrls
