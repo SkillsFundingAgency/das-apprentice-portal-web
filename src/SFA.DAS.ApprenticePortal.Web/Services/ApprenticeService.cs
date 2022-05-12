@@ -42,8 +42,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                     EmployerName = apprenticeship?.EmployerName,
                     Complete = apprenticeship?.ConfirmedOn.HasValue,
                     HasStopped = apprenticeship?.IsStopped,
-                    Notification = _notifications.SignificantNotification,
-                    IsPrivateBetaUser = apprenticeHomepage.Apprentice.IsPrivateBetaUser
+                    Notification = _notifications.SignificantNotification
                 };
 
                 return model;
