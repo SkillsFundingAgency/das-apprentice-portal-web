@@ -32,7 +32,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         private TagHelperOutput tagHelperOutput;
         private NavigationAnchorTagHelper sut;
         private NavigationSectionUrls urls;
-        private Mock<IMenuVisibility> something;
+        private Mock<IMenuVisibility> menuVisibility;
 
         [SetUp]
         public void Setup()
@@ -46,18 +46,20 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
             });
             fixture.Customize<NavigationAnchorTagHelper>(c => c.OmitAutoProperties());
 
-            something = new Mock<IMenuVisibility>();
-            fixture.Inject(something.Object);
+            menuVisibility = new Mock<IMenuVisibility>();
+            fixture.Inject(menuVisibility.Object);
             urls = fixture.Freeze<NavigationSectionUrls>();
             sut = fixture.Create<NavigationAnchorTagHelper>();
             tagHelperContext = fixture.Create<TagHelperContext>();
             tagHelperOutput = fixture.Create<TagHelperOutput>();
 
-            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
+            menuVisibility.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
+            menuVisibility.Setup(x => x.ShowApprenticeFeedback()).ReturnsAsync(true);
         }
 
         [TestCase(NavigationSection.ConfirmMyApprenticeship)]
         [TestCase(NavigationSection.Home)]
+        [TestCase(NavigationSection.ApprenticeFeedback)]
         public async Task Href_is_set_to_external_section(NavigationSection externalSection)
         {
             sut.ExternalSection = externalSection;
@@ -69,6 +71,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
 
         [TestCase(NavigationSection.ConfirmMyApprenticeship, "banana")]
         [TestCase(NavigationSection.Home, "apple")]
+        [TestCase(NavigationSection.ApprenticeFeedback, "pomegranate")]
         public async Task Href_is_set_to_external_section_with_page(NavigationSection externalSection, string page)
         {
             sut.ExternalSection = externalSection;
@@ -81,10 +84,10 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         }
 
         [Test]
-        public async Task Output_is_suppressed_when_appropriate()
+        public async Task ConfirmMyApprenticeship_output_is_suppressed_when_appropriate()
         {
             sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
-            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
+            menuVisibility.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
 
             await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
@@ -92,10 +95,21 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         }
 
         [Test]
-        public async Task Output_is_not_suppressed_when_inappropriate()
+        public async Task ShowApprenticeFeedback_output_is_suppressed_when_appropriate()
+        {
+            sut.ExternalSection = NavigationSection.ApprenticeFeedback;
+            menuVisibility.Setup(x => x.ShowApprenticeFeedback()).ReturnsAsync(false);
+
+            await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
+
+            tagHelperOutput.Content.GetContent().Should().BeEmpty();
+        }
+
+        [Test]
+        public async Task ConfirmMyApprenticeship_output_is_not_suppressed_when_inappropriate()
         {
             sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
-            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
+            menuVisibility.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(true);
 
             await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
@@ -103,11 +117,34 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
         }
 
         [Test]
-        public async Task Output_is_not_suppressed_when_always_shown()
+        public async Task ShowApprenticeFeedback_output_is_not_suppressed_when_inappropriate()
+        {
+            sut.ExternalSection = NavigationSection.ApprenticeFeedback;
+            menuVisibility.Setup(x => x.ShowApprenticeFeedback()).ReturnsAsync(true);
+
+            await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
+
+            tagHelperOutput.Content.GetContent().Should().NotBeEmpty();
+        }
+
+        [Test]
+        public async Task ConfirmMyApprenticeship_output_is_not_suppressed_when_always_shown()
         {
             sut.ExternalSection = NavigationSection.ConfirmMyApprenticeship;
             sut.AlwaysShow = true;
-            something.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
+            menuVisibility.Setup(x => x.ShowConfirmMyApprenticeship()).ReturnsAsync(false);
+
+            await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
+
+            tagHelperOutput.Content.GetContent().Should().NotBeEmpty();
+        }
+
+        [Test]
+        public async Task ShowApprenticeFeedback_output_is_not_suppressed_when_always_shown()
+        {
+            sut.ExternalSection = NavigationSection.ApprenticeFeedback;
+            sut.AlwaysShow = true;
+            menuVisibility.Setup(x => x.ShowApprenticeFeedback()).ReturnsAsync(false);
 
             await sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
