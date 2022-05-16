@@ -124,6 +124,9 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
             if (apprentice.TermsOfUseAccepted)
                 principal.AddTermsOfUseAcceptedClaim();
+
+            if (apprentice.IsPrivateBetaUser)
+                principal.AddPrivateBetaUserClaim();
         }
 
         private static void UpdateApprenticeAccountClaims(ClaimsPrincipal principal, IApprenticeAccount apprentice)
