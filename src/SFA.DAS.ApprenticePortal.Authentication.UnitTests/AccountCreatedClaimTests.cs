@@ -121,7 +121,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
 
             identity.Claims.Should().ContainEquivalentOf(new
             {
-                Type = "PrivateBetaUser",
+                Type = "PrivateBeta",
                 Value = "True",
             });
         }
