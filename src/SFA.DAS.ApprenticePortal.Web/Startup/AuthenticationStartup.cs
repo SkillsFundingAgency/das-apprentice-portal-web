@@ -32,8 +32,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            IdentityModelEventSource.ShowPII = true;
-
             services.AddApprenticeAuthentication(config.ApprenticeLoginUrl.ToString(), environment);
             services.AddTransient<IApprenticeAccountProvider, ApprenticeAccountProvider>();
             return services;
