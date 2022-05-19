@@ -2,7 +2,9 @@
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.Authentication
 @using SFA.DAS.ApprenticePortal.Web.Models
-@{ ViewData["Title"] = "Welcome"; }
+@{
+    ViewData["Title"] = "Welcome";
+}
 
 
 
@@ -21,7 +23,7 @@
 
 <main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">
 
-    <partial name="_HomeNotifications", model=@Model />
+    <partial name="_HomeNotifications" , model=@Model />
 
     <div class="govuk-width-container" id="dashboard-section">
         <div class="govuk-grid-row">
@@ -46,9 +48,14 @@
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>
+                    <li asp-for-external-section="ApprenticeFeedback">
+                        <h2 class="govuk-heading-m">Feedback on your training provider</h2>
+                        <p>Let us know how you're getting on with your apprenticeship and how your training provider can improve to help other apprentices.</p>
+                        <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ApprenticeFeedback">Give feedback now</a></p>
+                    </li>
                     <li>
                         <h2 class="govuk-heading-m">Help and support</h2>
-                        <p>If you have any questions or need support during your apprenticeship, guidance can be found in the <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">help and support section</a>.</p>                        
+                        <p>If you have any questions or need support during your apprenticeship, guidance can be found in the <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">help and support section</a>.</p>
                     </li>
                 </ul>
             </div>

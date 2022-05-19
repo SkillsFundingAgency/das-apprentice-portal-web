@@ -23,6 +23,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
             HasCreatedAccount = user.HasCreatedAccount();
             HasAcceptedTermsOfUse = user.HasAcceptedTermsOfUse();
+            HasEnrolledInPrivateBeta = user.HasEnrolledInPrivateBeta();
         }
 
         public Guid ApprenticeId { get; }
@@ -31,6 +32,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public bool HasCreatedAccount { get; }
         public bool HasAcceptedTermsOfUse { get; }
+        public bool HasEnrolledInPrivateBeta { get; }
 
     }
 }
