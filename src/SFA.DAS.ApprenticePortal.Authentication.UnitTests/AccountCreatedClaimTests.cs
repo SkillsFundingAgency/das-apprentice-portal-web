@@ -108,24 +108,6 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
             });
         }
 
-        [Test, MoqAutoData]
-        public async Task Users_that_have_enrolled_in_the_private_beta_should_have_a_PrivateBeta_claim([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, ApprenticeAccount apprentice)
-        {
-            apprentice.IsPrivateBetaUser = true;
-            identity.AddIdentity(ApprenticeIdClaimsIdentity(apprenticeId));
-            Mock.Get(accountProvider)
-                .Setup(x => x.GetApprenticeAccount(apprenticeId))
-                .ReturnsAsync(apprentice);
-
-            await sut.AddClaims(identity);
-
-            identity.Claims.Should().ContainEquivalentOf(new
-            {
-                Type = "PrivateBeta",
-                Value = "True",
-            });
-        }
-
         private static ClaimsIdentity ApprenticeIdClaimsIdentity(Guid apprenticeId)
             => ApprenticeIdClaimsIdentity(apprenticeId.ToString());
 
@@ -138,6 +120,5 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool TermsOfUseAccepted { get; set; }
-        public bool IsPrivateBetaUser { get; set; }
     }
 }
