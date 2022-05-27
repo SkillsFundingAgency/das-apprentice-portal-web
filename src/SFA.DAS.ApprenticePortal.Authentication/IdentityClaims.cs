@@ -13,7 +13,6 @@ namespace SFA.DAS.ApprenticePortal.Authentication
         public const string AccountCreated = "AccountCreated";
         public const string TermsOfUseAccepted = "TermsOfUseAccepted";
         public const string VerifiedUser = "VerifiedUser";
-        public const string PrivateBetaUser = "PrivateBeta";
 
         public static Claim? ApprenticeIdClaim(this ClaimsPrincipal user)
             => user.Claims.FirstOrDefault(c => c.Type == ApprenticeId);
@@ -55,15 +54,6 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             principal.AddIdentity(claimIdentity);
         }
 
-        public static void AddPrivateBetaUserClaim(this ClaimsPrincipal principal)
-        {
-            if (principal.HasClaim(PrivateBetaUser, "True"))
-                return;
-
-            var claimIdentity = new ClaimsIdentity(new[] { new Claim(PrivateBetaUser, "True") });
-            principal.AddIdentity(claimIdentity);
-        }
-
         public static void AddApprenticeIdClaim(this ClaimsPrincipal principal, string id)
         {
             var claimIdentity = new ClaimsIdentity(new[] { new Claim(ApprenticeId, id) });
@@ -87,8 +77,5 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         internal static bool HasBeenVerified(this ClaimsPrincipal principal)
             => principal.HasClaim(VerifiedUser, "True");
-
-        internal static bool HasEnrolledInPrivateBeta(this ClaimsPrincipal principal)
-            => principal.HasClaim(PrivateBetaUser, "True");
     }
 }

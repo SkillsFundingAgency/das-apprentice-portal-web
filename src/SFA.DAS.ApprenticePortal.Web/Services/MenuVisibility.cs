@@ -44,9 +44,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                 var response = await _client.GetApprenticeHomepage(apprenticeId);
 
                 var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
-                var isPrivateBeta = response.Apprentice?.IsPrivateBetaUser == true;
-
-                return isPrivateBeta && isConfirmed;
+                
+                return isConfirmed;
             }
             catch
             {
