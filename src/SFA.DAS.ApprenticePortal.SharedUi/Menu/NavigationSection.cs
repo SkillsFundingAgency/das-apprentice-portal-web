@@ -12,6 +12,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         PersonalDetails,
         TermsOfUse,
         Registration,
+        ApprenticeFeedback,
         NotificationsSettings
     }
 
@@ -21,7 +22,8 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         public Uri ApprenticeAccountsUrl { get; set; } = null!;
         public Uri ApprenticeCommitmentsUrl { get; set; } = null!;
         public Uri ApprenticeLoginUrl { get; set; } = null!;
-
+        public Uri ApprenticeFeedbackUrl { get; set; } = null!;
+        
         public Uri ToUri(NavigationSection section)
             => UriForSection(section)
                 ?? throw new Exception(
@@ -38,8 +40,9 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 NavigationSection.PersonalDetails => new Uri(ApprenticeAccountsUrl, "Account"),
                 NavigationSection.TermsOfUse => new Uri(ApprenticeAccountsUrl, "TermsOfUse"),
                 NavigationSection.Registration => new Uri(ApprenticeCommitmentsUrl, "Register"),
-                NavigationSection.NotificationsSettings => new Uri(ApprenticeAccountsUrl, "NotificationsSettings"),
-                _ => throw new Exception($"Unknown navigation section {section}")
+                NavigationSection.ApprenticeFeedback => ApprenticeFeedbackUrl,
+                _ => throw new Exception($"Unknown navigation section {section}"),
+                NavigationSection.NotificationsSettings => new Uri(ApprenticeAccountsUrl, "NotificationsSettings")
             };
     }
 }

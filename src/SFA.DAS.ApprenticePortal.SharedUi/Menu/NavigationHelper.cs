@@ -18,6 +18,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
             => externalSection switch
             {
                 NavigationSection.ConfirmMyApprenticeship => await _menu.ShowConfirmMyApprenticeship(),
+                NavigationSection.ApprenticeFeedback => await _menu.ShowApprenticeFeedback(),
                 _ => true,
             };
 
