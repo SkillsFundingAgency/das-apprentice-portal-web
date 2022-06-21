@@ -36,7 +36,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                     _notifications.Notify(HomeNotification.ApprenticeshipStopped);
                 }
 
-                     var model = new HomepageModel
+                var model = new HomepageModel
                 {
                     CourseName = apprenticeship?.CourseName,
                     EmployerName = apprenticeship?.EmployerName,
