@@ -38,7 +38,15 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         public void GivenThereIsASingleConfirmedApprenticeship()
         {
             _apprentice = _apprentice.WithApprenticeship(
-                An.Apprenticeship.WithConfirmedOn());
+                An.Apprenticeship.WithConfirmedOn().WithHasBeenConfirmedAtLeastOnce(true));
+            _context.OuterApi.WithApprentice(_apprentice);
+        }
+
+        [Given(@"there is a single unconfirmed apprenticeship which had previously been confirmed")]
+        public void GivenThereIsASingleUnconfirmedApprenticeshipWhichHadPreviouslyBeenConfirmed()
+        {
+            _apprentice = _apprentice.WithApprenticeship(
+                An.Apprenticeship.WithHasBeenConfirmedAtLeastOnce(true));
             _context.OuterApi.WithApprentice(_apprentice);
         }
 
@@ -103,6 +111,34 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.FeaturesSteps
         {
             _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
                 .Which.HomePageModel.Status().ToString().ToUpper().Should().Be(status);
+        }
+
+        [Then(@"the My Apprenticeship card should be visible")]
+        public void ThenTheMyApprenticeshipCardShouldBeVisible()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.ShowMyApprenticeshipCard.Should().BeTrue();
+        }
+
+        [Then(@"the My Apprenticeship card should not be visible")]
+        public void ThenTheMyApprenticeshipCardShouldNotBeVisible()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.ShowMyApprenticeshipCard.Should().BeFalse();
+        }
+
+        [Then(@"the Confirm My Apprenticeship card should not be visible")]
+        public void ThenTheConfirmMyApprenticeshipCardShouldNotBeVisible()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.ShowConfirmMyApprenticeshipCard.Should().BeFalse();
+        }
+
+        [Then(@"the Confirm My Apprenticeship card should be visible")]
+        public void ThenTheConfirmMyApprenticeshipCardShouldBeVisible()
+        {
+            _context.ActionResult.LastPageResult.Model.Should().BeOfType<HomeModel>()
+                .Which.HomePageModel.ShowConfirmMyApprenticeshipCard.Should().BeTrue();
         }
 
         [Then(@"the employer name should be correct")]

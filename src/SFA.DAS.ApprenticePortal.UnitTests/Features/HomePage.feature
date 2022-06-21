@@ -65,3 +65,19 @@ Scenario: The registration is stopped and was just matched
 	When accessing the home page with the notification "ApprenticeshipDidNotMatch"
 	Then the response status should be Ok
 	And the notification should be "ApprenticeshipStopped"
+
+Scenario: The apprenticeship exists and is confirmed
+	Given the apprentice is authenticated
+	And there is a single confirmed apprenticeship
+	When accessing the home page
+	Then the response status should be Ok
+	And the My Apprenticeship card should be visible
+	And the Confirm My Apprenticeship card should not be visible
+
+Scenario: The apprenticeship exists and is not confirmed
+	Given the apprentice is authenticated
+	And there is a single unconfirmed apprenticeship which had previously been confirmed
+	When accessing the home page
+	Then the response status should be Ok
+	And the My Apprenticeship card should not be visible
+	And the Confirm My Apprenticeship card should be visible

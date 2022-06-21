@@ -38,14 +38,16 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
             _mock
                 .Given(Request.Create()
                     .WithPath($"/apprentices/{apprentice.ApprenticeUrlId()}").UsingGet())
+                .AtPriority(9)
                 .RespondWith(Response.Create()
                     .WithBodyAsJson(apprentice));
 
             _mock
-               .Given(Request.Create()
-                   .WithPath($"/apprentices/{apprentice.ApprenticeUrlId()}/homepage").UsingGet())
-               .RespondWith(Response.Create()
-                   .WithBodyAsJson(homepage));
+                .Given(Request.Create()
+                    .WithPath($"/apprentices/{apprentice.ApprenticeUrlId()}/homepage").UsingGet())
+                .AtPriority(1)
+                .RespondWith(Response.Create()
+                    .WithBodyAsJson(homepage));
 
             return this;
         }

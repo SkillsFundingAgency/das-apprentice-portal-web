@@ -29,7 +29,7 @@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
-                    <li asp-for-external-section="ConfirmMyApprenticeship">
+                    <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
 
                         <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
                         @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
@@ -47,6 +47,12 @@
 
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
                         <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
+                    </li>
+                    <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
+
+                        <h2 class="govuk-heading-m">My apprenticeship details</h2>
+                        <p>Details of your employer, training provider and apprenticeship.</p>
+                        <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>
                     <li asp-for-external-section="ApprenticeFeedback">
                         <h2 class="govuk-heading-m">Feedback on your training provider</h2>
