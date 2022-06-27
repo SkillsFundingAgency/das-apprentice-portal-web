@@ -31,7 +31,11 @@
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
 
-                        <h2 class="govuk-heading-m">Confirm my apprenticeship details</h2>
+                        <h2 class="govuk-heading-m">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
+                                Confirm my apprenticeship details
+                            </a>
+                        </h2>
                         @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
                         {
                             <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
@@ -46,22 +50,30 @@
                         }
 
                         <p>View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
-                        <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>
                     <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
-
-                        <h2 class="govuk-heading-m">My apprenticeship details</h2>
+                        <h2 class="govuk-heading-m">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship">
+                                My apprenticeship details
+                            </a>
+                        </h2>
                         <p>Details of your employer, training provider and apprenticeship.</p>
-                        <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships">Confirm your apprenticeship now</a></p>
                     </li>
                     <li asp-for-external-section="ApprenticeFeedback">
-                        <h2 class="govuk-heading-m">Feedback on your training provider</h2>
+                        <h2 class="govuk-heading-m">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ApprenticeFeedback">
+                                Feedback on your training provider
+                            </a>
+                        </h2>
                         <p>Let us know how you're getting on with your apprenticeship and how your training provider can improve to help other apprentices.</p>
-                        <p><a class="govuk-link govuk-link--no-visited-state" asp-external-section="ApprenticeFeedback">Give feedback now</a></p>
                     </li>
                     <li>
-                        <h2 class="govuk-heading-m">Help and support</h2>
-                        <p>If you have any questions or need support during your apprenticeship, guidance can be found in the <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">help and support section</a>.</p>
+                        <h2 class="govuk-heading-m">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">
+                                Help and support
+                            </a>
+                        </h2>
+                        <p>Who to contact if you have questions or concerns during your apprenticeship.</p>
                     </li>
                 </ul>
             </div>
