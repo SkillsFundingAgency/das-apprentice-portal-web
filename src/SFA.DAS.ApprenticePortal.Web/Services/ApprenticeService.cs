@@ -4,6 +4,7 @@ using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Threading.Tasks;
+using SFA.DAS.HashingService;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
@@ -11,11 +12,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
     {
         private readonly IOuterApiClient _client;
         private readonly NotificationAccessor _notifications;
+        private readonly IHashingService _hashingService;
 
-        public ApprenticeService(IOuterApiClient client, NotificationAccessor notifications)
+        public ApprenticeService(IOuterApiClient client, NotificationAccessor notifications, IHashingService hashingService)
         {
             _client = client;
             _notifications = notifications;
+            _hashingService = hashingService;
         }
 
         public async Task<HomepageModel?> GetHomepageModel(Guid apprenticeId)
@@ -38,6 +41,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
                 var model = new HomepageModel
                 {
+                    CurrentHashedApprenticeshipId = apprenticeship == null ? null : _hashingService.HashValue(apprenticeship.Id),
                     CourseName = apprenticeship?.CourseName,
                     EmployerName = apprenticeship?.EmployerName,
                     Complete = apprenticeship?.ConfirmedOn.HasValue,
@@ -45,8 +49,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                     Notification = _notifications.SignificantNotification,
                     ShowConfirmMyApprenticeshipCard = (apprenticeship is { ConfirmedOn: null }),
                 };
-                model.ShowMyApprenticeshipCard = apprenticeship is {HasBeenConfirmedAtLeastOnce: true} &&
-                                                  !model.ShowConfirmMyApprenticeshipCard;
+                model.ShowMyApprenticeshipCard = apprenticeship is {HasBeenConfirmedAtLeastOnce: true}; // && !model.ShowConfirmMyApprenticeshipCard;
 
                 return model;
             }

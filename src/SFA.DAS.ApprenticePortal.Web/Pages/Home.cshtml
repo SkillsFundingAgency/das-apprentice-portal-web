@@ -53,7 +53,7 @@
                     </li>
                     <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
                         <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
                                 My apprenticeship details
                             </a>
                         </h2>

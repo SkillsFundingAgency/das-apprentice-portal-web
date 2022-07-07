@@ -74,9 +74,17 @@ Scenario: The apprenticeship exists and is confirmed
 	And the My Apprenticeship card should be visible
 	And the Confirm My Apprenticeship card should not be visible
 
-Scenario: The apprenticeship exists and is not confirmed
+Scenario: An unconfirmed apprenticeship exists but it was previously confirmed
 	Given the apprentice is authenticated
 	And there is a single unconfirmed apprenticeship which had previously been confirmed
+	When accessing the home page
+	Then the response status should be Ok
+	And the My Apprenticeship card should be visible
+	And the Confirm My Apprenticeship card should be visible
+
+Scenario: An unconfirmed apprenticeship exists but it was never confirmed
+	Given the apprentice is authenticated
+	And there is a single incomplete apprenticeship
 	When accessing the home page
 	Then the response status should be Ok
 	And the My Apprenticeship card should not be visible
