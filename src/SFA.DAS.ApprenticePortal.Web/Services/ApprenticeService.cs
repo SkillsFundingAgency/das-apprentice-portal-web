@@ -48,8 +48,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                     HasStopped = apprenticeship?.IsStopped,
                     Notification = _notifications.SignificantNotification,
                     ShowConfirmMyApprenticeshipCard = (apprenticeship is { ConfirmedOn: null }),
+                    ShowMyApprenticeshipCard = apprenticeship is { HasBeenConfirmedAtLeastOnce: true }
                 };
-                model.ShowMyApprenticeshipCard = apprenticeship is {HasBeenConfirmedAtLeastOnce: true}; // && !model.ShowConfirmMyApprenticeshipCard;
 
                 return model;
             }
