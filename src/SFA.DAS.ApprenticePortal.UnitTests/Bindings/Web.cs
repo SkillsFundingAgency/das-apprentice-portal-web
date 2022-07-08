@@ -45,6 +45,8 @@ namespace SFA.DAS.ApprenticePortal.UnitTests.Bindings
                     {"ApplicationUrls:ApprenticeCommitmentsUrl", _context.OuterApi?.BaseAddress ?? "https://confirm/"},
                     {"ApplicationUrls:ApprenticeLoginUrl", _context.OuterApi?.BaseAddress ?? "https://login/"},
                     {"ApplicationUrls:ApprenticeFeedbackUrl", _context.OuterApi?.BaseAddress ?? "https://login/"},
+                    {"Hashing:AllowedHashstringCharacters","46789BCDFGHJKLMNPRSTVWXY"},
+                    {"Hashing:Hashstring","SFA: digital apprenticeship service"},
                 };
 
                 ActionResultHook = new Hook<IActionResult>();
