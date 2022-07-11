@@ -42,6 +42,12 @@ The portal uses azure storage to retrieve settings. To use local settings UseDev
 
 After cloning the portal repo it should build without any issues.  To run the portal web home page requires a running login service, commitments website & accounts website.  The config section 'ApplicationUrls' indicates where the service should point to (eg with the login service, locally https://localhost:5001 or https://login.at-aas.apprenticeships.education.gov.uk/ for the at environment ).  If you want to run all locally, then the login service, accounts website and commitments website all need to be running locally too. 
 
+runs on: https://localhost:44398/
+
+It doesnt need to run in kestrel – it can be run in IIS as that will use the port 44398
+
+also see onboarding guide [here](https://skillsfundingagency.atlassian.net/wiki/spaces/NDL/pages/3518529551/Apprentice+Portal+-+on+boarding+guide)
+
 ### Requirements
 
 ### Setup
@@ -50,39 +56,48 @@ After cloning the portal repo it should build without any issues.  To run the po
 
 The portal webiste hosts the homepage and gets its configuration settings from an appsettings.json file.
 Create a local appsettings.development.json file as follows:
-
-    {
-      "Logging": {
-        "LogLevel": {
-          "Default": "Information",
-          "Microsoft": "Warning",
-          "Microsoft.Hosting.Lifetime": "Information"
-        }
-      },
-      "AllowedHosts": "*",
-      "ConfigurationStorageConnectionString": "UseDevelopmentStorage=true",
-      "ConfigNames": "SFA.DAS.ApprenticePortal.Web",
-      "EnvironmentName": "LOCAL",
-      "Cdn": {
-        "Url": "https://das-at-frnt-end.azureedge.net"
-      },
-      "GoogleAnalytics": {
-        "GoogleTagManagerId": "GTM-MP5RSWL"
-      },
-      "ApprenticePortalOuterApi": {
-        "ApiBaseUrl": "https://localhost:5123/",
-        "SubscriptionKey": "key",
-        "ApiVersion": "1"
-      },
-      "ApplicationUrls": {
-        "ApprenticeHomeUrl": "https://localhost:44398",
-        "ApprenticeCommitmentsUrl": "https://localhost:7070",
-        "ApprenticeLoginUrl": "https://localhost:5001",
-        "ApprenticeAccountsUrl": "https://localhost:7080"
-      },
-      "ZenDesk": {
-        "ZenDeskSnippetKey": "00000000-0000-0000-0000-000000000000",
-        "ZenDeskSectionId": "123456789012",
-        "ZenDeskCobrowsingSnippetKey": "Tempkey"
-      }
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
     }
+  },
+  "AllowedHosts": "*",
+  "ConfigurationStorageConnectionString": "UseDevelopmentStorage=true",
+  "ConfigNames": "SFA.DAS.ApprenticePortal.Web",
+  "EnvironmentName": "LOCAL",
+  "Cdn": {
+    "Url": "https://das-at-frnt-end.azureedge.net"
+  },
+  "Authentication": {
+    "MetadataAddress": "https://localhost:5001"
+  },
+  "GoogleAnalytics": {
+    "GoogleTagManagerId": "GTM-MP5RSWL"
+  },
+  //"ApprenticeCommitmentsApi": {
+  //  "ApiBaseUrl": "https://localhost:5121/",
+  //  "SubscriptionKey": "key",
+  //  "ApiVersion": "1"
+  //},
+  "ApprenticePortalOuterApi": {
+    "ApiBaseUrl": "https://localhost:5123/",
+    "SubscriptionKey": "key",
+    "ApiVersion": "1"
+  },
+  "ApplicationUrls": {
+    "ApprenticeHomeUrl": "https://localhost:44398",
+    "ApprenticeCommitmentsUrl": "https://localhost:7070",
+    "ApprenticeLoginUrl": "https://localhost:5001",
+    "ApprenticeAccountsUrl": "https://localhost:7080"
+  },
+  "ZenDesk": {
+    "ZenDeskSnippetKey": "e0730bdd-a32c-4c39-8032-7d7a908eacb4",
+    "ZenDeskSectionId": "360003002699",
+    "ZenDeskCobrowsingSnippetKey": "Qec2OgXsUy8lsUO1iOuleFAMjl7AcIEGdOojlQjLesShBHx0wrM4xXlR7X1h9bEo"
+  }
+}
+```
