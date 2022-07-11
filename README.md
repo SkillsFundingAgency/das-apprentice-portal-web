@@ -44,7 +44,7 @@ After cloning the portal repo it should build without any issues.  To run the po
 
 runs on: https://localhost:44398/
 
-It doesnt need to run in kestrel – it can be run in IIS as that will use the port 44398
+It doesnt need to run in kestrel ï¿½ it can be run in IIS as that will use the port 44398
 
 also see onboarding guide [here](https://skillsfundingagency.atlassian.net/wiki/spaces/NDL/pages/3518529551/Apprentice+Portal+-+on+boarding+guide)
 
@@ -75,14 +75,6 @@ Create a local appsettings.development.json file as follows:
   "Authentication": {
     "MetadataAddress": "https://localhost:5001"
   },
-  "GoogleAnalytics": {
-    "GoogleTagManagerId": "GTM-MP5RSWL"
-  },
-  //"ApprenticeCommitmentsApi": {
-  //  "ApiBaseUrl": "https://localhost:5121/",
-  //  "SubscriptionKey": "key",
-  //  "ApiVersion": "1"
-  //},
   "ApprenticePortalOuterApi": {
     "ApiBaseUrl": "https://localhost:5123/",
     "SubscriptionKey": "key",
@@ -93,11 +85,6 @@ Create a local appsettings.development.json file as follows:
     "ApprenticeCommitmentsUrl": "https://localhost:7070",
     "ApprenticeLoginUrl": "https://localhost:5001",
     "ApprenticeAccountsUrl": "https://localhost:7080"
-  },
-  "ZenDesk": {
-    "ZenDeskSnippetKey": "e0730bdd-a32c-4c39-8032-7d7a908eacb4",
-    "ZenDeskSectionId": "360003002699",
-    "ZenDeskCobrowsingSnippetKey": "Qec2OgXsUy8lsUO1iOuleFAMjl7AcIEGdOojlQjLesShBHx0wrM4xXlR7X1h9bEo"
   }
 }
 ```
