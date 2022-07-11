@@ -4,7 +4,7 @@ using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
 using System.Threading.Tasks;
-using SFA.DAS.HashingService;
+using SFA.DAS.Encoding;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
 {
@@ -12,9 +12,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
     {
         private readonly IOuterApiClient _client;
         private readonly NotificationAccessor _notifications;
-        private readonly IHashingService _hashingService;
+        private readonly IEncodingService _hashingService;
 
-        public ApprenticeService(IOuterApiClient client, NotificationAccessor notifications, IHashingService hashingService)
+        public ApprenticeService(IOuterApiClient client, NotificationAccessor notifications, IEncodingService hashingService)
         {
             _client = client;
             _notifications = notifications;
@@ -41,7 +41,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
                 var model = new HomepageModel
                 {
-                    CurrentHashedApprenticeshipId = apprenticeship == null ? null : _hashingService.HashValue(apprenticeship.Id),
+                    CurrentHashedApprenticeshipId = apprenticeship == null ? null : _hashingService.Encode(apprenticeship.Id, EncodingType.ApprenticeshipId),
                     CourseName = apprenticeship?.CourseName,
                     EmployerName = apprenticeship?.EmployerName,
                     Complete = apprenticeship?.ConfirmedOn.HasValue,
