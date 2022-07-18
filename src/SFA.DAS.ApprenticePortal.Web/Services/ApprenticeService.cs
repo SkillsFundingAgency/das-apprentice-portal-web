@@ -3,6 +3,8 @@ using SFA.DAS.ApprenticePortal.SharedUi.Home;
 using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
@@ -43,7 +45,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                     Complete = apprenticeship?.ConfirmedOn.HasValue,
                     HasStopped = apprenticeship?.IsStopped,
                     Notification = _notifications.SignificantNotification,
+                    Revisions = GetRevisions(apprenticeship?.Revisions),
                 };
+
 
                 return model;
             }
@@ -51,6 +55,15 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             {
                 return null;
             }
+        }
+
+        private List<Models.Revision> GetRevisions(List<OuterApi.Revision>? revisions)
+        { 
+            var ret = new List<Models.Revision>();
+            if (revisions != null)
+                ret.AddRange(revisions.Select(x => new Models.Revision(x.Heading, x.Description, x.RevisionDate)).ToList());
+
+            return ret;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
 {
@@ -13,5 +14,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
         public DateTime? LastViewed { get; set; }
         public DateTime? StoppedReceivedOn { get; set; }
         public bool IsStopped => StoppedReceivedOn != null;
+        public List<Revision>? Revisions { get; set; }
     }
 }

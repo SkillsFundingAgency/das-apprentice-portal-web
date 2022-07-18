@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ApprenticePortal.SharedUi.Home;
+using System.Collections.Generic;
 
 namespace SFA.DAS.ApprenticePortal.Web.Models
 {
@@ -9,6 +10,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Models
         public bool? Complete { get; set; } = false;
         public bool? HasStopped { get; set; } = false;
         public HomeNotification? Notification { get; set; }
+        public List<Revision> Revisions { get; set; } = null!;
     }
 
     public enum ApprenticeshipStatus
