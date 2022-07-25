@@ -30,7 +30,6 @@
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
-                        <strong asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard" class="dashboard__status-tag govuk-tag govuk-tag--yellow">Unconfirmed</strong>
                         <h2 class="govuk-heading-m">
                             <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
                                 Confirm my apprenticeship details
@@ -40,7 +39,11 @@
                         {
                             <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
                         }
-                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete && !Model.HomePageModel.ShowMyApprenticeshipCard)
+                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete && Model.HomePageModel.ShowMyApprenticeshipCard)
+                        {
+                            <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Unconfirmed</strong>
+                        }
+                        else 
                         {
                             <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
                         }
