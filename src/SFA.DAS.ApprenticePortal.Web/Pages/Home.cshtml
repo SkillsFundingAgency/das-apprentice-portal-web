@@ -30,21 +30,22 @@
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
-                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
-                        {
-                            <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
-                        }
-                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete)
-                        {
-                            <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
-                        }
+                        <strong asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard" class="dashboard__status-tag govuk-tag govuk-tag--yellow">Unconfirmed</strong>
                         <h2 class="govuk-heading-m">
                             <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
                                 Confirm my apprenticeship details
                             </a>
                         </h2>
-                        <p asp-hide="@Model.HomePageModel.ShowMyApprenticeshipCard">View your current apprenticeship details and understand what to expect during your apprenticeship.</p>
-                        <p asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">Changes have been mde to your apprenticeship details. Confirm your new details.</p>
+                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
+                        {
+                            <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
+                        }
+                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete && !Model.HomePageModel.ShowMyApprenticeshipCard)
+                        {
+                            <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
+                        }
+                        <p asp-hide="@Model.HomePageModel.ShowMyApprenticeshipCard">Confirm details of your employer, training provider and apprenticeship.</p>
+                        <p asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">Changes have been made to your apprenticeship details. Confirm your new details.</p>
                     </li>
                     <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
                         <h2 class="govuk-heading-m">
