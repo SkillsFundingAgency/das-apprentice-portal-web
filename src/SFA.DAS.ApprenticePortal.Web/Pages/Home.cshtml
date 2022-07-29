@@ -52,9 +52,19 @@
                     </li>
                     <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
                         <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
-                                My apprenticeship details
-                            </a>
+                            @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped && Model.HomePageModel.ShowConfirmMyApprenticeshipCard == false)
+                            {
+                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
+                                    My apprenticeship details
+                                </a>
+                                <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
+                            }
+                            else
+                            {
+                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
+                                    My apprenticeship details
+                                </a>
+                            }
                         </h2>
                         <p>Details of your employer, training provider and apprenticeship.</p>
                     </li>
