@@ -7,6 +7,7 @@ using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.SharedUi.Startup;
 using SFA.DAS.ApprenticePortal.Web.Startup;
+using SFA.DAS.Encoding;
 
 namespace SFA.DAS.ApprenticePortal.Web
 {
@@ -25,6 +26,7 @@ namespace SFA.DAS.ApprenticePortal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var appConfig = Configuration.Get<ApplicationConfiguration>();
+            var encodingsConfig = Configuration.Get<EncodingConfig>();
             services.AddSingleton(appConfig);
 
             services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
@@ -44,6 +46,7 @@ namespace SFA.DAS.ApprenticePortal.Web
                 options.EnableGoogleAnalytics();
                 options.SetCurrentNavigationSection(NavigationSection.Home);
             });
+            services.AddSingleton<IEncodingService>( new EncodingService(encodingsConfig));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
