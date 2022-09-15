@@ -31,6 +31,5 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public bool HasCreatedAccount { get; }
         public bool HasAcceptedTermsOfUse { get; }
-
     }
 }

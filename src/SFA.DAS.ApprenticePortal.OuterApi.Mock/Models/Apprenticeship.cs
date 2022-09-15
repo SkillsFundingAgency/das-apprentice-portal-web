@@ -14,6 +14,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
         public DateTime? ConfirmedOn { get; }
         public DateTime? LastViewed { get; }
         public DateTime? StoppedReceivedOn { get; }
+        public bool HasBeenConfirmedAtLeastOnce { get; set; }
 
         public Apprenticeship(
             Guid apprenticeId,
@@ -56,6 +57,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
                   stoppedReceivedOn)
         {
             this.previousActionOn = previousActionOn;
+
         }
         public Apprenticeship ForApprentice(Apprentice apprentice)
             => With(apprenticeId: apprentice.ApprenticeId);
@@ -78,6 +80,12 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
         public Apprenticeship WithConfirmedOn(DateTime? confirmedOn)
             => With(confirmedOn: confirmedOn, previousActionOn: confirmedOn);
 
+        public Apprenticeship WithHasBeenConfirmedAtLeastOnce(bool previouslyConfirmed)
+        {
+            HasBeenConfirmedAtLeastOnce = previouslyConfirmed;
+            return this;
+        }
+
         public Apprenticeship WithStoppedReceivedOn()
             => With(stoppedReceivedOn: DateTime.UtcNow, previousActionOn: DateTime.UtcNow);
 
@@ -99,7 +107,8 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
             DateTime? stoppedReceivedOn = null,
             DateTime? lastViewedOn = null,
             DateTime? previousActionOn = null)
-            => new Apprenticeship(
+        {
+            var model = new Apprenticeship(
                 apprenticeId == default ? ApprenticeId : apprenticeId,
                 Id,
                 employerName ?? EmployerName,
@@ -109,6 +118,9 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock.Models
                 lastViewedOn ?? LastViewed,
                 stoppedReceivedOn ?? StoppedReceivedOn,
                 previousActionOn ?? this.previousActionOn);
+            model.HasBeenConfirmedAtLeastOnce = this.HasBeenConfirmedAtLeastOnce;
+            return model;
+        }
 
         public Apprenticeship FollowedByConfirmedOn()
         {

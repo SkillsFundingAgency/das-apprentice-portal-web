@@ -4,11 +4,14 @@ namespace SFA.DAS.ApprenticePortal.Web.Models
 {
     public class HomepageModel
     {
+        public string? CurrentHashedApprenticeshipId{ get; set; } = null!;
         public string? CourseName { get; set; } = null!;
         public string? EmployerName { get; set; } = null!;
         public bool? Complete { get; set; } = false;
         public bool? HasStopped { get; set; } = false;
         public HomeNotification? Notification { get; set; }
+        public bool ShowConfirmMyApprenticeshipCard { get; set; }
+        public bool ShowMyApprenticeshipCard { get; set; }
     }
 
     public enum ApprenticeshipStatus
