@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Logging;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using System.IdentityModel.Tokens.Jwt;
 using SFA.DAS.ApprenticePortal.Authentication;
@@ -31,8 +30,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             IWebHostEnvironment environment)
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
-            IdentityModelEventSource.ShowPII = true;
 
             services.AddApprenticeAuthentication(config.ApprenticeLoginUrl.ToString(), environment);
             services.AddTransient<IApprenticeAccountProvider, ApprenticeAccountProvider>();
