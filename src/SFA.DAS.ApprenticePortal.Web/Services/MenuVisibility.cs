@@ -32,7 +32,14 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             }
         }
 
-        public async Task<bool> ShowApprenticeFeedback()
+        public Task<bool> ShowApprenticeFeedback() => LatestApprenticeshipIsConfirmed();
+
+        public async Task<bool> ShowConfirmOnMyApprenticeshipTitle()
+        {
+            return ! await LatestApprenticeshipIsConfirmed();
+        }
+
+        private async Task<bool> LatestApprenticeshipIsConfirmed()
         {
             var claim = _user.ApprenticeIdClaim();
 
@@ -44,7 +51,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                 var response = await _client.GetApprenticeHomepage(apprenticeId);
 
                 var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
-                
+
                 return isConfirmed;
             }
             catch
