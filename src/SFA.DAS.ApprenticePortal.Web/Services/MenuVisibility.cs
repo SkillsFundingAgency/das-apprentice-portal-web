@@ -11,9 +11,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
     {
         private readonly IOuterApiClient _client;
         private readonly ClaimsPrincipal _user;
+        private ApprenticeHomepage? _homePage;
 
         public MenuVisibility(IOuterApiClient client, ClaimsPrincipal user)
-            => (_client, _user) = (client, user);
+        {
+            _client = client;
+            _user = user;
+        }
 
         public async Task<bool> ShowConfirmMyApprenticeship()
         {
@@ -24,9 +28,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
             try
             {
-                return (await _client.GetApprenticeHomepage(apprenticeId)).Apprenticeship != null;
+                return (await GetHomePage(apprenticeId)).Apprenticeship != null;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -36,7 +40,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
         public async Task<bool> ShowConfirmOnMyApprenticeshipTitle()
         {
-            return ! await LatestApprenticeshipIsConfirmed();
+            return !await LatestApprenticeshipIsConfirmed();
         }
 
         private async Task<bool> LatestApprenticeshipIsConfirmed()
@@ -48,7 +52,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
             try
             {
-                var response = await _client.GetApprenticeHomepage(apprenticeId);
+                var response = await GetHomePage(apprenticeId);
 
                 var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
 
@@ -58,6 +62,15 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             {
                 return false;
             }
+        }
+
+        private async Task<ApprenticeHomepage> GetHomePage(Guid id)
+        {
+            if (_homePage != null)
+                return _homePage;
+
+            _homePage = await _client.GetApprenticeHomepage(id);
+            return _homePage;
         }
     }
 }
