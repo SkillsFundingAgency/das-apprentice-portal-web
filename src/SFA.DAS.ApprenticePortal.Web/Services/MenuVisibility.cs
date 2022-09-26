@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using SFA.DAS.ApprenticePortal.Authentication;
@@ -21,14 +22,9 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
         public async Task<bool> ShowConfirmMyApprenticeship()
         {
-            var claim = _user.ApprenticeIdClaim();
-
-            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
-                return false;
-
             try
             {
-                return (await GetHomePage(apprenticeId)).Apprenticeship != null;
+                return (await GetHomePageDetails()).Apprenticeship != null;
             }
             catch
             {
@@ -38,21 +34,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
         public Task<bool> ShowApprenticeFeedback() => LatestApprenticeshipIsConfirmed();
 
-        public async Task<bool> ShowConfirmOnMyApprenticeshipTitle()
-        {
-            return !await LatestApprenticeshipIsConfirmed();
-        }
+        public async Task<bool> ShowConfirmOnMyApprenticeshipTitle() => !await LatestApprenticeshipIsConfirmed();
 
         private async Task<bool> LatestApprenticeshipIsConfirmed()
         {
-            var claim = _user.ApprenticeIdClaim();
-
-            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
-                return false;
-
             try
             {
-                var response = await GetHomePage(apprenticeId);
+                var response = await GetHomePageDetails();
 
                 var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
 
@@ -64,12 +52,17 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             }
         }
 
-        private async Task<ApprenticeHomepage> GetHomePage(Guid id)
+        private async Task<ApprenticeHomepage> GetHomePageDetails()
         {
             if (_homePage != null)
                 return _homePage;
 
-            _homePage = await _client.GetApprenticeHomepage(id);
+            var claim = _user.ApprenticeIdClaim();
+
+            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
+                throw new AuthenticationException("No user logged in");
+
+            _homePage = await _client.GetApprenticeHomepage(apprenticeId);
             return _homePage;
         }
     }
