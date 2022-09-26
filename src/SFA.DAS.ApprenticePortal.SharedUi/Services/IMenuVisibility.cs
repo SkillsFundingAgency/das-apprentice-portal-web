@@ -6,6 +6,13 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Services
     {
         Task<bool> ShowConfirmMyApprenticeship();
         Task<bool> ShowApprenticeFeedback();
-        Task<bool> ShowConfirmOnMyApprenticeshipTitle();
+        Task<ConfirmMyApprenticeshipTitleStatus> ConfirmMyApprenticeshipTitleStatus();
+    }
+
+    public enum ConfirmMyApprenticeshipTitleStatus
+    {
+        DoNotShow,
+        ShowAsRequiringConfirmation,
+        ShowAsConfirmed
     }
 }

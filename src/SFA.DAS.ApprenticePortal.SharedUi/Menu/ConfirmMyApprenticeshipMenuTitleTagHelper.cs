@@ -13,8 +13,15 @@ public class ConfirmMyApprenticeshipMenuTitleTagHelper : TagHelper
 
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
+        var show = await _helper.ConfirmMyApprenticeshipTitleStatus();
+        if (show == ConfirmMyApprenticeshipTitleStatus.DoNotShow)
+        {
+            output.SuppressOutput();
+            return;
+        }
+
         var menuTitle = "My apprenticeship details";
-        if (await _helper.ShowConfirmOnMyApprenticeshipTitle())
+        if (show == ConfirmMyApprenticeshipTitleStatus.ShowAsRequiringConfirmation)
         {
             menuTitle = "Confirm my apprenticeship details";
 

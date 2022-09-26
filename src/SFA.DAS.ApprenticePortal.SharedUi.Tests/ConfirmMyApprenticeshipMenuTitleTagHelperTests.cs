@@ -36,15 +36,25 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Tests
 
         }
 
-        [TestCase(true, "Confirm my apprenticeship details")]
-        [TestCase(false, "My apprenticeship details")]
-        public async Task MenuHtml(bool showConfirmationMessage, string title)
+        [TestCase(ConfirmMyApprenticeshipTitleStatus.ShowAsRequiringConfirmation, "Confirm my apprenticeship details")]
+        [TestCase(ConfirmMyApprenticeshipTitleStatus.ShowAsConfirmed, "My apprenticeship details")]
+        public async Task MenuHtml(ConfirmMyApprenticeshipTitleStatus status, string title)
         {
-            menuVisibility.Setup(x => x.ShowConfirmOnMyApprenticeshipTitle()).ReturnsAsync(showConfirmationMessage);
+            menuVisibility.Setup(x => x.ConfirmMyApprenticeshipTitleStatus()).ReturnsAsync(status);
 
             await _sut.ProcessAsync(_tagHelperContext, _tagHelperOutput);
 
             _tagHelperOutput.Content.GetContent().Should().Be(title);
+        }
+
+        [Test]
+        public async Task MenuHtmlShouldSuppressed()
+        {
+            menuVisibility.Setup(x => x.ConfirmMyApprenticeshipTitleStatus()).ReturnsAsync(ConfirmMyApprenticeshipTitleStatus.DoNotShow);
+
+            await _sut.ProcessAsync(_tagHelperContext, _tagHelperOutput);
+
+            _tagHelperOutput.Content.GetContent().Should().Be("");
         }
     }
 }

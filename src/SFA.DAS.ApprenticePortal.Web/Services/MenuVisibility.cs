@@ -34,7 +34,13 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
         public Task<bool> ShowApprenticeFeedback() => LatestApprenticeshipIsConfirmed();
 
-        public async Task<bool> ShowConfirmOnMyApprenticeshipTitle() => !await LatestApprenticeshipIsConfirmed();
+        public async Task<ConfirmMyApprenticeshipTitleStatus> ConfirmMyApprenticeshipTitleStatus()
+        {
+            var showConfirmed = !await LatestApprenticeshipIsConfirmed();
+            if (showConfirmed)
+                return SharedUi.Services.ConfirmMyApprenticeshipTitleStatus.ShowAsConfirmed;
+            return SharedUi.Services.ConfirmMyApprenticeshipTitleStatus.ShowAsRequiringConfirmation;
+        }
 
         private async Task<bool> LatestApprenticeshipIsConfirmed()
         {
