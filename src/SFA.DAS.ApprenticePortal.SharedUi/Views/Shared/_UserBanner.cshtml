@@ -66,7 +66,9 @@
                     <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
                 </li>
                 <li class="app-navigation__list-item">
-                    <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">Confirm my apprenticeship details</a>
+                    <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">
+                        <text asp-confirm-apprenticeship-menu-name></text>
+                    </a>
                 </li>
                 <li class="app-navigation__list-item">
                     <a asp-external-section="ApprenticeFeedback" class="@navigationClass(NavigationSection.ApprenticeFeedback)">Feedback on your training provider</a>

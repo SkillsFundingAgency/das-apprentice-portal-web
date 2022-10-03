@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ApprenticePortal.SharedUi.Services;
 using SFA.DAS.ApprenticePortal.Web.Services.OuterApi;
 using System;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using SFA.DAS.ApprenticePortal.Authentication;
@@ -11,46 +12,64 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
     {
         private readonly IOuterApiClient _client;
         private readonly ClaimsPrincipal _user;
+        private ApprenticeHomepage? _homePage;
 
         public MenuVisibility(IOuterApiClient client, ClaimsPrincipal user)
-            => (_client, _user) = (client, user);
+        {
+            _client = client;
+            _user = user;
+        }
 
         public async Task<bool> ShowConfirmMyApprenticeship()
         {
-            var claim = _user.ApprenticeIdClaim();
-
-            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
-                return false;
-
             try
             {
-                return (await _client.GetApprenticeHomepage(apprenticeId)).Apprenticeship != null;
+                return (await GetHomePageDetails()).Apprenticeship != null;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
 
-        public async Task<bool> ShowApprenticeFeedback()
+        public Task<bool> ShowApprenticeFeedback() => LatestApprenticeshipIsConfirmed();
+
+        public async Task<ConfirmMyApprenticeshipTitleStatus> ConfirmMyApprenticeshipTitleStatus()
         {
-            var claim = _user.ApprenticeIdClaim();
+            var showConfirmed = await LatestApprenticeshipIsConfirmed();
+            if (showConfirmed)
+                return SharedUi.Services.ConfirmMyApprenticeshipTitleStatus.ShowAsConfirmed;
+            return SharedUi.Services.ConfirmMyApprenticeshipTitleStatus.ShowAsRequiringConfirmation;
+        }
 
-            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
-                return false;
-
+        private async Task<bool> LatestApprenticeshipIsConfirmed()
+        {
             try
             {
-                var response = await _client.GetApprenticeHomepage(apprenticeId);
+                var response = await GetHomePageDetails();
 
                 var isConfirmed = response.Apprenticeship?.ConfirmedOn.HasValue ?? false;
-                
+
                 return isConfirmed;
             }
             catch
             {
                 return false;
             }
+        }
+
+        private async Task<ApprenticeHomepage> GetHomePageDetails()
+        {
+            if (_homePage != null)
+                return _homePage;
+
+            var claim = _user.ApprenticeIdClaim();
+
+            if (!Guid.TryParse(claim?.Value, out var apprenticeId))
+                throw new AuthenticationException("No user logged in");
+
+            _homePage = await _client.GetApprenticeHomepage(apprenticeId);
+            return _homePage;
         }
     }
 }
