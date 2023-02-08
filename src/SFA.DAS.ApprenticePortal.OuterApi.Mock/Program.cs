@@ -7,7 +7,7 @@ namespace SFA.DAS.ApprenticePortal.OuterApi.Mock
     {
         public static void Main(string[] args)
         {
-            using var mock = new PortalOuterApiMock(5121, ssl: true)
+            using var mock = new PortalOuterApiMock(5123, ssl: true)
                 .WithApprentice(An.Apprentice
                     .WithAnyId()
                     .WithApprenticeship(An.Apprenticeship));
