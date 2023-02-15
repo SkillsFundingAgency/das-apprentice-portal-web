@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Testing.Handlers;
 using SFA.DAS.ApprenticePortal.Authentication.TestHelpers;
 using SFA.DAS.ApprenticePortal.UnitTests.Hooks;
 using SFA.DAS.ApprenticePortal.Web;
+using SFA.DAS.ApprenticePortal.Web.Startup;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticePortal.UnitTests.Bindings

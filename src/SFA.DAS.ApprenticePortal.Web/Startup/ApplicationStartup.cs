@@ -6,10 +6,9 @@ using Microsoft.Extensions.Hosting;
 using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.SharedUi.Startup;
-using SFA.DAS.ApprenticePortal.Web.Startup;
 using SFA.DAS.Encoding;
 
-namespace SFA.DAS.ApprenticePortal.Web
+namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
     public class ApplicationStartup
     {
