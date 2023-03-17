@@ -1,12 +1,12 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SFA.DAS.ApprenticePortal.Web.Services;
-using System.Threading.Tasks;
 using SFA.DAS.ApprenticePortal.Authentication;
 using SFA.DAS.ApprenticePortal.SharedUi.Filters;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Models;
+using SFA.DAS.ApprenticePortal.Web.Services;
 
 namespace SFA.DAS.ApprenticePortal.Web.Pages
 {
@@ -37,8 +37,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
                 {
                     HomePageModel = await _apprenticesService.GetHomepageModel(_user.ApprenticeId);
 
-                    if (HomePageModel?.CourseName == null && HomePageModel?.EmployerName == null)
-                        return Redirect(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship));
+                    //if (HomePageModel?.CourseName == null && HomePageModel?.EmployerName == null)
+                    //    return Redirect(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship));
                 }
             }
             catch
