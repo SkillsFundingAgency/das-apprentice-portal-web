@@ -1,6 +1,7 @@
 ﻿@page
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.Authentication
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 @using SFA.DAS.ApprenticePortal.Web.Models
 @{
     ViewData["Title"] = "Welcome";
@@ -77,6 +78,14 @@
                             </a>
                         </h2>
                         <p>Let us know how you're getting on with your apprenticeship and how your training provider can improve to help other apprentices.</p>
+                    </li>
+                    <li asp-for-external-section="@NavigationSection.ApprenticeAan">
+                        <h2 class="govuk-heading-m">
+                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="@NavigationSection.ApprenticeAan">
+                                Become an apprenticeship ambassador
+                            </a>
+                        </h2>
+                        <p>The AAN (comprised of employer and apprentice members) is the movement championing apprenticeships across England. The network raises awareness and increases engagement to meet the needs of employers, communities and individuals.</p>
                     </li>
                     <li>
                         <h2 class="govuk-heading-m">
