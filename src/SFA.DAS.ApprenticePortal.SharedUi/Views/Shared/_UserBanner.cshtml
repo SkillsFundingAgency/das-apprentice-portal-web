@@ -63,18 +63,21 @@
             <h3 class="govuk-visually-hidden app-navigation__heading" id="app-nav-title">Navigation</h3>
             <ul class="app-navigation__list" aria-labelledby="app-nav-title">
                 <li class="app-navigation__list-item">
-                    <a asp-external-section="Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
+                    <a asp-external-section="@NavigationSection.Home" asp-external-page="Home" class="@navigationClass(NavigationSection.Home)">Home</a>
                 </li>
                 <li class="app-navigation__list-item">
-                    <a asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">
+                    <a asp-external-section="@NavigationSection.ConfirmMyApprenticeship" asp-external-page="Apprenticeships" class="@navigationClass(NavigationSection.ConfirmMyApprenticeship)">
                         <text asp-confirm-apprenticeship-menu-name></text>
                     </a>
                 </li>
                 <li class="app-navigation__list-item">
-                    <a asp-external-section="ApprenticeFeedback" class="@navigationClass(NavigationSection.ApprenticeFeedback)">Feedback on your training provider</a>
+                    <a asp-external-section="@NavigationSection.ApprenticeFeedback" class="@navigationClass(NavigationSection.ApprenticeFeedback)">Feedback on your training provider</a>
                 </li>
                 <li class="app-navigation__list-item">
-                    <a asp-external-section="Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
+                    <a asp-external-section="@NavigationSection.ApprenticeAan" class="@navigationClass(NavigationSection.ApprenticeAan)">Apprenticeship Ambassador Network</a>
+                </li>
+                <li class="app-navigation__list-item">
+                    <a asp-external-section="@NavigationSection.Home" asp-external-page="HelpAndSupport" class="@navigationClass(NavigationSection.HelpAndSupport)">Help and support</a>
                 </li>
             </ul>
         </nav>
