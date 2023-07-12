@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 {
                     configBuilder.AddAzureTableStorage(options =>
                     {
-                        var (names, connectionString, environment) = configBuilder.EmployerConfiguration();
+                        var (names, connectionString, environment) = GetEmployerConfiguration(config);
                         options.ConfigurationKeys = names.Split(",");
                         options.StorageConnectionString = connectionString;
                         options.EnvironmentName = environment;
@@ -30,16 +30,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             return hostBuilder;
         }
 
-        private static (string names, string connectionString, string environment)
-            EmployerConfiguration(this IConfigurationBuilder configBuilder)
-        {
-            var config = configBuilder.Build();
-            return
-                (
-                    config["ConfigNames"],
-                    config["ConfigurationStorageConnectionString"],
-                    config["EnvironmentName"]
-                );
-        }
+        private static (string names, string connectionString, string environment) GetEmployerConfiguration(IConfigurationRoot config)
+            => (config["ConfigNames"], config["ConfigurationStorageConnectionString"], config["EnvironmentName"]);
     }
 }
