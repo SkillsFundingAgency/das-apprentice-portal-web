@@ -6,6 +6,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Services
     {
         Task<bool> ShowConfirmMyApprenticeship();
         Task<bool> ShowApprenticeFeedback();
+        Task<bool> ShowApprenticeAan();
         Task<ConfirmMyApprenticeshipTitleStatus> ConfirmMyApprenticeshipTitleStatus();
     }
 
