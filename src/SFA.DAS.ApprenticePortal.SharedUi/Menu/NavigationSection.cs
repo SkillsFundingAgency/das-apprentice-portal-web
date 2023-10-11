@@ -7,6 +7,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         Home,
         HelpAndSupport,
         ConfirmMyApprenticeship,
+        SignOut,
         MyApprenticeship,
         ApprenticeAccounts,
         Login,
@@ -23,6 +24,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         public Uri ApprenticeHomeUrl { get; set; } = null!;
         public Uri ApprenticeAccountsUrl { get; set; } = null!;
         public Uri ApprenticeCommitmentsUrl { get; set; } = null!;
+        public Uri SignOutUrl { get; set; } = null!;
         public Uri ApprenticeLoginUrl { get; set; } = null!;
         public Uri ApprenticeFeedbackUrl { get; set; } = null!;
         public Uri ApprenticeAanUrl { get; set; } = null!;
@@ -38,6 +40,7 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
                 NavigationSection.Home => ApprenticeHomeUrl,
                 NavigationSection.HelpAndSupport => ApprenticeHomeUrl,
                 NavigationSection.ConfirmMyApprenticeship => ApprenticeCommitmentsUrl,
+                NavigationSection.SignOut => SignOutUrl,
                 NavigationSection.MyApprenticeship => ApprenticeCommitmentsUrl,
                 NavigationSection.ApprenticeAccounts => ApprenticeAccountsUrl,
                 NavigationSection.Login => ApprenticeLoginUrl,
