@@ -71,5 +71,10 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
             _homePage = await _client.GetApprenticeHomepage(apprenticeId);
             return _homePage;
         }
+
+        public Task<bool> ShowApprenticeAan()
+        {
+            return Task.FromResult(true);
+        }
     }
 }
