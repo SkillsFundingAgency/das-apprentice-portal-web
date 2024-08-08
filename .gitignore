@@ -359,3 +359,4 @@ appsettings.Development.json
 src/SFA.DAS.ApprenticePortal.Web/internal-nlog.txt
 
 *.feature.cs
+src/.idea/.idea.SFA.DAS.ApprenticePortal.Web/.idea/
