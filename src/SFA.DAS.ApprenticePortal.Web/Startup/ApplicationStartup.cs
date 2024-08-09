@@ -44,6 +44,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 options.EnableZendesk();
                 options.EnableGoogleAnalytics();
                 options.SetCurrentNavigationSection(NavigationSection.Home);
+                options.SetUseGovSignIn(appConfig.UseGovSignIn);
             });
             services.AddSingleton<IEncodingService>( new EncodingService(encodingsConfig));
         }
