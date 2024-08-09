@@ -11,5 +11,6 @@
         public const string GoogleAnalyticsConfiguration = "SharedUI.GoogleAnalyticsConfiguration";
         public const string ZenDeskConfiguration = "SharedUI.ZenDeskConfiguration";
         public const string EnableCookieBanner = "SharedUI.EnableCookieBanner";
+        public const string UseGovSignIn = "SharedUI.UseGovSignIn";
     }
 }

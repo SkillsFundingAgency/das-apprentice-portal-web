@@ -55,5 +55,8 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Startup
 
         public void SetCurrentNavigationSection(NavigationSection confirmMyApprenticeship)
             => services.SetCurrentNavigationSection(confirmMyApprenticeship);
+
+        public void SetUseGovSignIn(bool useGovSignIn)
+            => services.UseGovSign(useGovSignIn);
     }
 }

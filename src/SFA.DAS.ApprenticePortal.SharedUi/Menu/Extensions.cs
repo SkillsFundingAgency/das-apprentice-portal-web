@@ -50,5 +50,25 @@ namespace SFA.DAS.ApprenticePortal.SharedUi.Menu
         public static NavigationSection? SelectedNavigationSection(this ViewDataDictionary viewData)
             => viewData.TryGetValue(ViewDataKeys.CurrentNavigationSection, out var text)
                ? text as NavigationSection? : null;
+
+        public static IServiceCollection UseGovSign(this IServiceCollection services, bool useGovSignIn)
+        {
+            services.Configure<MvcOptions>(options =>
+                options.Filters.Add(EnableAttribute.With(ViewDataKeys.UseGovSignIn, useGovSignIn)));
+            return services;
+        }
+
+        public static bool UseGovSignIn(this ViewDataDictionary viewData)
+        {
+            if (viewData.TryGetValue(ViewDataKeys.UseGovSignIn, out var text))
+            {
+                if (bool.TryParse(text?.ToString(), out bool parsedValue))
+                {
+                    return parsedValue;
+                }
+            }
+
+            return false;
+        }
     }
 }
