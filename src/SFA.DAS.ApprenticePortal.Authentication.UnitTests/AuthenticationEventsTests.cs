@@ -42,7 +42,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         public async Task User_who_creates_a_new_account_should_have_these_claims(bool termsOfUse)
         {
             var identity = _fixture.Create<ClaimsPrincipal>();
-            var apprentice = _fixture.Build<ApprenticeAccount>().With(p => p.TermsOfUseAccepted, termsOfUse).Create();
+            var apprentice = _fixture.Build<TestApprenticeAccount>().With(p => p.TermsOfUseAccepted, termsOfUse).Create();
 
             _authServiceMock.Setup(x=>x.AuthenticateAsync(It.IsAny<HttpContext>(), It.IsAny<string>())).ReturnsAsync(AuthenticateResult.Success(new AuthenticationTicket(identity, "test")));
 
@@ -63,12 +63,12 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         {
             // Arrange
             var identity = _fixture.Create<ClaimsPrincipal>();
-            var oldApprentice = _fixture.Create<ApprenticeAccount>();
+            var oldApprentice = _fixture.Create<TestApprenticeAccount>();
             _authServiceMock.Setup(x => x.AuthenticateAsync(It.IsAny<HttpContext>(), It.IsAny<string>())).ReturnsAsync(AuthenticateResult.Success(new AuthenticationTicket(identity, "test")));
 
             await AuthenticationEvents.UserAccountCreated(_httpContext, oldApprentice);
 
-            var updatedApprentice = _fixture.Create<ApprenticeAccount>();
+            var updatedApprentice = _fixture.Create<TestApprenticeAccount>();
 
             // Action
             await AuthenticationEvents.UserAccountUpdated(_httpContext, updatedApprentice);

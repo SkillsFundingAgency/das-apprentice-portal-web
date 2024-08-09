@@ -51,7 +51,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         }
 
         [Test, MoqAutoData]
-        public async Task Users_that_have_created_an_account_have_AccountCreated_claim_which_is_true([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, ApprenticeAccount apprentice)
+        public async Task Users_that_have_created_an_account_have_AccountCreated_claim_which_is_true([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, TestApprenticeAccount apprentice)
         {
             identity.AddIdentity(ApprenticeIdClaimsIdentity(apprenticeId));
             Mock.Get(accountProvider).Setup(x => x.GetApprenticeAccount(It.IsAny<Guid>()))
@@ -77,7 +77,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         }
 
         [Test, MoqAutoData]
-        public async Task Users_that_have_created_but_not_accepted_terms_do_not_have_a_TermsOfUse_claim([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, ApprenticeAccount apprentice)
+        public async Task Users_that_have_created_but_not_accepted_terms_do_not_have_a_TermsOfUse_claim([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, TestApprenticeAccount apprentice)
         {
             apprentice.TermsOfUseAccepted = false;
             identity.AddIdentity(ApprenticeIdClaimsIdentity(apprenticeId));
@@ -91,7 +91,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
         }
 
         [Test, MoqAutoData]
-        public async Task Users_that_have_created_and_accepted_terms_have_a_TermsOfUse_claim([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, ApprenticeAccount apprentice)
+        public async Task Users_that_have_created_and_accepted_terms_have_a_TermsOfUse_claim([Frozen] IApprenticeAccountProvider accountProvider, AuthenticationEvents sut, Guid apprenticeId, ClaimsPrincipal identity, TestApprenticeAccount apprentice)
         {
             apprentice.TermsOfUseAccepted = true;
             identity.AddIdentity(ApprenticeIdClaimsIdentity(apprenticeId));
@@ -113,12 +113,5 @@ namespace SFA.DAS.ApprenticePortal.Authentication.UnitTests
 
         private static ClaimsIdentity ApprenticeIdClaimsIdentity(string apprenticeId)
             => new ClaimsIdentity(new[] { new Claim("apprentice_id", apprenticeId) });
-    }
-
-    public class ApprenticeAccount : IApprenticeAccount
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool TermsOfUseAccepted { get; set; }
     }
 }
