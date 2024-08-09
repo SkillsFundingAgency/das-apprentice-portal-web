@@ -9,5 +9,6 @@ namespace SFA.DAS.ApprenticePortal.SharedUi
         public NavigationSectionUrls ApplicationUrls { get; }
         public GoogleAnalyticsConfiguration GoogleAnalytics { get; }
         public ZenDeskConfiguration Zendesk { get; }
+        public bool UseGovSignIn { get; set; }
     }
 }
