@@ -215,6 +215,10 @@
                                 {
                                     "name": "Version",
                                     "value": "[parameters('version')]"
+                                },
+                                {
+                                    "name": "ResourceEnvironmentName",
+                                    "value": "[parameters('resourceEnvironmentName')]"
                                 }
                             ]
                         }
