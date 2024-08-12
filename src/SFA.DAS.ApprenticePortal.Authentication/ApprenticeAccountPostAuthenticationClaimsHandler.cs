@@ -47,6 +47,8 @@ public class ApprenticeAccountPostAuthenticationClaimsHandler : ICustomClaims
         {
             claims.Add(new Claim(IdentityClaims.TermsOfUseAccepted, "True"));
         }
+        
+        claims.Add(new Claim(IdentityClaims.AccountCreated, "True"));
            
         return claims;
     }

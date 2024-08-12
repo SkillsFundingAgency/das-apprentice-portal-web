@@ -34,6 +34,7 @@ public class ApprenticeAccountPostAuthenticationClaimsHandlerTests
         actual.First(c => c.Type.Equals(IdentityClaims.GivenName)).Value.Should().Be(apprenticeAccount.FirstName);
         actual.First(c => c.Type.Equals(IdentityClaims.FamilyName)).Value.Should().Be(apprenticeAccount.LastName);
         actual.First(c => c.Type.Equals(IdentityClaims.TermsOfUseAccepted)).Value.Should().Be("True");
+        actual.First(c => c.Type.Equals(IdentityClaims.AccountCreated)).Value.Should().Be("True");
         actual.First(c => c.Type.Equals(IdentityClaims.ApprenticeId)).Value.Should().Be(apprenticeAccount.ApprenticeId.ToString());
     }
     
