@@ -31,7 +31,7 @@ public class ApprenticeAccountPostAuthenticationClaimsHandler : ICustomClaims
 
         var claims = new List<Claim>
         {
-            new(IdentityClaims.ApprenticeId, apprentice!.Id.ToString()),
+            new(IdentityClaims.ApprenticeId, apprentice!.ApprenticeId.ToString()),
             new(IdentityClaims.Name, email)
         };
 

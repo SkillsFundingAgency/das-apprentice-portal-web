@@ -14,5 +14,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         public ZenDeskConfiguration Zendesk { get; set; }
         public OuterApiConfiguration ApprenticePortalOuterApi { get; set; }
         public DataProtectionConnectionStrings ConnectionStrings { get; set; }
+        public bool UseGovSignIn { get; set; }
+        public bool UseStubAuth { get; set; }
     }
 }

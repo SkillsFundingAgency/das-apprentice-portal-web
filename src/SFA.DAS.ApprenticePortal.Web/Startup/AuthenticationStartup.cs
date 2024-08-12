@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
 using SFA.DAS.ApprenticePortal.Authentication;
 using SFA.DAS.ApprenticePortal.Web.Services;
+using SFA.DAS.GovUK.Auth.AppStart;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
@@ -22,6 +24,17 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient((_) => config);
 
             return services;
+        }
+
+        public static void AddGovLoginAuthentication(
+            this IServiceCollection services,
+            NavigationSectionUrls config,
+            IConfiguration configuration)
+        {
+            services.AddGovLoginAuthentication(configuration);
+            services.AddApplicationAuthorisation();
+            services.AddTransient<IApprenticeAccountProvider, ApprenticeAccountProvider>();
+            services.AddTransient((_) => config);
         }
 
         private static IServiceCollection AddApplicationAuthentication(
