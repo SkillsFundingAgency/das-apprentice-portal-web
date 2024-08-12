@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ApprenticePortal.SharedUi\SFA.DAS.ApprenticePortal.SharedUi.csproj" />
+    <ProjectReference Include="..\SFA.DAS.ApprenticePortal.Web\SFA.DAS.ApprenticePortal.Web.csproj" />
   </ItemGroup>
 
 </Project>
