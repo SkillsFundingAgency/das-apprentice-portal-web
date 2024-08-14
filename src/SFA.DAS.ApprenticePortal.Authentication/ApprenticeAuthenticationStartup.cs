@@ -64,7 +64,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             var loginRedirect = string.IsNullOrEmpty(cookieDomain)? "" : $"https://{cookieDomain}/account-details";
             
             services.AddAndConfigureGovUkAuthentication(configuration,
-                typeof(ApprenticeAccountPostAuthenticationClaimsHandler), "", "", cookieDomain, loginRedirect);
+                typeof(ApprenticeAccountPostAuthenticationClaimsHandler), "", "/account-details", cookieDomain, loginRedirect);
             
             services.AddHttpContextAccessor();
         }

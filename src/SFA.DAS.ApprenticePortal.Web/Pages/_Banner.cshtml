@@ -1,18 +1,16 @@
-﻿@if (DateTime.UtcNow < new DateTime(2024, 02, 12))
+﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+@if(!ViewData.UseGovSignIn() && DateTime.UtcNow > new DateTime(2024,9,16))
 {
     <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
             <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Important notice
+                How you sign in is changing
             </h2>
         </div>
         <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-                National Apprenticeship Week
-            </p>
-            <p>
-                National Apprenticeship Week 2024 will run from Monday 5 to Sunday 11 February - find out how to get involved and download the toolkit at <a href="https://naw.appawards.co.uk/" class="govuk-link" target="_blank" rel="external noopener noreferrer">National Apprenticeship Week 2024</a>.
-            </p>
+            <p class="govuk-body">From 1st October, you’ll sign in to My apprenticeship using GOV.UK One Login.</p>
+            <p class="govuk-body">You’ll need to create a GOV.UK One Login with the same email address that you use for My apprenticeship.</p>
+            <p class="govuk-body">All your account information will automatically be transferred to your GOV.UK One Login.</p>
         </div>
     </div>
 }
