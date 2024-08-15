@@ -22,7 +22,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             
             var emailClaim = user.EmailAddressClaim();
 
-            Email = new MailAddress(emailClaim?.Value ?? "");
+            Email = emailClaim?.Value != null ? new MailAddress(emailClaim?.Value ?? "") : null;
 
             HasCreatedAccount = user.HasCreatedAccount();
             HasAcceptedTermsOfUse = user.HasAcceptedTermsOfUse();
@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticePortal.Authentication
 
         public Guid ApprenticeId { get; }
 
-        public MailAddress Email { get; }
+        public MailAddress? Email { get; }
 
         public bool HasCreatedAccount { get; }
         public bool HasAcceptedTermsOfUse { get; }
