@@ -8,18 +8,21 @@ namespace SFA.DAS.ApprenticePortal.Authentication
     {
         public AuthenticatedUser(ClaimsPrincipal user)
         {
-            var claim = user.ApprenticeIdClaim()
-                        ?? throw new InvalidOperationException($"There is no `{IdentityClaims.ApprenticeId}` claim.");
+            var claim = user.ApprenticeIdClaim();
 
-            if (!Guid.TryParse(claim.Value, out var apprenticeId))
-                throw new InvalidOperationException($"`{claim.Value}` in claim `{IdentityClaims.ApprenticeId}` is not a valid identifier");
+            if (claim != null)
+            {
+                Guid.TryParse(claim.Value, out var apprenticeId);
+                ApprenticeId = apprenticeId;    
+            }
+            else
+            {
+                ApprenticeId = Guid.Empty;
+            }
+            
+            var emailClaim = user.EmailAddressClaim();
 
-            ApprenticeId = apprenticeId;
-
-            var emailClaim = user.EmailAddressClaim()
-                             ?? throw new InvalidOperationException($"There is no `{IdentityClaims.Name}` claim for the email.");
-
-            Email = new MailAddress(emailClaim.Value ?? "");
+            Email = new MailAddress(emailClaim?.Value ?? "");
 
             HasCreatedAccount = user.HasCreatedAccount();
             HasAcceptedTermsOfUse = user.HasAcceptedTermsOfUse();
