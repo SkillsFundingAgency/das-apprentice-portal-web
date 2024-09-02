@@ -21,6 +21,14 @@ namespace SFA.DAS.ApprenticePortal.Authentication.Filters
         {
             if (!_user.HasCreatedAccount)
                 context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register{context.HttpContext.Request.QueryString}"));
+            else if (!_user.HasFinishedAccountCreation)
+            {
+                var apprentice = await _provider.GetApprenticeAccount(_user.ApprenticeId);
+                if (string.IsNullOrEmpty(apprentice!.FirstName))
+                {
+                    context.Result = new RedirectResult(_urlHelper.Generate(NavigationSection.ApprenticeAccounts, "Account"));    
+                }
+            }
             else if (!_user.HasAcceptedTermsOfUse)
             {
                 var apprentice = await _provider.GetApprenticeAccount(_user.ApprenticeId);
