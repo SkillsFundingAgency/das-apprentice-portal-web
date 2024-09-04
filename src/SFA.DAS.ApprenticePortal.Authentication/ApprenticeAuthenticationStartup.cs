@@ -62,9 +62,9 @@ namespace SFA.DAS.ApprenticePortal.Authentication
         {
             var cookieDomain = DomainExtensions.GetDomain(configuration["ResourceEnvironmentName"]);
             var stubLoginRedirect = string.IsNullOrEmpty(cookieDomain)? "" : $"https://confirm.{cookieDomain}/account-details";
-            
+            var signedOutRedirectUrl = string.IsNullOrEmpty(cookieDomain) ? "" : $"https://{cookieDomain}";
             services.AddAndConfigureGovUkAuthentication(configuration,
-                typeof(ApprenticeAccountPostAuthenticationClaimsHandler), "", "/account-details", cookieDomain, stubLoginRedirect);
+                typeof(ApprenticeAccountPostAuthenticationClaimsHandler), signedOutRedirectUrl, "/account-details", cookieDomain, stubLoginRedirect);
             
             services.AddHttpContextAccessor();
         }
