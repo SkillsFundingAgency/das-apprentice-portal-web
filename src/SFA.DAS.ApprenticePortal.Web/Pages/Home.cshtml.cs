@@ -23,11 +23,11 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         private readonly NavigationUrlHelper _urlHelper;
         private readonly ApplicationConfiguration _configuration;
         private readonly IOidcService _oidcService;
-        private readonly ApprenticeAccountProvider _apprenticeAccountProvider;
+        private readonly IApprenticeAccountProvider _apprenticeAccountProvider;
 
         public HomepageModel? HomePageModel { get; set; }
 
-        public HomeModel(ApprenticeService apprenticesService, AuthenticatedUser user, NavigationUrlHelper urlHelper, ApplicationConfiguration configuration, IOidcService oidcService, ApprenticeAccountProvider apprenticeAccountProvider)
+        public HomeModel(ApprenticeService apprenticesService, AuthenticatedUser user, NavigationUrlHelper urlHelper, ApplicationConfiguration configuration, IOidcService oidcService, IApprenticeAccountProvider apprenticeAccountProvider)
         {
             _apprenticesService = apprenticesService;
             _user = user;
