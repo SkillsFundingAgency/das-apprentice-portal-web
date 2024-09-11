@@ -45,6 +45,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             }
             else
             {
+                services.AddTransient<IOidcService, StubOidcService>();
                 services.AddAuthentication(appConfig.ApplicationUrls, Environment);    
             }
             
