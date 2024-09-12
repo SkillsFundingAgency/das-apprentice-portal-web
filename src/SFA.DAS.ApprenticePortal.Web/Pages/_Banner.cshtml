@@ -1,5 +1,5 @@
 ﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
-@if(!ViewData.UseGovSignIn() && DateTime.UtcNow > new DateTime(2024,9,16))
+@if(!ViewData.UseGovSignIn())
 {
     <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
