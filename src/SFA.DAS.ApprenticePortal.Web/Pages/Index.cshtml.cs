@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+using SFA.DAS.ApprenticePortal.Web.Startup;
 
 namespace SFA.DAS.ApprenticeCommitments.Web.Pages
 {
@@ -8,6 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly NavigationUrlHelper urlHelper;
+        private readonly ApplicationConfiguration _configuration;
 
         [BindProperty(SupportsGet = true)]
         public string? Invitation { get; set; }
@@ -19,18 +23,26 @@ namespace SFA.DAS.ApprenticeCommitments.Web.Pages
         {
             get
             {
-                if (Invitation != null)
-                    return urlHelper.Generate(NavigationSection.Login, $"Invitations/CreatePassword/{Invitation}");
-                else if (Register != null)
-                    return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register/{Register}");
+                if (_configuration.UseGovSignIn)
+                {
+                    if(Invitation != null || Register != null)
+                        return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register/{Register}");
+                }
                 else
-                    return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships");
+                {
+                    if (Invitation != null)
+                        return urlHelper.Generate(NavigationSection.Login, $"Invitations/CreatePassword/{Invitation}");
+                    else if (Register != null)
+                        return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, $"register/{Register}");
+                }
+                return urlHelper.Generate(NavigationSection.ConfirmMyApprenticeship, "apprenticeships");
             }
         }
 
-        public IndexModel(NavigationUrlHelper urlHelper)
+        public IndexModel(NavigationUrlHelper urlHelper, ApplicationConfiguration configuration)
         {
             this.urlHelper = urlHelper;
+            _configuration = configuration;
         }
     }
 }
