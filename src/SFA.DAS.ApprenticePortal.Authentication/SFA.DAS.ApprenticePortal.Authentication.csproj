@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
 
-    <Description>Apprentice portal shared UI components</Description>
+    <Description>Apprentice portal shared authentication components</Description>
     <Authors>ESFA</Authors>
     <Company>ESFA</Company>
     <PackageLicense>https://github.com/SkillsFundingAgency/das-apprentice-accounts-web/master/LICENSE</PackageLicense>
@@ -15,7 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.7" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.0.2" />
+    <PackageReference Include="SFA.DAS.GovUK.Auth" Version="17.1.104" />
   </ItemGroup>
 
 </Project>

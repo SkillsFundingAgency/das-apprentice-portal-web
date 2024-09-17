@@ -11,5 +11,8 @@ namespace SFA.DAS.ApprenticePortal.Web.Services.OuterApi
 
         [Get("/apprentices/{id}/homepage")]
         Task<ApprenticeHomepage> GetApprenticeHomepage([Path] Guid id);
+
+        [Put("/apprentices")]
+        Task<Apprentice> PutApprentice([Body] PutApprenticeRequest request);
     }
 }

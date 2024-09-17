@@ -25,5 +25,10 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
                 return null;
             }
         }
+
+        public async Task<IApprenticeAccount?> PutApprenticeAccount(string email, string govIdentifier)
+        {
+            return await _client.PutApprentice(new PutApprenticeRequest(email, govIdentifier));
+        }
     }
 }

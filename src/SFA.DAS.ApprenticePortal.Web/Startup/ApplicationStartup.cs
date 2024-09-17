@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SFA.DAS.ApprenticePortal.Authentication;
 using SFA.DAS.ApprenticePortal.SharedUi.GoogleAnalytics;
 using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.SharedUi.Startup;
 using SFA.DAS.Encoding;
+using SFA.DAS.GovUK.Auth.AppStart;
+using SFA.DAS.GovUK.Auth.Services;
 
 namespace SFA.DAS.ApprenticePortal.Web.Startup
 {
@@ -35,7 +38,17 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
 
             services.EnableGoogleAnalytics(appConfig.GoogleAnalytics);
             services.AddHealthChecks();
-            services.AddAuthentication(appConfig.ApplicationUrls, Environment);
+            services.AddTransient<ICustomClaims, ApprenticeAccountPostAuthenticationClaimsHandler>();
+            if (appConfig.UseGovSignIn)
+            {
+                services.AddGovLoginAuthentication(appConfig.ApplicationUrls,Configuration);
+            }
+            else
+            {
+                services.AddTransient<IOidcService, StubOidcService>();
+                services.AddAuthentication(appConfig.ApplicationUrls, Environment);    
+            }
+            
             services.AddOuterApi(appConfig.ApprenticePortalOuterApi);
             services.AddServices();
             services.AddRazorPages();
@@ -44,6 +57,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
                 options.EnableZendesk();
                 options.EnableGoogleAnalytics();
                 options.SetCurrentNavigationSection(NavigationSection.Home);
+                options.SetUseGovSignIn(appConfig.UseGovSignIn);
             });
             services.AddSingleton<IEncodingService>( new EncodingService(encodingsConfig));
         }

@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SFA.DAS.GovUK.Auth.AppStart;
 
 namespace SFA.DAS.ApprenticePortal.Authentication
 {
@@ -54,6 +56,17 @@ namespace SFA.DAS.ApprenticePortal.Authentication
             services.AddScoped<AuthenticationEvents>();
 
             return services;
+        }
+
+        public static void AddGovLoginAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            var cookieDomain = DomainExtensions.GetDomain(configuration["ResourceEnvironmentName"]);
+            var stubLoginRedirect = string.IsNullOrEmpty(cookieDomain)? "" : $"https://confirm.{cookieDomain}/account-details";
+            var signedOutRedirectUrl = string.IsNullOrEmpty(cookieDomain) ? "" : $"https://{cookieDomain}";
+            services.AddAndConfigureGovUkAuthentication(configuration,
+                typeof(ApprenticeAccountPostAuthenticationClaimsHandler), signedOutRedirectUrl, "/account-details", cookieDomain, stubLoginRedirect);
+            
+            services.AddHttpContextAccessor();
         }
     }
 }

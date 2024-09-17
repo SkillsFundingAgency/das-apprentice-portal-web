@@ -30,7 +30,7 @@
         },
         "configNames": {
             "type": "string",
-            "defaultValue": "SFA.DAS.ApprenticePortal.Web,SFA.DAS.Encoding"
+            "defaultValue": "SFA.DAS.ApprenticePortal.Web,SFA.DAS.Encoding,SFA.DAS.Apprentice.GovSignIn"
         },
         "loggingRedisConnectionString": {
             "type": "securestring"
@@ -215,6 +215,10 @@
                                 {
                                     "name": "Version",
                                     "value": "[parameters('version')]"
+                                },
+                                {
+                                    "name": "ResourceEnvironmentName",
+                                    "value": "[parameters('resourceEnvironmentName')]"
                                 }
                             ]
                         }

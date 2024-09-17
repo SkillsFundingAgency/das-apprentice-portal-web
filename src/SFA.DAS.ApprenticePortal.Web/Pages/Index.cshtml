@@ -1,4 +1,5 @@
 ﻿@page
+@using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @model SFA.DAS.ApprenticeCommitments.Web.Pages.IndexModel
 @{
     ViewData["Title"] = "Confirm my apprenticeship details";
@@ -17,6 +18,12 @@
             <li>understand what’s expected of your employer and your training provider during your apprenticeship</li>
             <li>find support and information for your apprenticeship</li>
         </ul>
+        @if (ViewData.UseGovSignIn())
+        {
+            <div class="govuk-inset-text">
+                You need a GOV.UK One Login to sign in to this service. You can create one if you do not already have one.
+            </div>    
+        }
         <a href="@Model.StartUrl" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2" data-module="govuk-button">
             Start now
             <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg"
@@ -29,10 +36,13 @@
         <p>Before you use this service, you need to know the:</p>
         <ul class="govuk-list govuk-list--bullet">
             <li>name of your employer</li>
-            <li>name of your  training provider</li>
+            <li>name of your training provider</li>
             <li>planned start date of your apprenticeship</li>
             <li>name and level of your apprenticeship</li>
-            <li>email address you’ll use to create your My apprenticeship account</li>
+            @if (!ViewData.UseGovSignIn())
+            {
+                <li>email address you’ll use to create your My apprenticeship account</li>
+            }
         </ul>
     </div>
 </div>
