@@ -41,7 +41,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Pages
         {
             try
             {
-                if (_configuration.UseGovSignIn && !_configuration.UseStubAuth)
+                if (_configuration.UseGovSignIn && !_configuration.StubAuth)
                 {
                     var token = await HttpContext.GetTokenAsync("access_token");
                     var govUkUser = await _oidcService.GetAccountDetails(token);

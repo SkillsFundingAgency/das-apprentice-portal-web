@@ -15,6 +15,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
         public OuterApiConfiguration ApprenticePortalOuterApi { get; set; }
         public DataProtectionConnectionStrings ConnectionStrings { get; set; }
         public virtual bool UseGovSignIn { get; set; }
-        public bool UseStubAuth { get; set; }
+        public bool StubAuth { get; set; }
     }
 }
