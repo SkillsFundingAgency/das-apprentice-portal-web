@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using Moq;
 
 namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
 {
@@ -9,8 +11,10 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
         public static AuthenticatedUser FakeLocalUserWithNoAccount => new AuthenticatedUser(FakeLocalUserWithNoAccountClaim(Guid.NewGuid()));
         public static AuthenticatedUser FakeLocalUserWithAccountButTermsOfUseNotAccepted => new AuthenticatedUser(FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(Guid.NewGuid()));
 
-        public static ClaimsPrincipal FakeLocalUserFullyVerifiedClaim(Guid apprenticeId)
+        public static IHttpContextAccessor FakeLocalUserFullyVerifiedClaim(Guid apprenticeId)
         {
+            var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
+            
             var principal = new ClaimsPrincipal(new[]
             {
                 new ClaimsIdentity(new[]
@@ -30,12 +34,20 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
                 new Claim(IdentityClaims.VerifiedUser, "True"),
             }, "TestAdditional"));
 
-            return principal;
+            var defaultHttpContext = new DefaultHttpContext()
+            {
+                User = principal
+            };
+
+            mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(defaultHttpContext);
+            
+            return mockHttpContextAccessor.Object;
         }
 
-        public static ClaimsPrincipal FakeLocalUserWithNoAccountClaim(Guid apprenticeId)
+        public static IHttpContextAccessor FakeLocalUserWithNoAccountClaim(Guid apprenticeId)
         {
-            return new ClaimsPrincipal(new[]
+            var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
+            var principal =  new ClaimsPrincipal(new[]
             {
                 new ClaimsIdentity(new[]
                 {
@@ -44,9 +56,19 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
                     new Claim(IdentityClaims.Name, "bart_simpson_esfa@mailinator.com"),
                 }, "Test")
             });
+            
+            var defaultHttpContext = new DefaultHttpContext()
+            {
+                User = principal
+            };
+
+            mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(defaultHttpContext);
+            
+            return mockHttpContextAccessor.Object;
         }
-        public static ClaimsPrincipal FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(Guid apprenticeId)
+        public static IHttpContextAccessor FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(Guid apprenticeId)
         {
+            var mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
             var principal = new ClaimsPrincipal(new[]
             {
                 new ClaimsIdentity(new[]
@@ -66,7 +88,14 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
                 new Claim(IdentityClaims.AccountCreated, "True")
             }, "TestAdditional"));
 
-            return principal;
+            var defaultHttpContext = new DefaultHttpContext()
+            {
+                User = principal
+            };
+
+            mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(defaultHttpContext);
+            
+            return mockHttpContextAccessor.Object;
 
         }
     }
