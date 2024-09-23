@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Net.Mail;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace SFA.DAS.ApprenticePortal.Authentication
 {
     public class AuthenticatedUser
     {
-        public AuthenticatedUser(ClaimsPrincipal user)
+        public AuthenticatedUser(IHttpContextAccessor contextAccessor)
         {
+            var user = contextAccessor.HttpContext!.User;
             var claim = user.ApprenticeIdClaim();
 
             if (claim != null)

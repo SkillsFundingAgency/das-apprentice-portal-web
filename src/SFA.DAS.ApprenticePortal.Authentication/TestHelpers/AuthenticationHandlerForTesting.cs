@@ -29,19 +29,19 @@ namespace SFA.DAS.ApprenticePortal.Authentication.TestHelpers
         public static void AddUserWithFullAccount(Guid apprenticeId)
         {
             Console.WriteLine($"Adding logged in user {apprenticeId}");
-            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserFullyVerifiedClaim(apprenticeId));
+            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserFullyVerifiedClaim(apprenticeId).HttpContext.User);
         }
 
         public static void AddUserWithoutTerms(Guid apprenticeId)
         {
             Console.WriteLine($"Adding logged in user {apprenticeId} who hasn't accepts ToC");
-            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(apprenticeId));
+            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithAccountButTermsOfUseNotAcceptedClaim(apprenticeId).HttpContext.User);
         }
 
         public static void AddUserWithoutAccount(Guid apprenticeId)
         {
             Console.WriteLine($"Adding unverified logged in user {apprenticeId}");
-            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithNoAccountClaim(apprenticeId));
+            _users.TryAdd(apprenticeId, AuthenticatedUsersForTesting.FakeLocalUserWithNoAccountClaim(apprenticeId).HttpContext.User);
         }
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()

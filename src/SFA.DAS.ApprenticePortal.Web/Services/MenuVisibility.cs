@@ -4,6 +4,7 @@ using System;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using SFA.DAS.ApprenticePortal.Authentication;
 
 namespace SFA.DAS.ApprenticePortal.Web.Services
@@ -14,10 +15,10 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
         private readonly ClaimsPrincipal _user;
         private ApprenticeHomepage? _homePage;
 
-        public MenuVisibility(IOuterApiClient client, ClaimsPrincipal user)
+        public MenuVisibility(IOuterApiClient client, IHttpContextAccessor contextAccessor)
         {
             _client = client;
-            _user = user;
+            _user = contextAccessor.HttpContext!.User;
         }
 
         public async Task<bool> ShowConfirmMyApprenticeship()

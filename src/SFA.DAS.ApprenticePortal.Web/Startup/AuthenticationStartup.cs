@@ -32,8 +32,10 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             IConfiguration configuration)
         {
             services.AddGovLoginAuthentication(configuration);
-            services.AddApplicationAuthorisation();
             services.AddTransient<IApprenticeAccountProvider, ApprenticeAccountProvider>();
+            services.AddAuthorization();
+            services.AddScoped<AuthenticatedUser>();
+            services.AddHttpContextAccessor();
             services.AddTransient((_) => config);
         }
 
