@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using SFA.DAS.ApprenticePortal.SharedUi.Menu;
 using SFA.DAS.ApprenticePortal.Web.Models;
 using SFA.DAS.GovUK.Auth.Services;
 
 namespace SFA.DAS.ApprenticePortal.Web.Controllers;
 
-public class ServicesController(IStubAuthenticationService stubAuthenticationService, IConfiguration configuration) : Controller
+public class ServicesController(IStubAuthenticationService stubAuthenticationService, IConfiguration configuration, NavigationUrlHelper navigationUrlHelper) : Controller
 {
     [HttpGet]
     [Route("account-details", Name = RouteNames.StubAccountDetailsGet)]
@@ -61,5 +62,16 @@ public class ServicesController(IStubAuthenticationService stubAuthenticationSer
             ReturnUrl = returnUrl
         };
         return View(viewModel);
+    }
+    
+    [HttpGet]
+    [Route("signed-out", Name = RouteNames.SignedOut)]
+    public IActionResult SignedOut()
+    {
+        var model = new LoggedOutViewModel
+        {
+            PostLogoutRedirectUri = navigationUrlHelper.Generate(NavigationSection.Home)
+        };
+        return View(model);
     }
 }
