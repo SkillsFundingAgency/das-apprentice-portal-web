@@ -65,7 +65,7 @@ public class ServicesController(IStubAuthenticationService stubAuthenticationSer
     }
     
     [HttpGet]
-    [Route("signed-out", Name = RouteNames.SignedOut)]
+    [Route("apprentice-signed-out", Name = RouteNames.SignedOut)]
     public IActionResult SignedOut()
     {
         var model = new LoggedOutViewModel
