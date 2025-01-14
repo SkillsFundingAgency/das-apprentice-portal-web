@@ -19,8 +19,6 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient<Http.MessageHandlers.LoggingMessageHandler>();
             services.AddTransient<Http.MessageHandlers.ApimHeadersHandler>();
 
-            global::NLog.LogManager.GetLogger("ServicesStartup").Info("ApiBaseUrl: {url}", configuration.ApiBaseUrl);
-
             services
                 .AddRestEaseClient<IOuterApiClient>(configuration.ApiBaseUrl)
                 .AddHttpMessageHandler<Http.MessageHandlers.DefaultHeadersHandler>()
