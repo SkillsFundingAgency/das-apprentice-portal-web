@@ -23,16 +23,15 @@
 </div>
 
 <main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">
-
     <partial name="_HomeNotifications" , model=@Model />
-
     <div class="govuk-width-container" id="dashboard-section">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <ul class="dashboard-nav dashboard-li">
                     <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
                         <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
+                            <a class="govuk-link govuk-link--no-visited-state"
+                                asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
                                 Confirm my apprenticeship details
                             </a>
                         </h2>
@@ -40,22 +39,27 @@
                         {
                             <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
                         }
-                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete && Model.HomePageModel.ShowMyApprenticeshipCard)
+                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete &&
+                        Model.HomePageModel.ShowMyApprenticeshipCard)
                         {
                             <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Unconfirmed</strong>
                         }
-                        else 
+                        else
                         {
                             <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
                         }
-                        <p asp-hide="@Model.HomePageModel.ShowMyApprenticeshipCard">Confirm details of your employer, training provider and apprenticeship.</p>
-                        <p asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">Changes have been made to your apprenticeship details. Confirm your new details.</p>
+                        <p asp-hide="@Model.HomePageModel.ShowMyApprenticeshipCard">Confirm details of your employer,
+                            training provider and apprenticeship.</p>
+                        <p asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">Changes have been made to your
+                            apprenticeship details. Confirm your new details.</p>
                     </li>
                     <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
-                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped && Model.HomePageModel.ShowConfirmMyApprenticeshipCard == false)
+                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped &&
+                                                Model.HomePageModel.ShowConfirmMyApprenticeshipCard == false)
                         {
                             <h2 class="govuk-heading-m">
-                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
+                                <a class="govuk-link govuk-link--no-visited-state"
+                                    asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
                                     My apprenticeship details
                                 </a>
                             </h2>
@@ -64,28 +68,34 @@
                         else
                         {
                             <h2 class="govuk-heading-m">
-                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship" asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
+                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship"
+                                    asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
                                     My apprenticeship details
                                 </a>
                             </h2>
-                         }
-                         <p>Details of your employer, training provider and apprenticeship.</p>
+                        }
+                        <p>Details of your employer, training provider and apprenticeship.</p>
                     </li>
                     <li asp-for-external-section="ApprenticeFeedback">
                         <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="ApprenticeFeedback">
+                            <a class="govuk-link govuk-link--no-visited-state"
+                                asp-external-section="ApprenticeFeedback">
                                 Feedback on your training provider
                             </a>
                         </h2>
-                        <p>Let us know how you're getting on with your apprenticeship and how your training provider can improve to help other apprentices.</p>
+                        <p>Let us know how you're getting on with your apprenticeship and how your training provider can
+                            improve to help other apprentices.</p>
                     </li>
                     <li asp-for-external-section="@NavigationSection.ApprenticeAan">
                         <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-external-section="@NavigationSection.ApprenticeAan">
+                            <a class="govuk-link govuk-link--no-visited-state"
+                                asp-external-section="@NavigationSection.ApprenticeAan">
                                 Become an apprenticeship ambassador
                             </a>
                         </h2>
-                        <p>The AAN (comprised of employer and apprentice members) is the movement championing apprenticeships across England. The network raises awareness and increases engagement to meet the needs of employers, communities and individuals.</p>
+                        <p>The AAN (comprised of employer and apprentice members) is the movement championing
+                            apprenticeships across England. The network raises awareness and increases engagement to
+                            meet the needs of employers, communities and individuals.</p>
                     </li>
                     <li>
                         <h2 class="govuk-heading-m">
