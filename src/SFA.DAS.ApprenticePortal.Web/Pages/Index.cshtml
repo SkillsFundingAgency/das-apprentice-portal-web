@@ -2,47 +2,30 @@
 @using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @model SFA.DAS.ApprenticeCommitments.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Confirm my apprenticeship details";
+    ViewData["Title"] = "Access your apprenticeship";
 }
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">@ViewData["Title"]</h1>
         <p>
-            Your employer and your training provider have entered your apprenticeship details into our service.
-            You should review and confirm your apprenticeship details are correct when starting your apprenticeship.
+            If you're an apprentice, use this service to:
         </p>
-        <p>You should use this service to:</p>
         <ul class="govuk-list govuk-list--bullet">
-            <li>check and confirm your apprenticeship details</li>
-            <li>understand what’s expected of you during your apprenticeship</li>
-            <li>understand what’s expected of your employer and your training provider during your apprenticeship</li>
-            <li>find support and information for your apprenticeship</li>
+            <li>view your apprenticeship details</li>
+            <li>understand what’s expected of you, your employer and your training provider during your apprenticeship</li>
+            <li>get support about your apprenticeship</li>
+            <li>join the apprenticeship ambassador network</li>
+            <li>give feedback on your training provider</li>
         </ul>
-        @if (ViewData.UseGovSignIn())
-        {
-            <div class="govuk-inset-text">
-                You need a GOV.UK One Login to sign in to this service. You can create one if you do not already have one.
-            </div>    
-        }
+        <div class="govuk-inset-text">
+            You need a GOV.UK One Login to sign in to this service. You can create one if you do not already have one.
+        </div>
         <a href="@Model.StartUrl" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2" data-module="govuk-button">
             Start now
             <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg"
-                    width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                 width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
             </svg>
-        </a>
-        <h2 class="govuk-heading-m">Before you start</h2>
-        <p>To use this service you should have received an email invitation.</p>
-        <p>Before you use this service, you need to know the:</p>
-        <ul class="govuk-list govuk-list--bullet">
-            <li>name of your employer</li>
-            <li>name of your training provider</li>
-            <li>planned start date of your apprenticeship</li>
-            <li>name and level of your apprenticeship</li>
-            @if (!ViewData.UseGovSignIn())
-            {
-                <li>email address you’ll use to create your My apprenticeship account</li>
-            }
-        </ul>
+        </a>        
     </div>
 </div>
