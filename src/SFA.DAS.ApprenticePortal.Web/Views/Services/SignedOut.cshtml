@@ -12,13 +12,13 @@
         @if (Model.PostLogoutRedirectUri != null)
         {
             <p class="govuk-body">
-                You can go <a class="govuk-link" href="https://www.gov.uk"><span>back to GOV.UK</span></a> or <a class="govuk-link" href="@Model.PostLogoutRedirectUri"><span>sign back in</span>.</a>
+                You can go <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk"><span>back to GOV.UK</span></a> or <a class="govuk-link govuk-link--no-visited-state" href="@Model.PostLogoutRedirectUri"><span>sign back in</span></a>.
             </p>
         }
         else
         {
             <p class="govuk-body">
-                You can go <a class="govuk-link" href="https://www.gov.uk"><span>back to GOV.UK</span>.</a>
+                You can go <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk"><span>back to GOV.UK</span>.</a>
             </p>
         }
     </div>
