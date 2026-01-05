@@ -1,4 +1,24 @@
 ﻿@using SFA.DAS.ApprenticePortal.SharedUi.Menu
+
+@if (DateTime.UtcNow < new DateTime(2026, 02, 16))
+{
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                National Apprenticeship Week 2026
+            </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+                National Apprenticeship Week is 9 - 15 February 2026.
+            </p>
+            <p>
+                Get involved and download the toolkit from the <a href="https://naw.appawards.co.uk/" class="govuk-link" target="_blank" rel="external noopener noreferrer">National Apprenticeship Week website</a>.
+            </p>
+        </div>
+    </div>
+}
+
 @if(!ViewData.UseGovSignIn())
 {
     <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
@@ -14,3 +34,6 @@
         </div>
     </div>
 }
+
+
+
