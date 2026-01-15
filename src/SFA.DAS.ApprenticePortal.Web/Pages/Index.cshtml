@@ -2,7 +2,7 @@
 @using SFA.DAS.ApprenticePortal.SharedUi.Menu
 @model SFA.DAS.ApprenticeCommitments.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Access your apprenticeship";
+    ViewData["Title"] = "Access Your Apprenticeship";
 }
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -11,23 +11,27 @@
             If you're an apprentice, use this service to:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-            <li>view your apprenticeship details</li>
+            <li>check your apprenticeship details</li>
             <li>understand what's expected of you, your employer and your training provider during your apprenticeship</li>
             <li>get support for your apprenticeship</li>
             <li>join the apprenticeship ambassador network</li>
             <li>give feedback on your training provider</li>
         </ul>
-        
+
         <p class="govuk-body">
-            You can also do this on Your Apprenticeship app, which you can get from <a href="https://play.google.com/store/apps/details?id=uk.gov.education.myapprenticeship&hl=en-US" class="govuk-link" target="_blank" rel="noopener noreferrer">Google Play</a> or the <a href="https://apps.apple.com/gb/app/your-apprenticeship/id6738137983" class="govuk-link" target="_blank" rel="noopener noreferrer">App Store</a>
+            You can also do this on Your Apprenticeship app, which you can get from <a href="https://play.google.com/store/apps/details?id=uk.gov.education.myapprenticeship&hl=en-US" class="govuk-link" target="_blank" rel="noopener noreferrer">Google Play</a> or the <a href="https://apps.apple.com/gb/app/your-apprenticeship/id6738137983" class="govuk-link" target="_blank" rel="noopener noreferrer">App Store</a>.
         </p>
-        
+
+        <p class="govuk-body">
+            You can only use this service if you're doing an apprenticeship, not if you're doing any other type of course.
+        </p>
+
         <div class="govuk-inset-text">
             <p class="govuk-body">
                 You need a GOV.UK One Login to sign in to this service. You can create one if you do not already have one.
             </p>
         </div>
-        
+
         @if (ViewData.UseGovSignIn())
         {
             <div class="govuk-inset-text">
