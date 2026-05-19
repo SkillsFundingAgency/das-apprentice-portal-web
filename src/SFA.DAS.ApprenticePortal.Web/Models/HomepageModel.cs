@@ -4,6 +4,12 @@ namespace SFA.DAS.ApprenticePortal.Web.Models
 {
     public class HomepageModel
     {
+        public string FullName { get; set; }
+        public string TrainingProvider { get; set; }
+        public int Level { get; set; }
+        public string Type { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
         public string? CurrentHashedApprenticeshipId{ get; set; } = null!;
         public string? CourseName { get; set; } = null!;
         public string? EmployerName { get; set; } = null!;

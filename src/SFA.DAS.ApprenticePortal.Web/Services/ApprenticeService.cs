@@ -41,6 +41,12 @@ namespace SFA.DAS.ApprenticePortal.Web.Services
 
                 var model = new HomepageModel
                 {
+                    FullName = apprenticeHomepage.Apprentice.FirstName + " " + apprenticeHomepage.Apprentice.LastName,
+                    TrainingProvider = apprenticeHomepage.Apprenticeship.TrainingProviderName,
+                    Level = apprenticeHomepage.Apprenticeship.CourseLevel,
+                    Type = apprenticeHomepage.Apprenticeship.ApprenticeshipType.ToString(),
+                    StartDate = apprenticeHomepage.Apprenticeship.PlannedStartDate.ToString("MMMM yyyy"),
+                    EndDate = apprenticeHomepage.Apprenticeship.PlannedEndDate.ToString("MMMM yyyy"),
                     CurrentHashedApprenticeshipId = apprenticeship == null ? null : _hashingService.Encode(apprenticeship.Id, EncodingType.ApprenticeshipId),
                     CourseName = apprenticeship?.CourseName,
                     EmployerName = apprenticeship?.EmployerName,
