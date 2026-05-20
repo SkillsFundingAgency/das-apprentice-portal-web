@@ -25,6 +25,8 @@
                     />
                 </a>
             </div>
+            @if (ViewData.IsNavigationMenuVisible()) 
+            {
             <button
                 type="button"
                 aria-controls="one-login-header__nav"
@@ -39,6 +41,7 @@
           <span class="rebranded-cross-service-header__toggle-content">Account</span>
         </span>
             </button>
+            
             <nav
                 aria-label="GOV.UK One Login"
                 class="rebranded-one-login-header__nav"
@@ -108,6 +111,7 @@
                 }
                 </ul>
             </nav>
+            }
         </div>
     </div>
 
