@@ -2,111 +2,138 @@
 @model SFA.DAS.ApprenticePortal.Web.Pages.HomeModel
 @using SFA.DAS.ApprenticePortal.Authentication
 @using SFA.DAS.ApprenticePortal.SharedUi.Menu;
+@using SFA.DAS.ApprenticePortal.Web.Helpers
 @using SFA.DAS.ApprenticePortal.Web.Models
+@using WebEssentials.AspNetCore.CdnTagHelpers
 @{
     ViewData["Title"] = "Welcome";
 }
 
 <partial name="_Banner" />
 
-<div class="dashboard-page">
+<div class="dashboard-page govuk-!-padding-bottom-5">
     <div class="govuk-width-container">
         <div class="govuk-grid-row dashboard-title">
             <div class="govuk-grid-column-full">
-                <h1 class="govuk-heading-l">
-                    Welcome, @User.FullName()
-                    <span class="govuk-caption-m">@Model.HomePageModel?.CourseName</span>
+                <h1 class="govuk-heading-xl">
+                    Welcome, @Model.HomePageModel.FullName                                        
                 </h1>
             </div>
         </div>
     </div>
 </div>
 
-<main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">
-    <partial name="_HomeNotifications" , model=@Model />
-    <div class="govuk-width-container" id="dashboard-section">
+<main class="govuk-main-wrapper--autosspacing homepage" id="main-content" role="main">    
+    @* <div class="govuk-width-container" id="dashboard-section"> *@
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-                <ul class="dashboard-nav dashboard-li">
-                    <li asp-show="@Model.HomePageModel.ShowConfirmMyApprenticeshipCard">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state"
-                                asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
-                                Access your apprenticeship
-                            </a>
+            <h2 class="govuk-heading-l">
+                Your apprenticeship details
+            </h2>
+                <table class="govuk-table data-table">
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Full name</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.FullName</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Current employer</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.EmployerName</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Training provider</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.TrainingProvider</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Apprenticeship</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.CourseName</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Level</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.Level</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Type</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Utilities.GetApprenticeshipTypeDescription(int.Parse(Model.HomePageModel.Type))</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Planned training start date</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.StartDate</td>
+                    </tr>
+                    <tr class="govuk-summary-list__row">
+                        <td scope="row" class="govuk-summary-list__key govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">Planned training end date</td>
+                        <td class="govuk-summary-list__value govuk-!-width-one-half govuk-!-padding-top-4 govuk-!-padding-bottom-4">@Model.HomePageModel.EndDate</td>
+                    </tr>
+                </table>
+            <div class="govuk-inset-text">
+                <p class="govuk-body govuk-!-font-weight-bold">
+                    Are any of your details wrong?
+                </p>
+                <p class="govuk-body">
+                    If your training provider is wrong, tell your contact at @Model.HomePageModel.EmployerName. If your employer or any other details are wrong, tell your contact at @Model.HomePageModel.TrainingProvider. They'll correct them and we'll let you know when it's been done.
+                </p>
+            </div>
+            </div>
+
+            <div class="govuk-grid-column-one-third">
+
+                <div class="gem-c-contextual-sidebar govuk-!-display-none-print">
+                    <div data-module="ga4-link-tracker" class="gem-c-related-navigation govuk-!-display-none-print">
+                        <h2 id="related-nav-related_items" class="govuk-heading-l">
+                            Useful links
                         </h2>
-                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped)
-                        {
-                            <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
-                        }
-                        else if (Model.HomePageModel.Status() == ApprenticeshipStatus.Incomplete &&
-                        Model.HomePageModel.ShowMyApprenticeshipCard)
-                        {
-                            <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Unconfirmed</strong>
-                        }
-                        else
-                        {
-                            <strong class="dashboard__status-tag govuk-tag govuk-tag--yellow">Incomplete</strong>
-                        }
-                        <p asp-hide="@Model.HomePageModel.ShowMyApprenticeshipCard">Confirm details of your employer,
-                            training provider and apprenticeship.</p>
-                        <p asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">Changes have been made to your
-                            apprenticeship details. Confirm your new details.</p>
-                    </li>
-                    <li asp-show="@Model.HomePageModel.ShowMyApprenticeshipCard">
-                        @if (Model.HomePageModel.Status() == ApprenticeshipStatus.Stopped &&
-                                                Model.HomePageModel.ShowConfirmMyApprenticeshipCard == false)
-                        {
-                            <h2 class="govuk-heading-m">
-                                <a class="govuk-link govuk-link--no-visited-state"
-                                    asp-external-section="ConfirmMyApprenticeship" asp-external-page="Apprenticeships">
-                                    My apprenticeship details
-                                </a>
-                            </h2>
-                            <strong class="dashboard__status-tag govuk-tag app-tag--dark-grey">Stopped</strong>
-                        }
-                        else
-                        {
-                            <h2 class="govuk-heading-m">
-                                <a class="govuk-link govuk-link--no-visited-state" asp-external-section="MyApprenticeship"
-                                    asp-external-page="Apprenticeships/@Model.HomePageModel.CurrentHashedApprenticeshipId/view">
-                                    My apprenticeship details
-                                </a>
-                            </h2>
-                        }
-                        <p>Details of your employer, training provider and apprenticeship.</p>
-                    </li>
-                    <li asp-for-external-section="ApprenticeFeedback">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state"
-                                asp-external-section="ApprenticeFeedback">
-                                Feedback on your training provider
-                            </a>
-                        </h2>
-                        <p>Let us know how you're getting on with your apprenticeship and how your training provider can
-                            improve to help other apprentices.</p>
-                    </li>
-                    <li asp-for-external-section="@NavigationSection.ApprenticeAan">
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state"
-                                asp-external-section="@NavigationSection.ApprenticeAan">
-                                Become an apprenticeship ambassador
-                            </a>
-                        </h2>
-                        <p>The AAN (comprised of employer and apprentice members) is the movement championing
-                            apprenticeships across England. The network raises awareness and increases engagement to
-                            meet the needs of employers, communities and individuals.</p>
-                    </li>
-                    <li>
-                        <h2 class="govuk-heading-m">
-                            <a class="govuk-link govuk-link--no-visited-state" asp-page="HelpAndSupport" model="Model">
-                                Help and support
-                            </a>
-                        </h2>
-                        <p>Who to contact if you have questions or concerns during your apprenticeship.</p>
-                    </li>
-                </ul>
+
+                        <nav class="gem-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items">
+                            <ul class="govuk-list">
+                                <li class="govuk-!-margin-bottom-4">
+                                    <a href="https://www.apprenticeships.gov.uk/apprentices/roles-responsibilities"
+                                           class="govuk-link govuk-!-font-size-16" target="_blank">
+                                        Check roles and responsibilities
+                                    </a>
+                                    <p class="govuk-body govuk-!-margin-top-1 govuk-!-font-size-16">
+                                        What you, your employer and your training provider are responsible for, and what to do if you need help.
+                                    </p>
+                                </li>
+                                <li class="govuk-!-margin-bottom-4">
+                                    <a href="https://www.apprenticeships.gov.uk/apprentices/off-the-job"
+                                       class="govuk-link govuk-!-font-size-16" target="_blank">
+                                        What you need to know about your training
+                                    </a>
+                                </li>
+                                <li class="govuk-!-margin-bottom-4">
+                                <a href="https://www.apprenticeships.gov.uk/apprentices/understanding-apprenticeship-assessment"
+                                       class="govuk-link govuk-!-font-size-16" target="_blank">
+                                        What you need to know about your assessment
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- Get the App Widget -->
+                        <div class="govuk-!-margin-bottom-6">
+                            <div style="background: #1d70b8; border-radius: 8px; padding: 1.5rem; text-align: center; color: white;">
+                                <h3 class="govuk-heading-s" style="color: white; margin-top: 0; margin-bottom: 1rem;">Your Apprenticeship app</h3>                               
+
+                                <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                                    <a href="https://play.google.com/store/apps/details?id=uk.gov.education.myapprenticeship&hl=en-US" class="app-badge-link">
+                                        <img src="https://assets.publishing.service.gov.uk/media/685c12e77d72089d19976136/Play_Store_Badge.svg"
+                                             alt="Get it on Google Play"
+                                             style="height: 40px; width: auto;" />
+                                    </a>
+
+                                    <a href="https://apps.apple.com/gb/app/your-apprenticeship/id6738137983" class="app-badge-link">
+                                        <img src="https://assets.publishing.service.gov.uk/media/685c13004cd6b03168709841/App_Store_Badge.svg"
+                                             alt="Download on the App Store"
+                                             style="height: 40px; width: auto;" />
+                                    </a>
+                                </div>
+
+                            <a href="#" class="govuk-link govuk-!-font-size-16 govuk-!-margin-top-4" style="color: white;">Access Your Apprenticeship app on the web</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @* </div> *@
 </main>
