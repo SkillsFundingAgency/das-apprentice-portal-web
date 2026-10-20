@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
 
     <Description>Apprentice portal shared authentication components</Description>
@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.11" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="SFA.DAS.GovUK.Auth" Version="17.1.141" />
   </ItemGroup>
