@@ -34,8 +34,7 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
 
             services
-                .AddTelemetryRegistration(Configuration)
-                .AddApplicationInsightsTelemetry();
+                .AddTelemetryRegistration(Configuration);
 
             services.AddDataProtection(appConfig.ConnectionStrings, Environment);
 
