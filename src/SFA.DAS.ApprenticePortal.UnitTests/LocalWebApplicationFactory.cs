@@ -41,6 +41,7 @@ namespace SFA.DAS.ApprenticePortal.UnitTests
 
             builder.ConfigureServices(s =>
             {
+                s.AddHttpContextAccessor();
                 s.AddControllersWithViews(options =>
                 {
                     options.Filters.Add(new ActionResultFilter(_actionResultHook));
