@@ -30,12 +30,12 @@ namespace SFA.DAS.ApprenticePortal.Web.Startup
             var appConfig = Configuration.Get<ApplicationConfiguration>();
             var encodingsConfig = Configuration.Get<EncodingConfig>();
             services.AddSingleton(appConfig);
+            services.AddHttpContextAccessor();
 
             services.AddTransient(_ => new NavigationUrlHelper(appConfig.ApplicationUrls));
 
             services
-                .AddTelemetryRegistration(Configuration)
-                .AddApplicationInsightsTelemetry();
+                .AddTelemetryRegistration(Configuration);
 
             services.AddDataProtection(appConfig.ConnectionStrings, Environment);
 
